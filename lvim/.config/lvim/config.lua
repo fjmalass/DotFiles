@@ -12,16 +12,20 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "tokyonight"
-
 vim.g.tokyonight_style = "night"
 
--- lvim.transparent_window = false
+lvim.format_on_save = true
+lvim.transparent_window = false
 -- lvim.opt.wrap = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+
+-- LSP 
+lvim.lsp.diagnostics.virtual_text =false
 -- lvim.lsp.diagnostics.virtual_text = false
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = ""
@@ -104,12 +108,14 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.lang.python.formatters = {
   {
     exe = "black",
+    args = {}
   }
 }
 -- set an additional linter
 lvim.lang.python.linters = {
   {
     exe = "flake8",
+    args = {}
   }
 }
 
@@ -160,7 +166,9 @@ lvim.plugins = {
     end,
   },
   {"dccsillag/magma-nvim"
-  }
+  },
+  {"mfussenegger/nvim-jdtls"},
+  {"ChristianChiarulli/vim-solidity"}
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
