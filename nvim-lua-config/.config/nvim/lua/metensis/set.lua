@@ -1,7 +1,9 @@
+vim.g.mapleader = " "
+ 
 vim.opt.guicursor=""
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.hidden = true
 vim.opt.errorbells = false
 vim.opt.tabstop = 4
@@ -21,6 +23,7 @@ vim.opt.termguicolors = true
 vim.opt.colorcolumn = "80"
 vim.opt.isfname:append("@-@")
 
+vim.opt.cmdheight = 1
 -- dont pass messages to |ins-completion-menu|
 vim.opt.shortmess:append("c")
 -- default is 4000 that causes noptticeable delayes
