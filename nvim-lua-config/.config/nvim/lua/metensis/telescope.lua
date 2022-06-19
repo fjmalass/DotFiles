@@ -22,7 +22,7 @@ require("telescope").setup({
             },
         },
     },
- -   --[[
+   --[[
         extensions = {
             fzy_native = {
                 override_generic_sorter = false,
@@ -30,7 +30,6 @@ require("telescope").setup({
             },
     ]]
 })
-
 
 require("telescope").load_extension("git_worktree")
 -- require("telescope").load_extension("fzy_native")

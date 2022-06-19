@@ -8,6 +8,8 @@ vim.keymap.set("n", "<leader>pb", "<cmd>lua require('telescope.builtin').buffers
 vim.keymap.set("n", "<leader>vh", "<cmd>lua require('telescope.builtin').help_tags()<CR>")
 vim.keymap.set("n", "<leader>gw", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
 vim.keymap.set("n", "<leader>gm", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>")
-vim.keymap.set("n", "<leader>td", "<cmd>lua require('theprimeagen.telescope').dev()<CR>")
+vim.keymap.set("n", "<leader>td", "<cmd>lua require('metensis.telescope').dev()<CR>")
+vim.keymap.set("n", "<leader>vrc", "<cmd>lua require('metensis.telescope').search_dotfiles({hidden=true})<CR>")
+vim.keymap.set("n", "<leader>gc", "<cmd>lua require('metensis.telescope').git_branches({hidden=true})<CR>")
 
 vim.keymap.set("n", "<leader>u", "<cmd>lua require('theprimeagen.telescope').dev()<CR>")
