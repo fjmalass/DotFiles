@@ -7,19 +7,21 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "Y", "yg$")
+vim.keymap.set("n", "<leader>Y", "+Y", { remap = true })
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set("v", "<leader>p", "\"_dP")
 
 -- resize
 vim.keymap.set("n", "<leader>+", "<cmd>vertical resize +5<cr>")
 vim.keymap.set("n", "<leader>-", "<cmd>vertical resize -5<cr>")
 vim.keymap.set("n", "<leader>rp", "<cmd>resize 100<cr>")
 -- replace
-vim.keymap.set("n", "<leader>s", "<cmd>%s/<c-r><c-w>/<cr>")
+vim.keymap.set("n", "<leader>s", "<cmd>%s/<<c-r><c-w>>/<cr>")
 -- ':%s/\<'.expand('<cword>').'\>/<&>/g<CR>
 -- remove nohl
 vim.keymap.set("n", "<leader><space>", "<cmd>nohlsearch<cr>")
