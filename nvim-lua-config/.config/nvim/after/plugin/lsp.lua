@@ -1,5 +1,4 @@
-local sumneko_root_path = os.execute("brew --prefix")
-print(sumneko_root_path)
+local sumneko_root_path = "/opt/homebrew"
 local sumeeko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
