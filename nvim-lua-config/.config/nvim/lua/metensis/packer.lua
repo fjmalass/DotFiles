@@ -7,7 +7,7 @@ return require("packer").startup(function()
   -- Packer can manage itself
   use("wbthomason/packer.nvim")
 
-  -- TJ asynch 
+  -- TJ asynch
   use("nvim-lua/plenary.nvim")
   -- instead of pope/vim-fugitive
   use("TimUntersberger/neogit", {requires="nvim-lua/plenary.nvim"})
@@ -15,7 +15,7 @@ return require("packer").startup(function()
   -- fuzzy finder
   use("nvim-lua/popup.nvim")
   use("nvim-telescope/telescope.nvim")
-  
+
   -- All the things from Theprimeagen
   use("neovim/nvim-lspconfig")
   use("hrsh7th/cmp-nvim-lsp")
@@ -34,10 +34,18 @@ return require("packer").startup(function()
 
   use("mbbill/undotree")
 
+  -- comments
+  use("b3nj5m1n/kommentary")
+
   -- Debugging
   use("mfussenegger/nvim-dap")
   use("rcarriga/nvim-dap-ui")
   use("theHamsta/nvim-dap-virtual-text")
+  -- check installation with https://github.com/mfussenegger/nvim-dap-python
+  -- Requires debugpy (installed in itsown virtual env. pip)
+  -- also installatin of tree-sitter
+  use("mfussenegger/nvim-dap-python")
+
 
   -- colorscheme
   use("gruvbox-community/gruvbox")
