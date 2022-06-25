@@ -1,12 +1,9 @@
--- python
-lvim.lang.python.formatters = {
-  {
-    exe = "black",
-  },
-}
+-- ~/.config/lvim/ftplugin/python.lua
+-- :TSInstall python
+-- :LspSettings pyright
+-- :DIInstall python
 
-lvim.lang.python.linters = {
-  {
-    exe = "flake8",
-  },
-}
+local dap_install = require "dap-install"
+dap_install.config("python", {})
+
+
