@@ -7,6 +7,7 @@ a global executable or a path to
 an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+vim.opt.relativenumber = true
 
 -- general
 lvim.log.level = "warn"
@@ -159,7 +160,7 @@ formatters.setup {
   { command = "black", filetypes = { "python" } },
   { command = "isort", filetypes = { "python" } },
   -- { command = "gofumpt", extra_args  = { "-l -w" }, filetypes = { "go" } },
-  { command = "uncrustify", filetypes = { "c" }, args = { "--no-backupe" } },
+  { command = "uncrustify", filetypes = { "c", "cpp" }, args = { "--no-backup" } },
   {
     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "prettier",
