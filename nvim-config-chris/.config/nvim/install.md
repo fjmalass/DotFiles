@@ -10,6 +10,8 @@ Be able to set up based for a given version of neovim
 	* Cleanup with prepackaged `stow`, e.g., `nvim_config_swith chris`
 	(So configuration is backed up )
 
+3. Make sure to delete all your packages previously installed
+  * `rm -rf ~/.local/share/nvim/site/pack/packer`
 
 # Architecture
 In `~/.config/nvim/init.lua`: all the starting configuration
