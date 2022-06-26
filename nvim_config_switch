@@ -5,7 +5,10 @@ rm -rdf ${HOME}/.config/nvim
 
 if [[ -z "$1" || "$1" == "lua" ]];  then
   # add the new one
-  stow -vt ${HOME} nvim-lua-config
+  stow -vt ${HOME} nvim-lua-config-theprimeagen
+elif [[ "$1" == "chris" ]]; then
+  # add the new one
+  stow -vt ${HOME} nvim-config-chris
 else
   # add the new one
   stow -vt ${HOME} nvim
