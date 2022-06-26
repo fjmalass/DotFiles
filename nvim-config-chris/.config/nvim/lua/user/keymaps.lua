@@ -7,6 +7,7 @@ local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.keymap.set
 
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -68,3 +69,14 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+keymap("n", "<leader><space>", "<cmd>nohlsearch<cr>")
+
+-- NvimTree
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>")
+
+-- Telescope
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+vim.keymap.set("n", "<leader>ft", "<cmd>Telescope live_grep<cr>")
+vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>")
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
