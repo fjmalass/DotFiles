@@ -230,10 +230,21 @@ lvim.plugins = {
   { "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
     ft = "markdown" },
-  { "mfussenegger/nvim-dap-python" },
-  { "rcarriga/nvim-dap-ui" },
+  { "mfussenegger/nvim-dap-python",
+    config = function()
+      require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
+    end
+  },
+  { "rcarriga/nvim-dap-ui",
+    config = function()
+      require("nvim-dap").setup("~/.virtualenvs/debugpy/bin/python")
+    end },
   { "nvim-telescope/telescope-dap.nvim" },
-  { "theHamsta/nvim-dap-virtual-text" },
+  { "theHamsta/nvim-dap-virtual-text",
+    config = function()
+      require("nvim-dap-virtual-text").setup()
+    end
+  },
   { "sindrets/diffview.nvim",
     event = "BufRead" },
   { "nvim-treesitter/playground",
@@ -245,7 +256,7 @@ lvim.plugins = {
         throttle = true,
         max_lines = 0,
         patterns = {
-          default = { 'class', 'function', 'method' },
+          default = { "class", "function", "method" },
         },
       }
     end
