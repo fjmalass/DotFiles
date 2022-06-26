@@ -43,6 +43,8 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+-- use vim scripts
 vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+-- vim.cmd [[set iskeyword+=-]]
+
+vim.opt.iskeyword:append "-"                -- allows to concider - within the same word

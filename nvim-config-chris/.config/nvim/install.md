@@ -17,6 +17,10 @@ Be able to set up based for a given version of neovim
 In `~/.config/nvim/init.lua`: all the starting configuration
 In `~/.config/nvim/lua/user/`: all the specific configurations for that particular instance of `nvim`
 
+## Commnet
+1. To avoid startup slowdown convert 
+`require('junk').myfun` -> `function() require('junk').myfun() end`
+
 
 
 
