@@ -230,16 +230,51 @@ lvim.plugins = {
   { "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
     ft = "markdown" },
-  { "mfussenegger/nvim-dap-python",
+  { "mfussenegger/nvim-dap",
     config = function()
-      require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
+      local dap = require('dap')
+      dap.apapters.python = {
+        type = 'executable';
+        command = os.getenv("HOME") .. "/.virtualenvs/debugpy/bin/python";
+        args = { "-m", "debugpy.adapater" };
+      }
+      dap.configurations.python {
+        {
+          type = "python";
+          request = "launch";
+          name = "Launch file";
+
+          program = "${file}";
+          pythonPath = function()
+            local cwd = vim.fn.getcwd()
+            if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+              return cwd .. "/venv/bin/python"
+            elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+              return cwd .. "/.venv/bin/python"
+            else
+              return "/usr/bin/python"
+            end
+          end;
+        },
+      }
     end
   },
+  -- { "mfussenegger/nvim-dap-python",
+  --   config = function()
+  --     require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
+  --   end
+  -- },
   { "rcarriga/nvim-dap-ui",
     config = function()
-      require("nvim-dap").setup("~/.virtualenvs/debugpy/bin/python")
-    end },
-  { "nvim-telescope/telescope-dap.nvim" },
+      -- require("nvim-dap").setup("~/.virtualenvs/debugpy/bin/python")
+      require("nvim-dap-ui").setup()
+    end
+  },
+  { "nvim-telescope/telescope-dap.nvim",
+    config = function()
+      require("telescope-dap").setup()
+    end
+  },
   { "theHamsta/nvim-dap-virtual-text",
     config = function()
       require("nvim-dap-virtual-text").setup()
