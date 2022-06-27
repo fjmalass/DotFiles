@@ -45,17 +45,17 @@ dapui.setup {
           size = 0.25, -- Can be float or integer > 1
         },
         { id = "breakpoints", size = 0.25 },
-        -- { id = "stacks", size = 0.25 },
+        { id = "stacks", size = 0.25 },
         { id = "watches", size = 0.25 },
       },
       size = 40,
-      position = "right", -- Can be "left", "right", "top", "bottom"
+      position = "left", -- Can be "left", "right", "top", "bottom"
     },
     tray = {
-      elements = {},
+      elements = { "console" },
       -- elements = { "repl" },
-      -- size = 10,
-      -- position = "bottom", -- Can be "left", "right", "top", "bottom"
+      size = 10,
+      position = "bottom", -- Can be "left", "right", "top", "bottom"
     },
   },
   floating = {
@@ -72,7 +72,7 @@ dapui.setup {
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+  dapui.open(1)
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close()

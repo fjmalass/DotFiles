@@ -71,42 +71,49 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 keymap("n", "<leader><space>", "<cmd>nohlsearch<cr>", opts)
+-- replace
+keymap("n", "<leader>s", "<cmd>%s/vim.fn.expand('<cword>')/<cr>")
+
+keymap("n", "Y", "yg$", opts)
+keymap("n", "<leader>Y", "+Y", { remap = true })
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
+keymap("n", "J", "mzJ`z", opts)
 
 -- NvimTree
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- Telescope
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-vim.keymap.set("n", "<leader>ft", "<cmd>Telescope live_grep<cr>", opts)
--- vim.keymap.set("n", "<leader>fT", "<cmd>Telescope live_grep default_text = nvim.fn.expand('<cWord>')<cr>", opts) -- how do you do that?
-vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>", opts)
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>ft", "<cmd>Telescope live_grep<cr>", opts)
+-- keymap("n", "<leader>fT", "<cmd>Telescope live_grep default_text = nvim.fn.expand('<cWord>')<cr>", opts) -- how do you do that?
+keymap("n", "<leader>fp", "<cmd>Telescope projects<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 
 -- Alpha
-vim.keymap.set("n", "<C-;>", "<cmd>Alpha<cr>", opts)
+keymap("n", "<C-;>", "<cmd>Alpha<cr>", opts)
 
 -- Alpha
-vim.keymap.set("n", "<C-;>", "<cmd>Alpha<cr>", opts)
+keymap("n", "<C-;>", "<cmd>Alpha<cr>", opts)
 
 -- LSP
-vim.keymap.set("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
-vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
--- vim.keymap.set("n", "<leader>ld", "<cmd>TroubleToggle<cr>", opts)
-vim.keymap.set("n", "<leader>lF", "<cmd>LspToggleAutoFormat<cr>", opts)
-vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
-vim.keymap.set("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
-vim.keymap.set("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
-vim.keymap.set("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
-vim.keymap.set("n", "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<CR>", opts)
+keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+-- keymap("n", "<leader>ld", "<cmd>TroubleToggle<cr>", opts)
+keymap("n", "<leader>lF", "<cmd>LspToggleAutoFormat<cr>", opts)
+keymap("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
+keymap("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
+keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
+keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
+keymap("n", "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<CR>", opts)
 
-vim.keymap.set("n", "<leader>lo", "<cmd>SymbolsOutline<CR>", opts)
-vim.keymap.set("n", "<leader>lg", "<cmd>lua vim.lsp.codelens.run()<CR>", opts)
-vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
-vim.keymap.set("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts)
+keymap("n", "<leader>lo", "<cmd>SymbolsOutline<CR>", opts)
+keymap("n", "<leader>lg", "<cmd>lua vim.lsp.codelens.run()<CR>", opts)
+keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+keymap("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+keymap("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts)
 
 -- Lazygit
-vim.keymap.set("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
-vim.keymap.set("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 

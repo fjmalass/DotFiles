@@ -21,7 +21,7 @@ vim.keymap.set("n", "<leader>+", "<cmd>vertical resize +5<cr>")
 vim.keymap.set("n", "<leader>-", "<cmd>vertical resize -5<cr>")
 vim.keymap.set("n", "<leader>rp", "<cmd>resize 100<cr>")
 -- replace
-vim.keymap.set("n", "<leader>s", "<cmd>%s/<<c-r><c-w>>/<cr>")
+vim.keymap.set("n", "<leader>s", "<cmd>%s/vim.fn.expand('<cword>')/<cr>")
 -- ':%s/\<'.expand('<cword>').'\>/<&>/g<CR>
 -- remove nohl
 vim.keymap.set("n", "<leader><space>", "<cmd>nohlsearch<cr>")
