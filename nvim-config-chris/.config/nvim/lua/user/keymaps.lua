@@ -80,3 +80,6 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>ft", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>")
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
+
+-- Alpha
+vim.keymap.set("n", "<C-;>", "<cmd>Alpha<cr>")
