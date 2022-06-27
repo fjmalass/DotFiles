@@ -2,7 +2,7 @@
 -- noremap is set to true by default
 local opts = { silent = true }
 
-local term_opts = { silent = true }
+-- local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
@@ -70,16 +70,43 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
-keymap("n", "<leader><space>", "<cmd>nohlsearch<cr>")
+keymap("n", "<leader><space>", "<cmd>nohlsearch<cr>", opts)
 
 -- NvimTree
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>")
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- Telescope
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-vim.keymap.set("n", "<leader>ft", "<cmd>Telescope live_grep<cr>")
-vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>")
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<leader>ft", "<cmd>Telescope live_grep<cr>", opts)
+-- vim.keymap.set("n", "<leader>fT", "<cmd>Telescope live_grep default_text = nvim.fn.expand('<cWord>')<cr>", opts) -- how do you do that?
+vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>", opts)
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 
 -- Alpha
-vim.keymap.set("n", "<C-;>", "<cmd>Alpha<cr>")
+vim.keymap.set("n", "<C-;>", "<cmd>Alpha<cr>", opts)
+
+-- Alpha
+vim.keymap.set("n", "<C-;>", "<cmd>Alpha<cr>", opts)
+
+-- LSP
+vim.keymap.set("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+-- vim.keymap.set("n", "<leader>ld", "<cmd>TroubleToggle<cr>", opts)
+vim.keymap.set("n", "<leader>lF", "<cmd>LspToggleAutoFormat<cr>", opts)
+vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
+vim.keymap.set("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
+vim.keymap.set("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
+vim.keymap.set("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
+vim.keymap.set("n", "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<CR>", opts)
+
+vim.keymap.set("n", "<leader>lo", "<cmd>SymbolsOutline<CR>", opts)
+vim.keymap.set("n", "<leader>lg", "<cmd>lua vim.lsp.codelens.run()<CR>", opts)
+vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+vim.keymap.set("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts)
+
+-- Lazygit
+vim.keymap.set("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+vim.keymap.set("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+
+

@@ -77,7 +77,7 @@ _G.packer_plugins = {
   ["DAPInstall.nvim"] = {
     loaded = true,
     path = "/Users/francois/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim",
-    url = "https://github.com/Pocco81/DAPInstall.nvim"
+    url = "https://github.com/ravenxrz/DAPInstall.nvim"
   },
   ["FixCursorHold.nvim"] = {
     loaded = true,

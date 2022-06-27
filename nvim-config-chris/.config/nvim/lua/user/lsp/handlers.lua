@@ -3,7 +3,7 @@ local M = {}
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 M.setup = function()
---  local icons = require "user.icons"
+--  local icons = require "user.icons"hand
   local signs = {
     { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignWarn", text = "" },
@@ -77,6 +77,10 @@ M.on_attach = function(client, bufnr)
   local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if not status_cmp_ok then
     return
+  end
+
+  if client.name == "tsserver" then
+    client.resolved_capabilities.document_formatting = false
   end
 
   M.capabilities.textDocument.completion.completionItem.snippetSupport = true

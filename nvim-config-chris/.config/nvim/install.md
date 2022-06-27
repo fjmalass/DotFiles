@@ -21,6 +21,14 @@ In `~/.config/nvim/lua/user/`: all the specific configurations for that particul
 1. To avoid startup slowdown convert 
 `require('junk').myfun` -> `function() require('junk').myfun() end`
 
+## Install numpy using DIInstall
+* Python is located in `/Users/francois/.local/share/nvim/dapinstall/python`
+* the libraries are in
+`/Users/francois/.local/share/nvim/dapinstall/python/lib/python3.10/site-packages` 
+* to install modules  like `numpy`
+`/Users/francois/.local/share/nvim/dapinstall/python/lib/python3.10 -m pip install numpy`
+
+
 
 
 

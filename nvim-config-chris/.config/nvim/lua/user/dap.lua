@@ -1,11 +1,27 @@
+-- Regular dap
 local dap_status_ok, dap = pcall(require, "dap")
 if not dap_status_ok then
-	return
+  return
 end
 
+-- Dap install
+local dap_install_status_ok, dap_install = pcall(require, "dap-install")
+if not dap_install_status_ok then
+  return
+end
+
+dap_install.setup { installation_path = vim.fn.stdpath "data" .. "/dapinstall/" }
+--/Users/francois/.local/share/nvim/dapinstall/python
+-- the libraries are in
+--/Users/francois/.local/share/nvim/dapinstall/python/lib/python3.10/site-packages
+-- to install modules use
+--/Users/francois/.local/share/nvim/dapinstall/python/lib/python3.10 -m pip install numpy
+dap_install.config("python", {})
+
+-- Regular dapui
 local dap_ui_status_ok, dapui = pcall(require, "dapui")
 if not dap_ui_status_ok then
-	return
+  return
 end
 
 dapui.setup {
@@ -30,7 +46,7 @@ dapui.setup {
         },
         { id = "breakpoints", size = 0.25 },
         -- { id = "stacks", size = 0.25 },
-        -- { id = "watches", size = 00.25 },
+        { id = "watches", size = 0.25 },
       },
       size = 40,
       position = "right", -- Can be "left", "right", "top", "bottom"
@@ -53,9 +69,7 @@ dapui.setup {
   windows = { indent = 1 },
 }
 
-local icons = require "user.icons"
-
-vim.fn.sign_define('DapBreakpoint', {text=icons.ui.Bug, texthl='DiagnosticSignError', linehl='', numhl=''})
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()

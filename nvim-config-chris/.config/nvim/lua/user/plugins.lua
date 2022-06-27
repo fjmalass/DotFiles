@@ -41,73 +41,71 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
-  use("wbthomason/packer.nvim") -- Have packer manage itself
-  use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-  use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-  use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-  use("numToStr/Comment.nvim") -- Easily comment stuff
-  use("kyazdani42/nvim-web-devicons")
-  use("kyazdani42/nvim-tree.lua")
-  use("akinsho/bufferline.nvim") -- may be removed with 0.8
-  use("moll/vim-bbye")
-  use("nvim-lualine/lualine.nvim")
-  use("akinsho/toggleterm.nvim")
+  use "wbthomason/packer.nvim" -- Have packer manage itself
+  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  use "numToStr/Comment.nvim" -- Easily comment stuff
+  use "kyazdani42/nvim-web-devicons"
+  use "kyazdani42/nvim-tree.lua"
+  use "akinsho/bufferline.nvim" -- may be removed with 0.8
+  use "moll/vim-bbye"
+  use "nvim-lualine/lualine.nvim"
+  use "akinsho/toggleterm.nvim"
   --use("ahmedkhalf/project.nvim")
-  use("lewis6991/impatient.nvim")
-  use("lukas-reineke/indent-blankline.nvim")
-  use("goolord/alpha-nvim")
-  use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
-  use("folke/which-key.nvim")
+  use "lewis6991/impatient.nvim"
+  use "lukas-reineke/indent-blankline.nvim"
+  use "goolord/alpha-nvim"
+  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
+  use "folke/which-key.nvim"
 
   -- Colorschemes
   -- use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
-  use("lunarvim/darkplus.nvim")
-  use("folke/tokyonight.nvim")
+  use "lunarvim/darkplus.nvim"
+  use "folke/tokyonight.nvim"
 
   -- cmp plugins (Completion)
-  use("hrsh7th/nvim-cmp") -- The completion plugin
-  use("hrsh7th/cmp-buffer") -- buffer completions
-  use("hrsh7th/cmp-path") -- path completions
-  use("hrsh7th/cmp-cmdline") -- cmdline completions
-  use("saadparwaiz1/cmp_luasnip") -- snippet completions
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-nvim-lua")
-  use("hrsh7th/cmp-emoji")
-  use("rcarriga/cmp-dap")
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua"
+  use "hrsh7th/cmp-emoji"
+  use "rcarriga/cmp-dap"
 
   -- snippets
-  use("L3MON4D3/LuaSnip") --snippet engine
-  use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Primeagen
-  use("ThePrimeagen/harpoon")
+  use "ThePrimeagen/harpoon"
 
   -- LSP
-  use("neovim/nvim-lspconfig") -- enable LSP
-  use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-  use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
-  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-  use("RRethy/vim-illuminate")
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "RRethy/vim-illuminate"
 
   -- Telescope
-  use("nvim-telescope/telescope.nvim")
+  use "nvim-telescope/telescope.nvim"
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    }
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("windwp/nvim-ts-autotag")
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "windwp/nvim-ts-autotag"
 
   -- Git
-  use("lewis6991/gitsigns.nvim")
-
+  use "lewis6991/gitsigns.nvim"
 
   -- Dap
-  use("mfussenegger/nvim-dap")
-  use("theHamsta/nvim-dap-virtual-text")
-  use("rcarriga/nvim-dap-ui")
-  use("Pocco81/DAPInstall.nvim")
+  use "mfussenegger/nvim-dap"
+  use "theHamsta/nvim-dap-virtual-text"
+  use "rcarriga/nvim-dap-ui"
+  -- use "Pocco81/DAPInstall.nvim" -- has been move to dap_buddy
+  use "ravenxrz/DAPInstall.nvim" -- has been move to dap_buddy
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
