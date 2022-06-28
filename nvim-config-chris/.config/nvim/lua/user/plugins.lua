@@ -104,6 +104,7 @@ return packer.startup(function(use)
   use "mfussenegger/nvim-dap"
   use "theHamsta/nvim-dap-virtual-text"
   use "rcarriga/nvim-dap-ui"
+  use("theHamsta/nvim-dap-virtual-text")
   -- use "Pocco81/DAPInstall.nvim" -- has been move to dap_buddy
   use "ravenxrz/DAPInstall.nvim" -- has been move to dap_buddy
 

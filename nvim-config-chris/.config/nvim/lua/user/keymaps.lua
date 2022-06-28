@@ -1,4 +1,3 @@
-
 -- noremap is set to true by default
 local opts = { silent = true }
 
@@ -6,7 +5,6 @@ local opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
-
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -37,6 +35,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<leader>k", "<cmd>lnext<cr>zz")
+keymap("n", "<leader>j", "<cmd>lprev<cr>zz")
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -70,6 +70,20 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+-- next greatest remap ever  asbjornHaland
+vim.keymap.set("x", "<leader>p", '"_dP')
+vim.keymap.set("v", "<leader>p", '"_dP')
+vim.keymap.set("n", "<leader>d", '"_d')
+vim.keymap.set("v", "<leader>d", '"_d')
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+
+-- recenter
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+-- join but better
+vim.keymap.set("n", "J", "mzJ`z")
+
 keymap("n", "<leader><space>", "<cmd>nohlsearch<cr>", opts)
 -- replace
 keymap("n", "<leader>s", "<cmd>%s/vim.fn.expand('<cword>')/<cr>")
@@ -84,11 +98,26 @@ keymap("n", "J", "mzJ`z", opts)
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>ft", "<cmd>Telescope live_grep<cr>", opts)
--- keymap("n", "<leader>fT", "<cmd>Telescope live_grep default_text = nvim.fn.expand('<cWord>')<cr>", opts) -- how do you do that?
-keymap("n", "<leader>fp", "<cmd>Telescope projects<cr>", opts)
-keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+keymap("n", "<C-p>", ":lua require('telescope.builtin').git_files()<CR>")
+keymap("n", "<leader>tf", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>ts", ":lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>")
+-- keymap("n", "<Leader>tf", ":lua require('telescope.builtin').find_files()<CR>") -- alternative to above
+
+-- keymap("n", "<leader>ft", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>tw", ":lua require('telescope.builtin').grep_string { search = vim.fn.expand(\"<cword>\") }<CR>")
+keymap("n", "<leader>tb", ":lua require('telescope.builtin').buffers()<CR>")
+keymap("n", "<leader>vh", ":lua require('telescope.builtin').help_tags()<CR>")
+-- keymap("n", "<leader>trc", ":lua require('theprimeagen.telescope').search_dotfiles({ hidden = true })<CR>")
+-- keymap("n", "<leader>va", ":lua require('theprimeagen.telescope').anime_selector()<CR>")
+-- keymap("n", "<leader>tc", ":lua require('theprimeagen.telescope').chat_selector()<CR>")
+-- keymap("n", "<leader>td", ":lua require('theprimeagen.telescope').dev()<CR>")
+-- keymap("n", "<leader>tc", ":lua require('theprimeagen.telescope').git_branches()<CR>")
+keymap("n", "<leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
+keymap("n", "<leader>gm", ":lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>")
+-- keymap( "n", "<leader>tT", ":lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
+-- keymap( "n", "<leader>tT", ":lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
+-- keymap("n", "<leader>tp", "<cmd>Telescope projects<cr>", opts)
+-- keymap("n", "<leader>tb", "<cmd>Telescope buffers<cr>", opts)
 
 -- Alpha
 keymap("n", "<C-;>", "<cmd>Alpha<cr>", opts)
@@ -115,5 +144,32 @@ keymap("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", op
 
 -- Lazygit
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+
+-- harpoon
+keymap("n", "<leader>a", function() require("harpoon.mark").add_file() end, opts)
+keymap("n", "<c-e>", function() require("harpoon.ui").toggle_quick_menu() end, opts)
+keymap("n", "<leader>tc", function() require("harpoon.cmd-ui").toggle_quick_menu() end, opts)
+
+keymap("n", "<c-h>", function() require("harpoon.ui").nav_file(1) end, opts)
+keymap("n", "<c-t>", function() require("harpoon.ui").nav_file(2) end, opts)
+keymap("n", "<c-n>", function() require("harpoon.ui").nav_file(3) end, opts)
+keymap("n", "<c-s>", function() require("harpoon.ui").nav_file(4) end, opts)
+
+-- dap
+local dap = require("dap")
+keymap("n", "<home>", function() dap.toggle(1) end)
+keymap("n", "<end>", function() dap.toggle(2) end)
+keymap("n", "<up>", function() dap.continue() end)
+keymap("n", "<down>", function() dap.step_over() end)
+keymap("n", "<right>", function() dap.step_into() end)
+keymap("n", "<left>", function() dap.step_out() end)
+keymap("n", "<leader>b", function() dap.toggle_breakpoint() end)
+keymap("n", "<leader>B", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
+keymap("n", "<leader>rc", function() dap.run_to_cursor() end)
+
+-- dapui
+local dapui = require("dapui")
+keymap("n", "<leader>5", function() dapui.open(1) end)
+keymap("n", "<leader>6", function() dapui.close() end)
 
 
