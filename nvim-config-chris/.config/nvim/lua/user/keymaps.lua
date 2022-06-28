@@ -125,9 +125,6 @@ keymap("n", "<leader>gm", ":lua require('telescope').extensions.git_worktree.cre
 -- Alpha
 keymap("n", "<C-;>", "<cmd>Alpha<cr>", opts)
 
--- Alpha
-keymap("n", "<C-;>", "<cmd>Alpha<cr>", opts)
-
 -- LSP
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
 keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
