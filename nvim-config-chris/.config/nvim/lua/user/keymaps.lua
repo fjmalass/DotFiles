@@ -63,6 +63,9 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
+-- Misc 
+keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", opts)
+
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
@@ -171,6 +174,6 @@ keymap("n", "<leader>rc", function() dap.run_to_cursor() end)
 local dapui = require("dapui")
 keymap("n", "<leader>5", function() dapui.open(1) end)
 keymap("n", "<leader>6", function() dapui.close() end)
-keymap("n", "<leader>c", function() dapui.eval() end)
+keymap("n", "<leader>v", function() dapui.eval() end)
 
 
