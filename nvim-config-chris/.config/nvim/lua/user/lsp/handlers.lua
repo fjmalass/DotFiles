@@ -1,6 +1,5 @@
 local M = {}
 
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 M.setup = function()
 --  local icons = require "user.icons"hand
@@ -26,7 +25,7 @@ M.setup = function()
     underline = true,
     severity_sort = true,
     float = {
-      focusable = true,
+      focusable = false,
       style = "minimal",
       border = "rounded",
       source = "always",
@@ -63,7 +62,7 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]]
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
@@ -79,6 +78,7 @@ M.on_attach = function(client, bufnr)
     return
   end
 
+  -- fix to make it more modular
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end
@@ -89,5 +89,14 @@ M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+local cmp_lsp_ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_lsp_ok then
+  return
+end
+
+M.capabilities = cmp_lsp.update_capabilities(capabilities)
 
 return M
