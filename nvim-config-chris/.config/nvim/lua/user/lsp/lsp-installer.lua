@@ -28,9 +28,9 @@ local settings = {
       -- server_installed = "◍",
       -- server_pending = "◍",
       -- server_uninstalled = "◍",
-      -- server_installed = "✓",
-      -- server_pending = "➜",
-      -- server_uninstalled = "✗",
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗",
     },
     keymaps = {
       toggle_server_expand = "<CR>",
