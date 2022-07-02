@@ -26,6 +26,7 @@ nvim_tree.setup {
     "alpha",
   },
   filters = {
+    dotfiles = false,
     custom = { ".git" },
     exclude = { ".gitignore" },
   },
@@ -81,16 +82,17 @@ nvim_tree.setup {
           symlink_open = "",
         },
         git = {
-          unstaged = "",
-          staged = "S",
+          unstaged = "✗",
+          staged = "✓",
           unmerged = "",
           renamed = "➜",
-          untracked = "U",
+          untracked = "★",
           deleted = "",
           ignored = "◌",
         },
       },
     },
+    special_files = {"Cargo.toml", "Makefile", "README.md", "Readme.md", "readme.md"}
   },
   diagnostics = {
     enable = true,

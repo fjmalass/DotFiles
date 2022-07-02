@@ -59,7 +59,6 @@ return packer.startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
 
-  use "ur4ltz/surround.nvim"
 
   -- Colorschemes
   -- use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
@@ -93,6 +92,12 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+
+  -- hop
+  use "phaazon/hop.nvim"
+  --
+  -- use "ur4ltz/surround.nvim"
+  use "kylechui/nvim-surround"
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }

@@ -84,22 +84,20 @@ keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- next greatest remap ever  asbjornHaland
-vim.keymap.set("x", "<leader>p", '"_dP')
-vim.keymap.set("v", "<leader>p", '"_dP')
-vim.keymap.set("n", "<leader>d", '"_d')
-vim.keymap.set("v", "<leader>d", '"_d')
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
+keymap("x", "<leader>p", '"_dP')
+keymap("v", "<leader>p", '"_dP')
+keymap("n", "<leader>d", '"_d')
+keymap("v", "<leader>d", '"_d')
+keymap("n", "<leader>y", '"+y')
+keymap("v", "<leader>y", '"+y')
 
 -- recenter
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
 -- join but better
-vim.keymap.set("n", "J", "mzJ`z")
+keymap("n", "J", "mzJ`z")
 
 keymap("n", "<leader><space>", "<cmd>nohlsearch<cr>", opts)
--- replace
-keymap("n", "<leader>s", "<cmd>%s/vim.fn.expand('<cword>')/<cr>")
 
 keymap("n", "Y", "yg$", opts)
 keymap("n", "<leader>Y", "+Y", { remap = true })
@@ -183,4 +181,11 @@ keymap("n", "<leader>5", function() dapui.open(1) end)
 keymap("n", "<leader>6", function() dapui.close() end)
 keymap("n", "<leader>v", function() dapui.eval() end)
 
+-- hop
+keymap("", "s", "HopWordCurrentLine<cr>", opts)
+keymap("", "S", "HopChar2<cr>", opts)
 
+keymap("o", "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", opts)
+keymap("o", "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", opts )
+keymap("o", "t", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
+keymap("o", "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
