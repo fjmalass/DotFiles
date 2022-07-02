@@ -29,6 +29,28 @@ if not dap_ui_status_ok then
   return
 end
 
+-- ThePrimeagen setup
+-- dapui.setup {
+--   layouts = {
+--     {
+--       elements = { "console" },
+--       size = 7,
+--       position = "bottom",
+--     },
+--     {
+--       elements = {
+--         {
+--           id = "scopes",
+--           size = 0.25,
+--         },
+--         "watches",
+--       },
+--       size = 40,
+--       position = "right",
+--     },
+--   },
+-- }
+
 dapui.setup {
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -55,15 +77,17 @@ dapui.setup {
         { id = "stacks", size = 0.25 },
         { id = "watches", size = 0.25 },
       },
-      size = 40, -- 40 columnes
+      size = 40, -- 40 columns
       position = "left", -- Can be "left", "right", "top", "bottom"
     },
     {
       elements = {
-        { id = "repl", size = 0.6 },
-        { id = "console", size = 0.4 },
+       "repl"
+        -- { id = "repl", size = 0.6 },
+        -- { id = "console", size = 0.4 },
       },
-      size = 0.2,
+      size = 30,
+      -- size = 0.2,
       position = "bottom", -- Can be "left", "right", "top", "bottom"
     },
     floating = {
@@ -77,6 +101,7 @@ dapui.setup {
     windows = { indent = 1 },
   },
 }
+
 dap_install.config("python", {})
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })

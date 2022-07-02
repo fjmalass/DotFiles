@@ -4,10 +4,14 @@ if not status_ok then
   return
 end
 
+-- hop.setup()
 hop.setup({
   keys = "etovzqpdygfblzhckisuran",
-  case_insensitive = true,
+  case_insensitive = false, -- uses smartcases
   create_hl_autocmd = true,
-  uppercase_labels = true,
+  quit_key = '<spc>',
+  jump_on_sole_occurrence = true,
+  multi_windows = false,
   current_line_only = false,
+  -- hint_position = hop.HintPosition.BEGIN,
 })

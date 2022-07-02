@@ -1,5 +1,4 @@
 require "user.options"
-require "user.keymaps"
 require "user.plugins"
 require "user.autocommands"
 require "user.colorscheme"
@@ -21,3 +20,5 @@ require "user.lsp"
 require "user.dap"
 require "user.hop"
 require "user.nvim-surround"
+
+require "user.keymaps"
