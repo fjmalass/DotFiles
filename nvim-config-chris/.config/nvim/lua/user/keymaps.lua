@@ -183,10 +183,15 @@ keymap("n", "<leader>6", function() dapui.close() end, opts)
 keymap("n", "<leader>v", function() dapui.eval() end, opts)
 
 -- hop
-keymap("", "s", "HopWordCurrentLine<cr>", opts)
-keymap("", "S", "HopChar2<cr>", opts)
+keymap("", "<leader>s", "HopWordCurrentLine<cr>", opts)
+keymap("", "<leader>S", "HopChar2<cr>", opts)
 
 keymap("o", "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", opts)
 keymap("o", "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", opts )
 keymap("o", "t", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
 keymap("o", "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
+
+-- markdown 
+keymap("n", "<leader>pp", "<cmd>MarkdownPreview<cr>")
+keymap("n", "<leader>ps", "<cmd>MarkdownPreviewStop<cr>")
+keymap("n", "<leader>pt", "<cmd>MarkdownPreviewToggle<cr>")
