@@ -136,3 +136,6 @@ eval "$(pyenv init -)"
 # >> stylua
 export PATH="$HOME/.cargo/bin:$PATH"
 # <<  stylua
+#
+# use vim :iexc echo $VIMRUNTIME
+export VIMRUNTIME='/usr/local/share/nvim/runtime'
