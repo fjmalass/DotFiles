@@ -93,6 +93,8 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim"
 
+  -- Markdown 
+  use {"iamcco/markdown-preview.nvim", run= "cd app && npm install"}
   -- hop
   use "phaazon/hop.nvim"
   --

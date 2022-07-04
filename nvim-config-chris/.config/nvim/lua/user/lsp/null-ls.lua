@@ -35,7 +35,7 @@ null_ls.setup {
     diagnostics.golangci_lint, -- golang (brew install golangci_lint)
     -- diagnostics.staticcheck, -- golang
     diagnostics.luacheck, -- lua (luarocks luacheck)
-    diagnostics.markdownlint, -- markdown (npm install markdownlint)
+    diagnostics.markdownlint, -- markdown (npm install markdownlint-cli, brew install markdownlint-cli)
     diagnostics.rstcheck, -- reStructuredText (pip install rstcheck)
   },
 }

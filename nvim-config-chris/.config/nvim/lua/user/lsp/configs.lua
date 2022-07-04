@@ -20,6 +20,7 @@ for _ , server in pairs(servers) do
     on_attach = handlers.on_attach,
     capabilities = handlers.capabilities
   }
+  -- check lsp.settings.<server>.lua and set them up
   local has_custom_opts, server_custom_opts = pcall(require, "user.lsp.settings" .. server)
   if has_custom_opts then
     opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
