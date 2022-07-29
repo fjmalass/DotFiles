@@ -131,6 +131,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 # <<< pyenv
 
 # >> stylua
@@ -139,3 +140,17 @@ export PATH="$HOME/.cargo/bin:$PATH"
 #
 # use vim :iexc echo $VIMRUNTIME
 export VIMRUNTIME='/usr/local/share/nvim/runtime'
+
+# >>> argcomplete for ansible
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete ansible)"
+eval "$(register-python-argcomplete ansible-config)"
+eval "$(register-python-argcomplete ansible-console)"
+eval "$(register-python-argcomplete ansible-doc)"
+eval "$(register-python-argcomplete ansible-galaxy)"
+eval "$(register-python-argcomplete ansible-inventory)"
+eval "$(register-python-argcomplete ansible-playbook)"
+eval "$(register-python-argcomplete ansible-pull)"
+eval "$(register-python-argcomplete ansible-vault)"
+# <<< argcomplete

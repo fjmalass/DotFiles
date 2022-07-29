@@ -38,3 +38,7 @@ vim.opt.guifont = "firacode:h17"                -- the font used in graphical ne
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append "-"                    -- allows to consider - within the same word
+vim.opt.colorcolumn = "80"                     -- highlight column 
+
+-- let g:do_filetype_lua = 1                       -- Lookup filetype.lua
+-- let g:did_load_filetypes = 0                    -- dispable filetypes.vim

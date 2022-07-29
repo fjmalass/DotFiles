@@ -195,3 +195,6 @@ keymap("o", "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hin
 keymap("n", "<leader>pp", "<cmd>MarkdownPreview<cr>")
 keymap("n", "<leader>ps", "<cmd>MarkdownPreviewStop<cr>")
 keymap("n", "<leader>pt", "<cmd>MarkdownPreviewToggle<cr>")
+
+-- alpha (start up)
+keymap("n", "<leader>;", "<cmd>Alpha<cr>")
