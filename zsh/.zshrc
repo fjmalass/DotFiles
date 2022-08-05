@@ -111,14 +111,14 @@ export PATH="/Users/francois/.local/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/francois/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/francois/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/francois/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/Users/francois/mambaforge/etc/profile.d/conda.sh"
+    if [ -f "/Users/francois/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/francois/miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/francois/mambaforge/bin:$PATH"
+        export PATH="/Users/francois/miniforge3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -128,9 +128,9 @@ unset __conda_setup
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # >>> pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # <<< pyenv
 
@@ -154,3 +154,5 @@ eval "$(register-python-argcomplete ansible-playbook)"
 eval "$(register-python-argcomplete ansible-pull)"
 eval "$(register-python-argcomplete ansible-vault)"
 # <<< argcomplete
+
+export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"
