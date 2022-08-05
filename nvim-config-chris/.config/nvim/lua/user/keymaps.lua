@@ -1,7 +1,7 @@
 -- noremap is set to true by default
 local opts = { silent = true }
 
--- local term_opts = { silent = true }
+local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
@@ -25,6 +25,20 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
+--
+-- Terminal --
+-- Better terminal navigation
+keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Tabs --
+--[[
+keymap("n", "<C-t>", ":tabnew %<cr>", opts)
+keymap("n", "<C-y>", ":tabclose<cr>", opts)
+keymap("n", "<C-\\>", ":tabonly<cr>", opts)
+--]]
 
 -- recenter
 keymap("n", "n", "nzzzv", opts)
@@ -163,7 +177,7 @@ keymap("n", "<c-t>", function() require("harpoon.ui").nav_file(2) end, opts)
 keymap("n", "<c-n>", function() require("harpoon.ui").nav_file(3) end, opts)
 keymap("n", "<c-s>", function() require("harpoon.ui").nav_file(4) end, opts)
 
--- dap
+-- DAP
 local dap = require("dap")
 keymap("n", "<home>", function() dap.toggle(1) end, opts)
 keymap("n", "<end>", function() dap.toggle(2) end, opts)
@@ -192,9 +206,17 @@ keymap("o", "t", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hin
 keymap("o", "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
 
 -- markdown 
-keymap("n", "<leader>pp", "<cmd>MarkdownPreview<cr>")
-keymap("n", "<leader>ps", "<cmd>MarkdownPreviewStop<cr>")
-keymap("n", "<leader>pt", "<cmd>MarkdownPreviewToggle<cr>")
+keymap("n", "<leader>pp", "<cmd>MarkdownPreview<cr>", opts)
+keymap("n", "<leader>ps", "<cmd>MarkdownPreviewStop<cr>", opts)
+keymap("n", "<leader>pt", "<cmd>MarkdownPreviewToggle<cr>", opts)
 
 -- alpha (start up)
 keymap("n", "<leader>;", "<cmd>Alpha<cr>")
+
+-- Highlighting
+keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
+keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+keymap("n", "<C-S>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
+
+-- alt binds
+keymap("n", "<m-v>", "<cmd>lua require('lsp_lines').toggle()<cr>", opts)

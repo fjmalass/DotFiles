@@ -28,6 +28,7 @@ null_ls.setup {
     formatting.rustfmt, -- rust (brew install rustfmt)
     formatting.shfmt, -- bash (go install mvdan.cc/sh/v3/cmd/shfmt@latest)
     formatting.uncrustify, -- cpp (brew install uncrustify)
+    -- diagnostics
     diagnostics.flake8, -- for python (need to install with pip install flake8)
     diagnostics.cppcheck, -- for cpp (brew install cppcheck)
     diagnostics.eslint, -- for javascript (need to install with npm install eslint) needs a .eslintrc
@@ -39,3 +40,33 @@ null_ls.setup {
     diagnostics.rstcheck, -- reStructuredText (pip install rstcheck)
   },
 }
+
+local unwrap = {
+  method = null_ls.methods.DIAGNOSTICS,
+  filetypes = { "rust" },
+  generator = {
+    fn = function(params)
+      local diagnostics = {}
+      -- sources have access to a params object
+      -- containing info about the current file and editor state
+      for i, line in ipairs(params.content) do
+        local col, end_col = line:find "unwrap()"
+        if col and end_col then
+          -- null-ls fills in undefined positions
+          -- and converts source diagnostics into the required format
+          table.insert(diagnostics, {
+            row = i,
+            col = col,
+            end_col = end_col,
+            source = "unwrap",
+            message = "hey " .. os.getenv("USER") .. ", don't forget to handle this" ,
+            severity = 2,
+          })
+        end
+      end
+      return diagnostics
+    end,
+  },
+}
+
+null_ls.register(unwrap)

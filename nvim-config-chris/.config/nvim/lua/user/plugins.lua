@@ -35,15 +35,55 @@ packer.init {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
     end,
+    prompt_boder = "rounded", -- popup with rounded border
   },
 }
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
+  -- Plugin Manager 
   use "wbthomason/packer.nvim" -- Have packer manage itself
+
+  -- Lua development 
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used  lots of plugins
+  -- use "christianchiarulli/lua-dev.nvim"
+  
+  -- LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "ray-x/lsp_signature.nvim"
+
+  -- todo use "SmiteshP/nvim-navic"
+  -- todo use "lvimuser/lsp-inlayhints.nvim"
+  -- use "simrat39/inlay-hints.nvim"
+  -- use "williamboman/mason-lspconfig.nvim"
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+
+  -- todo use "simrat39/symbols-outline.nvim"
+  -- todo use "b0o/SchemaStore.nvim"
+  -- use "github/copilot.vim"
+  -- todo use {
+  --[[
+    "zbirenbaum/copilot.lua",
+    event = { "VimEnter" },
+    config = function()
+      vim.defer_fn(function()
+        require "user.copilot"
+      end, 100)
+    end,
+  }
+  -]]
+  -- todo use "RRethy/vim-illuminate"
+  -- todo use "j-hui/fidget.nvim"
+  -- todo use "lvimuser/lsp-inlayhints.nvim"
+  -- use "simrat39/inlay-hints.nvim"
+  -- todo use "https://git.sr.ht/~whynothug
+  -- todo use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+
+
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
@@ -83,12 +123,6 @@ return packer.startup(function(use)
   -- Primeagen
   use "ThePrimeagen/harpoon"
 
-  -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use "RRethy/vim-illuminate"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
