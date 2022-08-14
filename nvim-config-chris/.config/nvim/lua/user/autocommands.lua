@@ -10,10 +10,22 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
 -- use 'q' to quite from common plugins
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
+  pattern = { 
+    "Jaq",
+    "qf", 
+    "help", 
+    "man", 
+    "lspinfo", 
+    "spectre_panel", 
+    "lir",
+    "markdown",
+    "DressingSelect",
+    "tsplayground",
+  },
   callback = function()
     vim.cmd [[
       nnoremap <silent> <buffer> q :close<CR> 
+      nnoremap <silent> <buffer> <esc> :close<CR> 
       set nobuflisted 
     ]]
   end,
@@ -51,6 +63,12 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  callback = function()
+    vim.cmd "set formatoptions-=cro"
+  end,
+})
+
 
 -- Highlights Yanked Text
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
@@ -69,6 +87,20 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
     vim.cmd "hi link illuminatedWord LspReferenceText"
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  callback = function()
+    local status_ok, luasnip = pcall(require, "luasnip")
+    if not status_ok then
+      return
+    end
+    if luasnip.expand_or_jumpable() then
+      -- ask maintainer for option to make this silent
+      -- luasnip.unlink_current()
+      vim.cmd [[silent! lua require("luasnip").unlink_current()]]
+    end
   end,
 })
 
