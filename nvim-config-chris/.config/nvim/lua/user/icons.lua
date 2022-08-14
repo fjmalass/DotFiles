@@ -27,8 +27,8 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
       Enum = "",
       -- Keyword = "",
       Keyword = "",
-      -- Snippet = "",
-      Snippet = "",
+      Snippet = "",
+     --  Snippet = "",
       Color = "",
       File = "",
       Reference = "",
@@ -96,6 +96,7 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
       Table = "",
       Calendar = "",
       CloudDownload = "",
+      Selection = "",
     },
     diagnostics = {
       Error = "",
