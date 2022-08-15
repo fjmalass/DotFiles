@@ -4,6 +4,13 @@ if not status_ok then
 end
 
 local dashboard = require("alpha.themes.dashboard")
+
+local function button(sc, txt, keybind, keybind_opts)
+  local b = dashboard.button(sc, txt, keybind, keybind_opts)
+  b.opts.hl_shortcut = "Macro"
+  return b
+end
+
 dashboard.section.header.val = {
 [[ _____  _    ___     _______ _______ ]],
 [[|  __ \| |  | \ \   / /  __ \__   __|]],
@@ -12,14 +19,18 @@ dashboard.section.header.val = {
 [[| | \ \| |  | |  | |  | |      | |   ]],
 [[|_|  \_\_|  |_|  |_|  |_|      |_|   ]],
 }
+
+local icons = require "user.icons"
 dashboard.section.buttons.val = {
-	dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-	dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
-	dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
-	dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
-	dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
-	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+	button("f", icons.documents.Files .. "  Find file", ":Telescope find_files <CR>"),
+	button("e", icons.ui.NewFile .. "  New file", ":ene <BAR> startinsert <CR>"),
+	button("p", icons.git.Repo .. "  Find project/repo", ":Telescope projects <CR>"),
+	button("r", icons.ui.History .. "  Recently used files", ":Telescope oldfiles <CR>"),
+	button("t", icons.kind.TypeParameter .. "  Find text", ":Telescope live_grep <CR>"),
+  -- button("s", icons.ui.SignIn .. "  Find Session", ":SearchSession<CR>"),
+	button("c", icons.ui.Gear .. "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
+  button("u", icons.ui.CloudDownload .. "  Update", ":PackerSync<CR>"),
+	button("q", icons.ui.SignOut .. "  Quit Neovim", ":qa<CR>"),
 }
 
 local function footer()
