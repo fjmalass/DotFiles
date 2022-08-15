@@ -56,9 +56,12 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "ray-x/lsp_signature.nvim"
+  use "simrat39/inlay-hints.nvim"
+
+  -- comments
+  use "lvimuser/lsp-inlayhints.nvim"
 
   -- todo use "SmiteshP/nvim-navic"
-  -- todo use "lvimuser/lsp-inlayhints.nvim"
   -- use "simrat39/inlay-hints.nvim"
   -- use "williamboman/mason-lspconfig.nvim"
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
@@ -79,8 +82,6 @@ return packer.startup(function(use)
   -]]
   -- todo use "RRethy/vim-illuminate"
   -- todo use "j-hui/fidget.nvim"
-  -- todo use "lvimuser/lsp-inlayhints.nvim"
-  -- use "simrat39/inlay-hints.nvim"
   -- todo use "https://git.sr.ht/~whynothug
   -- todo use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
