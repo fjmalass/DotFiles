@@ -97,6 +97,8 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
       Calendar = "",
       CloudDownload = "",
       Selection = "",
+      Expanded = "▾", 
+      Collapsed = "▸" ,
     },
     diagnostics = {
       Error = "",

@@ -1,7 +1,6 @@
 -- Regular dap
 local dap_status_ok, dap = pcall(require, "dap")
 if not dap_status_ok then
-  print "'dap' is not found"
   return
 end
 
