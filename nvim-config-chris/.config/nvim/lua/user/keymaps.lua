@@ -123,29 +123,43 @@ keymap("n", "J", "mzJ`z", opts)
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- Telescope
-keymap("n", "<C-p>", ":lua require('telescope.builtin').git_files()<CR>")
-keymap("n", "<leader>tf", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>ts", ":lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>")
--- keymap("n", "<Leader>tf", ":lua require('telescope.builtin').find_files()<CR>") -- alternative to above
+local telescopebuiltin_ok, telescopebuiltin = pcall(require, "telescope.builtin")
+local telescope_ok, telescope = pcall(require, "telescope")
+if telescopebuiltin_ok and telescope_ok then
+  keymap("n", "<C-p>", ":lua require('telescope.builtin').git_files()<CR>")
+  keymap("n", "<leader>tf", "<cmd>Telescope find_files<cr>", opts)
+  keymap("n", "<leader>ts", "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For > \")})<CR>")
+  -- keymap("n", "<Leader>tf", "<cmd>lua require('telescope.builtin').find_files()<CR>") -- alternative to above
 
--- keymap("n", "<leader>ft", "<cmd>Telescope live_grep<cr>", opts)
-keymap("n", "<leader>tw", ":lua require('telescope.builtin').grep_string { search = vim.fn.expand(\"<cword>\") }<CR>")
-keymap("n", "<leader>tb", ":lua require('telescope.builtin').buffers()<CR>")
-keymap("n", "<leader>vh", ":lua require('telescope.builtin').help_tags()<CR>")
--- keymap("n", "<leader>trc", ":lua require('theprimeagen.telescope').search_dotfiles({ hidden = true })<CR>")
--- keymap("n", "<leader>va", ":lua require('theprimeagen.telescope').anime_selector()<CR>")
--- keymap("n", "<leader>tc", ":lua require('theprimeagen.telescope').chat_selector()<CR>")
--- keymap("n", "<leader>td", ":lua require('theprimeagen.telescope').dev()<CR>")
--- keymap("n", "<leader>tc", ":lua require('theprimeagen.telescope').git_branches()<CR>")
-keymap("n", "<leader>gw", ":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
-keymap("n", "<leader>gm", ":lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>")
--- keymap( "n", "<leader>tT", ":lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
--- keymap( "n", "<leader>tT", ":lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
--- keymap("n", "<leader>tp", "<cmd>Telescope projects<cr>", opts)
--- keymap("n", "<leader>tb", "<cmd>Telescope buffers<cr>", opts)
+  -- keymap("n", "<leader>ft", "<cmd>Telescope live_grep<cr>", opts)
+  keymap("n", "<leader>tw", "<cmd>lua require('telescope.builtin').grep_string { search = vim.fn.expand(\"<cword>\") }<CR>")
+  keymap("n", "<leader>tb", "<cmd>lua require('telescope.builtin').buffers()<CR>")
+  keymap("n", "<leader>vh", "<cmd>lua require('telescope.builtin').help_tags()<CR>")
+  -- keymap("n", "<leader>trc", "<cmd>lua require('theprimeagen.telescope').search_dotfiles({ hidden = true })<CR>")
+  -- keymap("n", "<leader>va", "<cmd>lua require('theprimeagen.telescope').anime_selector()<CR>")
+  -- keymap("n", "<leader>tc", "<cmd>lua require('theprimeagen.telescope').chat_selector()<CR>")
+  -- keymap("n", "<leader>td", "<cmd>lua require('theprimeagen.telescope').dev()<CR>")
+  -- keymap("n", "<leader>tc", "<cmd>lua require('theprimeagen.telescope').git_branches()<CR>")
+  keymap("n", "<leader>gw", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
+  keymap("n", "<leader>gm", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>")
+  -- keymap( "n", "<leader>tT", "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
+  -- keymap( "n", "<leader>tT", "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
+  -- keymap("n", "<leader>tp", "<cmd>Telescope projects<cr>", opts)
+  -- keymap("n", "<leader>tb", "<cmd>Telescope buffers<cr>", opts)
+  -- print("'telescope' keymaps installed") 
+else
+  print("'telescope' keymaps *not* installed") 
+end
 
 -- Alpha
-keymap("n", "<C-;>", "<cmd>Alpha<cr>", opts)
+local alpha_ok, _ = pcall(require, "user.alpha")
+if alpha_ok then
+  keymap("n", "<leader>;", "<cmd>Alpha<cr>")
+  -- print("'alpha' keymaps installed") 
+else
+  print("'alpha' keymaps *not* installed") 
+end
+
 
 -- LSP
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
@@ -168,50 +182,86 @@ keymap("n", "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", op
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- harpoon
-keymap("n", "<leader>a", function() require("harpoon.mark").add_file() end, opts)
-keymap("n", "<c-e>", function() require("harpoon.ui").toggle_quick_menu() end, opts)
-keymap("n", "<leader>tc", function() require("harpoon.cmd-ui").toggle_quick_menu() end, opts)
+local harpoon_ok, _ = pcall(require, "harpoon.ui")
+if harpoon_ok then
+  keymap("n", "<leader>a", function() require("harpoon.mark").add_file() end, opts)
+  keymap("n", "<c-e>", function() require("harpoon.ui").toggle_quick_menu() end, opts)
+  keymap("n", "<leader>tc", function() require("harpoon.cmd-ui").toggle_quick_menu() end, opts)
 
-keymap("n", "<c-h>", function() require("harpoon.ui").nav_file(1) end, opts)
-keymap("n", "<c-t>", function() require("harpoon.ui").nav_file(2) end, opts)
-keymap("n", "<c-n>", function() require("harpoon.ui").nav_file(3) end, opts)
-keymap("n", "<c-s>", function() require("harpoon.ui").nav_file(4) end, opts)
+  keymap("n", "<c-h>", function() require("harpoon.ui").nav_file(1) end, opts)
+  keymap("n", "<c-t>", function() require("harpoon.ui").nav_file(2) end, opts)
+  keymap("n", "<c-n>", function() require("harpoon.ui").nav_file(3) end, opts)
+  keymap("n", "<c-s>", function() require("harpoon.ui").nav_file(4) end, opts)
+  -- print("'harpoon' keymaps installed")
+else
+  print("'harpoon' keymaps *not* installed")
+end
 
 -- DAP
-local dap = require("dap")
-keymap("n", "<home>", function() dap.toggle(1) end, opts)
-keymap("n", "<end>", function() dap.toggle(2) end, opts)
-keymap("n", "<up>", function() dap.continue() end, opts)
-keymap("n", "<down>", function() dap.step_over() end, opts)
-keymap("n", "<right>", function() dap.step_into() end, opts)
-keymap("n", "<left>", function() dap.step_out() end, opts)
-keymap("n", "<leader>b", function() dap.toggle_breakpoint() end, opts)
-keymap("n", "<leader>B", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, opts)
-keymap("n", "<leader>rc", function() dap.run_to_cursor() end, opts)
-keymap("n", "<leader>rr", "<cmd>DapToggleRepl<cr>", opts)
+local dap_ok, dap = pcall(require, "dap")
+if dap_ok then
+  keymap("n", "<home>", function() dap.toggle(1) end, opts)
+  keymap("n", "<end>", function() dap.toggle(2) end, opts)
+  keymap("n", "<up>", function() dap.continue() end, opts)
+  keymap("n", "<down>", function() dap.step_over() end, opts)
+  keymap("n", "<right>", function() dap.step_into() end, opts)
+  keymap("n", "<left>", function() dap.step_out() end, opts)
+  keymap("n", "<leader>b", function() dap.toggle_breakpoint() end, opts)
+  keymap("n", "<leader>B", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, opts)
+  keymap("n", "<leader>rc", function() dap.run_to_cursor() end, opts)
+  keymap("n", "<leader>rr", "<cmd>DapToggleRepl<cr>", opts)
+  -- print("'dap' keymaps installed")
+else
+  print("'dap' keymaps *not* installed")
+end
 
 -- dapui
-local dapui = require("dapui")
-keymap("n", "<leader>5", function() dapui.open(1) end, opts)
-keymap("n", "<leader>6", function() dapui.close() end, opts)
-keymap("n", "<leader>v", function() dapui.eval() end, opts)
+local dapui_ok, dapui = pcall(require, "dapui")
+if dapui_ok then
+  keymap("n", "<leader>5", function() dapui.open(1) end, opts)
+  keymap("n", "<leader>6", function() dapui.close() end, opts)
+  keymap("n", "<leader>v", function() dapui.eval() end, opts)
+  -- print("'dapui' keymaps installed")
+else 
+  print("'dapui' keymaps not installed")
+end
 
 -- hop
-keymap("", "<leader>s", "HopWordCurrentLine<cr>", opts)
-keymap("", "<leader>S", "HopChar2<cr>", opts)
+hop_ok, _ = pcall(require, "hop")
+userhop_ok, _ = pcall(require, "user.hop")
+if hop_ok and userhop_ok then
+  keymap("", "<leader>s", "<cmd>HopWordCurrentLine<cr>", opts)
+  -- keymap("", "<leader>S", "<cmd>HopChar2<cr>", opts)
+  -- keymap("", "Q", "<cmd>HopPattern<cr>", { silent = true })
+  keymap("", "H", "<cmd>HopChar2<cr>", { silent = true })
 
-keymap("o", "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", opts)
-keymap("o", "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", opts )
-keymap("o", "t", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
-keymap("o", "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
+  keymap("o", "f", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true }) end, opts)
+  keymap("o", "f", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true }) end, opts)
+  keymap("o", "F", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true }) end, opts )
+  keymap("o", "t", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 }) end, {})
+  keymap("o", "T", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 }) end, {})
+
+  -- keymap("o", "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", opts)
+  -- keymap("o", "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", opts)
+  -- keymap("o", "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", opts )
+  -- keymap("o", "t", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
+  -- keymap("o", "T", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
+  -- print("'hop' keymaps installed")
+else
+  print("'hop' keymaps *not* installed")
+end
 
 -- markdown 
-keymap("n", "<leader>pp", "<cmd>MarkdownPreview<cr>", opts)
-keymap("n", "<leader>ps", "<cmd>MarkdownPreviewStop<cr>", opts)
-keymap("n", "<leader>pt", "<cmd>MarkdownPreviewToggle<cr>", opts)
+local usermarkdown_ok, _ = pcall(require, "user.markdown")
+if usermarkdown_ok then
+  keymap("n", "<leader>pp", "<cmd>MarkdownPreview<cr>", opts)
+  keymap("n", "<leader>ps", "<cmd>MarkdownPreviewStop<cr>", opts)
+  keymap("n", "<leader>pt", "<cmd>MarkdownPreviewToggle<cr>", opts)
+  -- print("'markdown' keymaps installed")
+else
+  print("'markdown' keymaps *not* installed")
+end
 
--- alpha (start up)
-keymap("n", "<leader>;", "<cmd>Alpha<cr>")
 
 -- Highlighting
 keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
