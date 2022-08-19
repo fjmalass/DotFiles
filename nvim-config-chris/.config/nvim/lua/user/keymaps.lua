@@ -227,15 +227,14 @@ else
 end
 
 -- hop
-hop_ok, _ = pcall(require, "hop")
+hop_ok, hop = pcall(require, "hop")
 userhop_ok, _ = pcall(require, "user.hop")
 if hop_ok and userhop_ok then
   keymap("", "<leader>s", "<cmd>HopWordCurrentLine<cr>", opts)
   -- keymap("", "<leader>S", "<cmd>HopChar2<cr>", opts)
   -- keymap("", "Q", "<cmd>HopPattern<cr>", { silent = true })
-  keymap("", "H", "<cmd>HopChar2<cr>", { silent = true })
+  -- keymap("", "h", "<cmd>HopChar2<cr>", { silent = true })
 
-  keymap("o", "f", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true }) end, opts)
   keymap("o", "f", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true }) end, opts)
   keymap("o", "F", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true }) end, opts )
   keymap("o", "t", function() hop.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 }) end, {})
@@ -270,3 +269,13 @@ keymap("n", "<C-S>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 
 -- alt binds
 keymap("n", "<m-v>", "<cmd>lua require('lsp_lines').toggle()<cr>", opts)
+
+-- commments
+local comment_ok, comment = pcall(require, "Comment.api")
+if comment_ok then
+  keymap("n", "<leader><space>", commment.toggle.linewise.current)
+  keymap("n", "<leader><space>", commment.toggle.linewise.current)
+  print("'Comment.api' is available")
+else
+  print("'Comment.api' is not avaiable")
+end

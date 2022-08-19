@@ -25,7 +25,7 @@ configs.setup({
     -- disable = { "css", "html" }, -- list of language that will be disabled
     -- disable = { "css", "markdown" }, -- list of language that will be disabled
     disable = { "markdown" }, -- list of language that will be disabled
-    -- additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = true,
   },
 	autopairs = {
 		enable = true,
@@ -57,6 +57,7 @@ configs.setup({
   textobjects = {
     select = {
       enable = true,
+      border = "rounded",
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
       keymaps = {
@@ -87,6 +88,7 @@ configs.setup({
     },
     move = {
       enable = true,
+      border = "rounded",
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
         ["]m"] = "@function.outer",
@@ -107,6 +109,7 @@ configs.setup({
     },
     swap = {
       enable = true,
+      border = "rounded",
       swap_next = {
         ["<leader>."] = "@parameter.inner",
       },
@@ -114,5 +117,14 @@ configs.setup({
         ["<leader>,"] = "@parameter.inner",
       },
     },
+    lsp_interop = {
+      enable = true,
+      border = "rounded",
+      peek_definition_code = 
+        {
+          ["<leader>df"] = "@function.outer",
+          ["<leader>dF"] = "@class.outer",
+        }
+    }
   },
 })
