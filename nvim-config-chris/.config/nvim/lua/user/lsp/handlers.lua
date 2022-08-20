@@ -33,8 +33,7 @@ M.setup = function()
 
   local config = {
     virtual_lines = true,
-    -- disable virtual text as when there are virtual_lines (lsp_lines)
-    virtual_text = false,
+    virtual_text = false, -- disable as when there are virtual_lines with lsp_lines
     --[[ virtual_text = {
       spacing = 3,
       update_in_insert = true,
@@ -77,6 +76,7 @@ end
 local function lsp_highlight_document(client)
   local status_ok, illuminate = pcall(require, "illuminate")
   if not status_ok then
+    print("'illuminate' plugin not installed")
     return
   end
   illuminate.on_attach(client)
@@ -86,6 +86,7 @@ local function attach_navic(client, bufnr)
   vim.g.navic_silence = true
   local status_ok, navic = pcall(require, "nvim-navic")
   if not status_ok then
+    print("'nvim-navic' plugin not installed")
     return
   end
   navic.attach(client, bufnr)
@@ -116,6 +117,7 @@ M.on_attach = function(client, bufnr)
 
   local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if not status_cmp_ok then
+    print("'cmp_nvim_lsp' plugin not installed")
     return
   end
 

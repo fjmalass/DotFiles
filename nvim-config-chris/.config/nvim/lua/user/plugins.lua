@@ -42,22 +42,22 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- Plugin Manager 
+  -- Plugin Manager
   use "wbthomason/packer.nvim" -- Have packer manage itself
 
-  -- Lua development 
+  -- Lua development
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used  lots of plugins
   -- use "christianchiarulli/lua-dev.nvim"
-  
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
-  -- use "williamboman/nvim-lsp-installer" -- no nolonger maintained use mason 
+  -- use "williamboman/nvim-lsp-installer" -- no nolonger maintained use mason
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "ray-x/lsp_signature.nvim"
   use "simrat39/inlay-hints.nvim"
+  use "j-hui/fidget.nvim" -- slow inidication of formatting etc
 
   -- comments
   use "lvimuser/lsp-inlayhints.nvim"
@@ -80,9 +80,8 @@ return packer.startup(function(use)
   }
   -]]
   -- todo use "RRethy/vim-illuminate"
-  -- todo use "j-hui/fidget.nvim"
   -- todo use "https://git.sr.ht/~whynothug
-  -- todo use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+  use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
 
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
@@ -94,7 +93,7 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
   use("ahmedkhalf/project.nvim")
-  use "lewis6991/impatient.nvim"         -- caching 
+  use "lewis6991/impatient.nvim"         -- caching
   use "lukas-reineke/indent-blankline.nvim"
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
@@ -129,7 +128,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-media-files.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
 
-  -- Markdown 
+  -- Markdown
   use {"iamcco/markdown-preview.nvim", run= "cd app && npm install"}
 
   -- hop

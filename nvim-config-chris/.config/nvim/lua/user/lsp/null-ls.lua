@@ -8,6 +8,7 @@ end
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
+--[[ local completion = null_ls.builtins.completion ]]
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
 -- npm install --save-dev prettier prettier-plugin-solidity
@@ -42,12 +43,13 @@ null_ls.setup {
   },
 }
 
+-- unwrapping rust
 local unwrap = {
   method = null_ls.methods.DIAGNOSTICS,
   filetypes = { "rust" },
   generator = {
     fn = function(params)
-      local diagnostics = {}
+      local diag = {}
       -- sources have access to a params object
       -- containing info about the current file and editor state
       for i, line in ipairs(params.content) do
@@ -55,7 +57,7 @@ local unwrap = {
         if col and end_col then
           -- null-ls fills in undefined positions
           -- and converts source diagnostics into the required format
-          table.insert(diagnostics, {
+          table.insert(diag, {
             row = i,
             col = col,
             end_col = end_col,
@@ -65,7 +67,7 @@ local unwrap = {
           })
         end
       end
-      return diagnostics
+      return diag
     end,
   },
 }

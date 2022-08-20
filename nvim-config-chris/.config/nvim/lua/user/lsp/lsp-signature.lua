@@ -1,5 +1,6 @@
 local status_ok, signature = pcall(require, "lsp_signature")
 if not status_ok then
+  print("'lsp_signature' plugin not installed")
   return
 end
 
@@ -24,7 +25,7 @@ local cfg = {
   -- this setting will be helpful if you do not want the PUM and floating win overlap
   fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
   hint_enable = true, -- virtual hint enable
-  hint_prefix = icons.misc.Squirrel .. " ", -- Panda for parameter
+  hint_prefix = icons.diagnostics.Hint .. " ", -- Panda for parameter
   hint_scheme = "Comment",
   use_lspsaga = false, -- set to true if you want to use lspsaga popup
   hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
@@ -35,7 +36,7 @@ local cfg = {
     border = "rounded", -- double, rounded, single, shadow, none
   },
 
-  always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+  always_trigger = false, -- signature on new line or in middle of parameter can be confusing, set it to false for #58
 
   auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
   extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
@@ -43,7 +44,7 @@ local cfg = {
 
   padding = "", -- character to pad on left and right of signature can be ' ', or '|'  etc
 
-  transparency = nil, -- disabled by default, allow floating win transparent value 1~100
+  transparency = 50, -- disabled by default, allow floating win transparent value 1~100
   shadow_blend = 36, -- if you using shadow as border use this set the opacity
   shadow_guibg = "Black", -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
   timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
