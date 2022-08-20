@@ -87,7 +87,7 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
--- Misc 
+-- Misc
 keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", opts)
 
 -- Terminal --
@@ -123,8 +123,8 @@ keymap("n", "J", "mzJ`z", opts)
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
 
 -- Telescope
-local telescopebuiltin_ok, telescopebuiltin = pcall(require, "telescope.builtin")
-local telescope_ok, telescope = pcall(require, "telescope")
+local telescopebuiltin_ok, _ = pcall(require, "telescope.builtin")
+local telescope_ok, _ = pcall(require, "telescope")
 if telescopebuiltin_ok and telescope_ok then
   keymap("n", "<C-p>", ":lua require('telescope.builtin').git_files()<CR>")
   keymap("n", "<leader>tf", "<cmd>Telescope find_files<cr>", opts)
@@ -142,22 +142,22 @@ if telescopebuiltin_ok and telescope_ok then
   -- keymap("n", "<leader>tc", "<cmd>lua require('theprimeagen.telescope').git_branches()<CR>")
   keymap("n", "<leader>gw", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
   keymap("n", "<leader>gm", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>")
-  -- keymap( "n", "<leader>tT", "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
+  keymap( "n", "<leader>tT", "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
   -- keymap( "n", "<leader>tT", "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword >')})<CR>")
   -- keymap("n", "<leader>tp", "<cmd>Telescope projects<cr>", opts)
   -- keymap("n", "<leader>tb", "<cmd>Telescope buffers<cr>", opts)
-  -- print("'telescope' keymaps installed") 
+  -- print("'telescope' keymaps installed")
 else
-  print("'telescope' keymaps *not* installed") 
+  print("'telescope' keymaps *not* installed")
 end
 
 -- Alpha
 local alpha_ok, _ = pcall(require, "user.alpha")
 if alpha_ok then
   keymap("n", "<leader>;", "<cmd>Alpha<cr>")
-  -- print("'alpha' keymaps installed") 
+  -- print("'alpha' keymaps installed")
 else
-  print("'alpha' keymaps *not* installed") 
+  print("'alpha' keymaps *not* installed")
 end
 
 
@@ -222,13 +222,13 @@ if dapui_ok then
   keymap("n", "<leader>6", function() dapui.close() end, opts)
   keymap("n", "<leader>v", function() dapui.eval() end, opts)
   -- print("'dapui' keymaps installed")
-else 
+else
   print("'dapui' keymaps not installed")
 end
 
 -- hop
-hop_ok, hop = pcall(require, "hop")
-userhop_ok, _ = pcall(require, "user.hop")
+local hop_ok, hop = pcall(require, "hop")
+local userhop_ok, _ = pcall(require, "user.hop")
 if hop_ok and userhop_ok then
   keymap("", "<leader>s", "<cmd>HopWordCurrentLine<cr>", opts)
   -- keymap("", "<leader>S", "<cmd>HopChar2<cr>", opts)
@@ -250,7 +250,7 @@ else
   print("'hop' keymaps *not* installed")
 end
 
--- markdown 
+-- markdown
 local usermarkdown_ok, _ = pcall(require, "user.markdown")
 if usermarkdown_ok then
   keymap("n", "<leader>pp", "<cmd>MarkdownPreview<cr>", opts)
@@ -270,12 +270,3 @@ keymap("n", "<C-S>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 -- alt binds
 keymap("n", "<m-v>", "<cmd>lua require('lsp_lines').toggle()<cr>", opts)
 
--- commments
-local comment_ok, comment = pcall(require, "Comment.api")
-if comment_ok then
-  keymap("n", "<leader><space>", commment.toggle.linewise.current)
-  keymap("n", "<leader><space>", commment.toggle.linewise.current)
-  print("'Comment.api' is available")
-else
-  print("'Comment.api' is not avaiable")
-end

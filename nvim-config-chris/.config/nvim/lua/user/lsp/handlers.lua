@@ -1,5 +1,7 @@
 local M = {}
 
+icons_ok, icons = pcall(require, "user.icons")
+
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -12,10 +14,14 @@ M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 M.setup = function()
 --  local icons = require "user.icons"hand
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.Info },
+    --[[ { name = "DiagnosticSignError", text = "" }, ]]
+    --[[ { name = "DiagnosticSignWarn", text = "" }, ]]
+    --[[ { name = "DiagnosticSignHint", text = "" }, ]]
+    --[[ { name = "DiagnosticSignInfo", text = "" }, ]]
   }
 
   for _, sign in ipairs(signs) do
@@ -25,13 +31,14 @@ M.setup = function()
   local config = {
     -- disable virtual text
     virtual_lines = true,
-    virtual_text = true,
+    --[[ virtual_text = true, ]]
     virtual_text = {
       -- spacing = 7,
       -- update_in_insert = false,
       -- severity_sort = true,
       -- prefix = "<-",
-      prefix = " ●",
+      -- prefix = " ●",
+      prefix = " " .. icons.ui.ArrowRight,
       source = "if_many", -- Or "always"
       -- format = function(dia
       --   return diag.message .. "blah"
@@ -119,15 +126,13 @@ M.on_attach = function(client, bufnr)
 
   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
   M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
-
-
 end
 
 function M.enable_format_on_save()
   vim.cmd [[
     augroup format_on_save
-      autocmd! 
-      autocmd BufWritePre * lua vim.lsp.buf.format({ async = true }) 
+      autocmd!
+      autocmd BufWritePre * lua vim.lsp.buf.format({ async = true })
     augroup end
   ]]
   vim.notify "Enabled format on save"

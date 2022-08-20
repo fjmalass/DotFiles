@@ -52,6 +52,7 @@ return packer.startup(function(use)
   
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
+  -- use "williamboman/nvim-lsp-installer" -- no nolonger maintained use mason 
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
@@ -63,8 +64,6 @@ return packer.startup(function(use)
 
   -- todo use "SmiteshP/nvim-navic"
   -- use "simrat39/inlay-hints.nvim"
-  -- use "williamboman/mason-lspconfig.nvim"
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
 
   -- todo use "simrat39/symbols-outline.nvim"
   -- todo use "b0o/SchemaStore.nvim"
@@ -125,7 +124,6 @@ return packer.startup(function(use)
   -- Primeagen
   use "ThePrimeagen/harpoon"
 
-
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
@@ -133,6 +131,7 @@ return packer.startup(function(use)
 
   -- Markdown 
   use {"iamcco/markdown-preview.nvim", run= "cd app && npm install"}
+
   -- hop
   use "phaazon/hop.nvim"
   --
