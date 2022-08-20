@@ -13,7 +13,8 @@ configs.setup({
 	highlight = {
     -- use_languagetree = true,
 		enable = true, -- false will disable the whole extension
-    disable_virtual_text = false,
+    -- disable when lsp_lines is used
+    disable_virtual_text = true,
 		-- disable = { "css", "html" }, -- list of language that will be disabled
 		disable = { "css", "markdown" }, -- list of language that will be disabled
 		-- additional_vim_regex_highlighting = true,
