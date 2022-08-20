@@ -1,6 +1,9 @@
 local M = {}
 
-icons_ok, icons = pcall(require, "user.icons")
+local icons_ok, icons = pcall(require, "user.icons")
+if not icons_ok  then
+  print("'user.icons' plugin not installed")
+end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -29,21 +32,19 @@ M.setup = function()
   end
 
   local config = {
-    -- disable virtual text
     virtual_lines = true,
-    --[[ virtual_text = true, ]]
-    virtual_text = {
-      -- spacing = 7,
-      -- update_in_insert = false,
-      -- severity_sort = true,
-      -- prefix = "<-",
-      -- prefix = " ●",
-      prefix = " " .. icons.ui.ArrowRight,
+    -- disable virtual text as when there are virtual_lines (lsp_lines)
+    virtual_text = false,
+    --[[ virtual_text = {
+      spacing = 3,
+      update_in_insert = true,
+      severity_sort = true,
+      prefix = "" .. icons.ui.ArrowRight,
       source = "if_many", -- Or "always"
       -- format = function(dia
       --   return diag.message .. "blah"
        -- end,
-     },
+     }, ]]
     --
     -- show signs
     signs = {

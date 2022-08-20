@@ -9,26 +9,26 @@ if not status_ok_1 then
 end
 
 local servers = {
-  "sumneko_lua",
-  "pyright",
+  "bashls",
   "clangd",
-  "rust_analyzer",
   "cssls",
   "cssmodules_ls",
   "emmet_ls",
   "html",
+  "pyright",
+  "rust_analyzer",
+  "sumneko_lua",
+  "taplo",
   --[[ "jdtls", ]]
   --[[ "jsonls", ]]
+  --[[ "lemminx" ]]
   --[[ "solc", ]]
   --[[ "solidity_ls", ]]
-  --[[ "tflint", ]]
   --[[ "terraformls", ]]
+  --[[ "tflint", ]]
   --[[ "tsserver", ]]
   --[[ "yamlls", ]]
-  --[[ "bashls", ]]
-  --[[ "taplo", ]]
   --[[ "zk@v0.10.1", ]]
-  --[[ "lemminx" ]]
 }
 
 local icons_ok, icons = pcall(require, "user.icons")
@@ -62,8 +62,8 @@ if not lspconfig_status_ok then
   return
 end
 
+-- Loads the different options
 local opts = {}
-
 for _, server in pairs(servers) do
   opts = {
     on_attach = require("user.lsp.handlers").on_attach,

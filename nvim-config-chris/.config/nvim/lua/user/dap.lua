@@ -28,27 +28,27 @@ if not dapui_status_ok then
   return
 end
 
--- ThePrimeagen setup
--- dapui.setup {
---   layouts = {
---     {
---       elements = { "console" },
---       size = 7,
---       position = "bottom",
---     },
---     {
---       elements = {
---         {
---           id = "scopes",
---           size = 0.25,
---         },
---         "watches",
---       },
---       size = 40,
---       position = "right",
---     },
---   },
--- }
+--[[ -- ThePrimeagen setup
+dapui.setup {
+  layouts = {
+    {
+      elements = { "console" },
+      size = 7,
+      position = "bottom",
+    },
+    {
+      elements = {
+        {
+          id = "scopes",
+          size = 0.25,
+        },
+        "watches",
+      },
+      size = 40,
+      position = "right",
+    },
+  },
+} ]]
 
 
 dapui.setup {
@@ -133,6 +133,7 @@ end
 -- current not working as needs treesitte to be loaded
 local dap_virtual_text_status_ok, dap_virtual_text = pcall(require, "nvim-dap-virtual-text")
 if not dap_virtual_text_status_ok then
+  print("'nvim-dap-virtual-text' plugin is not loaded")
   return
 end
 dap_virtual_text.setup {
