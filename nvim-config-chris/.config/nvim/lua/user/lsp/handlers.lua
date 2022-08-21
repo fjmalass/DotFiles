@@ -76,7 +76,7 @@ end
 local function lsp_highlight_document(client)
   local status_ok, illuminate = pcall(require, "illuminate")
   if not status_ok then
-    print("'illuminate' plugin not installed")
+    print("'illuminate' plugin not installed from 'user.lsp.handler'")
     return
   end
   illuminate.on_attach(client)

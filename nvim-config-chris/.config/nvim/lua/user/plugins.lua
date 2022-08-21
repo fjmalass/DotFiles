@@ -79,7 +79,7 @@ return packer.startup(function(use)
     end,
   }
   -]]
-  -- todo use "RRethy/vim-illuminate"
+  use "RRethy/vim-illuminate"
   -- todo use "https://git.sr.ht/~whynothug
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 

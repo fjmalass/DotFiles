@@ -104,3 +104,4 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
   end,
 })
 
+-- Rem there is an autocommand in user.inlay-hints
