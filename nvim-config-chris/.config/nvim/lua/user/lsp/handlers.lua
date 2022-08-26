@@ -73,14 +73,19 @@ M.setup = function()
   })
 end
 
-local function lsp_highlight_document(client)
+--[[ local function lsp_highlight_document(client)
   local status_ok, illuminate = pcall(require, "illuminate")
   if not status_ok then
     print("'illuminate' plugin not installed from 'user.lsp.handler'")
     return
   end
+  local status_user_ok, _ = pcall(require, "user.illuminate")
+  if not status_user_ok then
+    print("'user.illumnitate' plugin not installed in 'user.lsp.handler'")
+    return
+  end
   illuminate.on_attach(client)
-end
+end ]]
 
 local function attach_navic(client, bufnr)
   vim.g.navic_silence = true
@@ -112,7 +117,7 @@ end
 
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
+  --[[ lsp_highlight_document(client) ]]
   attach_navic(client, bufnr)
 
   local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")

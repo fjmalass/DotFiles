@@ -1,10 +1,12 @@
 local status_ok, mason = pcall(require, "mason")
 if not status_ok then
+  print("'mason' plugin not installed in lsp")
   return
 end
 
 local status_ok_1, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not status_ok_1 then
+  print("'mason-lspconfig' plugin not installed in lsp")
   return
 end
 
@@ -33,7 +35,7 @@ local servers = {
 
 local icons_ok, icons = pcall(require, "user.icons")
 if not icons_ok then
-  print("'user.icons' plugin not installed")
+  print("'user.icons' plugin not installed in 'mason'")
 end
 
 local settings = {

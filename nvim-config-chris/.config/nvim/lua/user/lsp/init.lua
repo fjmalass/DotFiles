@@ -1,9 +1,12 @@
 M = {}
 local status_ok, _ = pcall(require, "lspconfig")
 if not status_ok then
+  print("'lspconfig' plugin is not available from lsp")
   return
 end
 
+
+-- Get all the active clients
 M.server_capabilities = function()
   local active_clients = vim.lsp.get_active_clients()
   local active_client_map = {}
@@ -36,7 +39,7 @@ require "user.lsp.null-ls"
 
 local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
 if not l_status_ok then
-  print("'lsp_lines' plugin not available")
+  print("'lsp_lines' plugin not available for lsp")
   return
 end
 

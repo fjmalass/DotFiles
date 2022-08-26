@@ -5,7 +5,7 @@ end
 
 bufferline.setup {
   options = {
-    numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    numbers = "both",--"none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string
     close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
@@ -13,33 +13,35 @@ bufferline.setup {
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
-    indicator_icon = "│",
-    -- indicator_icon = "▎",
+    indicator = {
+      icon = "│",
+      style='icon',
+    },
     buffer_close_icon = "",
-    -- buffer_close_icon = '',
     modified_icon = "●",
     close_icon = "",
-    -- close_icon = '',
     left_trunc_marker = "",
     right_trunc_marker = "",
     --- name_formatter can be used to change the buffer's label in the bufferline.
     --- Please note some names can/will break the
     --- bufferline so use this at your discretion knowing that it has
     --- some limitations that will *NOT* be fixed.
-    -- name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-    --   -- remove extension from markdown files for example
-    --   if buf.name:match('%.md') then
-    --     return vim.fn.fnamemodify(buf.name, ':t:r')
-    --   end
-    -- end,
+    name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+      -- remove extension from markdown files for example
+      if buf.name:match('%.md') then
+        return vim.fn.fnamemodify(buf.name, ':t:r')
+      end
+    end,
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
-    diagnostics = false, -- | "nvim_lsp" | "coc",
-    diagnostics_update_in_insert = false,
-    -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
-    --   return "("..count..")"
-    -- end,
+    diagnostics = "nvim_lsp", -- false, | "nvim_lsp" | "coc",
+    -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+    --  diagnostics_update_in_insert = false,
+    --diagnostics_indicator = function(count, level, diagnostics_dict, context)
+    diagnostics_indicator = function(count, _, _, _)
+        return "("..count..")"
+      end,
     -- NOTE: this will be called a lot so don't do any heavy processing here
     -- custom_filter = function(buf_number)
     --   -- filter out filetypes you don't want to see
@@ -56,7 +58,15 @@ bufferline.setup {
     --     return true
     --   end
     -- end,
-    offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "NvimTree",
+        padding = 1,
+        separator = true
+      }
+    },
+    color_icons = true,
     show_buffer_icons = true,
     show_buffer_close_icons = true,
     show_close_icon = true,
