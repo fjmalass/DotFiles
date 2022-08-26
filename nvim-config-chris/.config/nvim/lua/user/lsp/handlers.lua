@@ -59,6 +59,7 @@ M.setup = function()
       source = "always", -- or "if_many"
       header = "",
       prefix = "",
+      -- width = 40,
     },
   }
 
@@ -66,10 +67,14 @@ M.setup = function()
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
+    -- width = 60,
+    -- height = 30,
   })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
+    -- width = 60,
+    -- height = 30,
   })
 end
 
@@ -128,7 +133,7 @@ M.on_attach = function(client, bufnr)
 
   -- fix to make it more modular
   if client.name == "tsserver" then
-    require("lsp-inlayhints").on_attach(bufnr, client)
+    require("lsp-inlayhints").on_attach(client, bufnr)
     -- client.resolved_capabilities.document_formatting = false
   end
 

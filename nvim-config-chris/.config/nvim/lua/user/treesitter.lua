@@ -26,7 +26,7 @@ configs.setup({
     -- disable = { "css", "html" }, -- list of language that will be disabled
     -- disable = { "css", "markdown" }, -- list of language that will be disabled
     disable = { "markdown" }, -- list of language that will be disabled
-    additional_vim_regex_highlighting = true,
+    -- additional_vim_regex_highlighting = true,
   },
 	autopairs = {
 		enable = true,
@@ -42,6 +42,7 @@ configs.setup({
 	},
 	rainbow = {
 		enable = true,
+    extended_mode = true,
 		colors = {
 			"Gold",
 			"Orchid",
