@@ -79,7 +79,7 @@ return packer.startup(function(use)
     end,
   }
   -]]
-  use "RRethy/vim-illuminate"
+  -- use "RRethy/vim-illuminate" -- problems with Vim 0.8  
   -- todo use "https://git.sr.ht/~whynothug
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
@@ -122,6 +122,9 @@ return packer.startup(function(use)
 
   -- Primeagen
   use "ThePrimeagen/harpoon"
+
+  -- Diffview
+  use "sindrets/diffview.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"

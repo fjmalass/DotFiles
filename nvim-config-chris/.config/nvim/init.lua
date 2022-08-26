@@ -23,5 +23,7 @@ require "user.dap"
 require "user.hop"
 require "user.nvim-surround"
 require "user.fidget"
+require "user.diffview"
+-- require "user.illuminate"
 
 require "user.keymaps"

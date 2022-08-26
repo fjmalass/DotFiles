@@ -17,7 +17,7 @@ Based on `http://github.com/LunarVim/nvim-basic-ide`
 
 - `rm -rf ~/.local/share/nvim/site/pack/packer`
 
-# Architecture
+## Architecture
 
 In `~/.config/nvim/init.lua`: all the starting configuration
 In `~/.config/nvim/lua/user/`: all the specific configurations for that particular instance of `nvim`
