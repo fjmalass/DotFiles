@@ -156,3 +156,6 @@ eval "$(register-python-argcomplete ansible-vault)"
 # <<< argcomplete
 
 export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"
+
+# zoxide 
+eval "$(zoxide init zsh)"
