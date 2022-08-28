@@ -24,6 +24,7 @@ require "user.hop"
 require "user.nvim-surround"
 require "user.fidget"
 require "user.diffview"
+require "user.harpoon"
 -- require "user.illuminate"
 
 require "user.keymaps"
