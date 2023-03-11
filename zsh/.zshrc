@@ -133,7 +133,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # <<< pyenv
-
+#
+# also run with rust
+#
 # >> stylua
 export PATH="$HOME/.cargo/bin:$PATH"
 # <<  stylua
@@ -159,3 +161,6 @@ export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"
 
 # zoxide 
 eval "$(zoxide init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
