@@ -141,7 +141,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # <<  stylua
 #
 # use vim :iexc echo $VIMRUNTIME
-export VIMRUNTIME='/usr/local/share/nvim/runtime'
+# export VIMRUNTIME='/usr/local/share/nvim/runtime'
+# export VIMRUNTIME="$HOME/.local/share/nvim"
 
 # >>> argcomplete for ansible
 autoload -U bashcompinit
@@ -159,7 +160,7 @@ eval "$(register-python-argcomplete ansible-vault)"
 
 export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"
 
-# zoxide 
+# zoxide
 eval "$(zoxide init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
