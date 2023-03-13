@@ -1,3 +1,4 @@
+# start it with `brew service start yabai`
 # binary splits , stack,  floats
 yabai -m config layout bsp
 

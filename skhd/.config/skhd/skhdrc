@@ -1,4 +1,4 @@
-# start it with `brew service start skhd`
+# start it with `brew services start skhd`
 
 # Change window  focus withing space
 alt - j : yabai -m window --focus south
