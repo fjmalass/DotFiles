@@ -3,7 +3,7 @@
 # Creates links to .zshrc .config/nvim  etc
 
 if [[ -z $STOW_FOLDERS ]]; then
-  STOW_FOLDERS="nvim-config-chris,lvim,cpp,ansible,zsh"
+  STOW_FOLDERS="nvim-config-chris,lvim,cpp,ansible,zsh,yabai,skhd"
 fi
 
 # should automate this with vars.
@@ -16,7 +16,7 @@ pushd $DOTFILES_DIR
 
 # convert list of folders separated with ,
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-do 
+do
   echo "FOLDER $folder"
   # remove the links
   stow -D $HOME folder
