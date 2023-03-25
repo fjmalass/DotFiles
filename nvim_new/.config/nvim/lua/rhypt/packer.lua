@@ -10,80 +10,79 @@ local ensure_packer = function()
     return false
 end
 
-local packer_bootstrap = ensure_packer()-- Only required if you have packer configured as `opt`
+local packer_bootstrap = ensure_packer() -- Only required if you have packer configured as `opt`
 
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
-  -- telescope
-  use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
-	  -- or                            , branch = '0.1.x',
-	  requires = { {'nvim-lua/plenary.nvim'} }
-  }
+    -- telescope
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        -- or                            , branch = '0.1.x',
+        requires = { { 'nvim-lua/plenary.nvim' } }
+    }
 
-  -- theme (rose pine)
-  use ({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
-	  config = function()
-		  vim.cmd('colorscheme rose-pine')
-	  end
-  })
+    -- theme (rose pine)
+    use({
+        'rose-pine/neovim',
+        as = 'rose-pine',
+        config = function()
+            vim.cmd('colorscheme rose-pine')
+        end
+    })
 
-  -- treesitter
-  use ( 'nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'} )
-  use ( 'nvim-treesitter/playground' )
+    -- treesitter
+    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    use('nvim-treesitter/playground')
 
-  -- harpoon
-  use ('theprimeagen/harpoon')
-  use ('mbbill/undotree')
-  use ('tpope/vim-fugitive')
-  use {'lewis6991/gitsigns.nvim', config = function()
-      require('gitsigns').setup()
-  end
-  }
+    -- harpoon
+    use('theprimeagen/harpoon')
+    use('mbbill/undotree')
+    use('tpope/vim-fugitive')
+    use { 'lewis6991/gitsigns.nvim', config = function()
+        require('gitsigns').setup()
+    end
+    }
 
-  -- lspzero
-  use {
-	  'VonHeikemen/lsp-zero.nvim',
-	  branch = 'v1.x',
-	  requires = {
-		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},             -- Required
-		  {'williamboman/mason.nvim'},           -- Optional
-		  {'williamboman/mason-lspconfig.nvim'}, -- Optional
+    -- lspzero
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v1.x',
+        requires = {
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' },   -- Required
+            { 'williamboman/mason.nvim' }, -- Optional
+            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-		   -- Autocompletion
-		   {'hrsh7th/nvim-cmp'},         -- Required
-		   {'hrsh7th/cmp-nvim-lsp'},     -- Required
-		   {'hrsh7th/cmp-buffer'},       -- Optional
-		   {'hrsh7th/cmp-path'},         -- Optional
-		   {'saadparwaiz1/cmp_luasnip'}, -- Optional
-		   {'hrsh7th/cmp-nvim-lua'},     -- Optional
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' }, -- Required
+            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+            { 'hrsh7th/cmp-buffer' }, -- Optional
+            { 'hrsh7th/cmp-path' }, -- Optional
+            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+            { 'hrsh7th/cmp-nvim-lua' }, -- Optional
 
-		    -- Snippets
-	    	   {'L3MON4D3/LuaSnip'},             -- Required
-		   {'rafamadriz/friendly-snippets'}, -- Optional
-	  }
-   }
-  -- screen capture for code
-  use {'krivahtoo/silicon.nvim', run = './install.sh build'}
+            -- Snippets
+            { 'L3MON4D3/LuaSnip' },    -- Required
+            { 'rafamadriz/friendly-snippets' }, -- Optional
+        }
+    }
+    -- screen capture for code
+    use { 'krivahtoo/silicon.nvim', run = './install.sh build' }
 
-  -- comment
-  use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
+    -- comment
+    use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
 
 
-  -- use {'folke/which-key.nvim'}
+    -- use {'folke/which-key.nvim'}
 
-  -- This is the last thing (synch pakcer)
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-
+    -- This is the last thing (synch pakcer)
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 end)
 
 -- -- autocommand to run when paker is updated
@@ -93,5 +92,3 @@ end)
 -- autocmd BufWritePost packer.lua source <afile> | PackerCompile
 -- augroup end
 -- ]])
-
-
