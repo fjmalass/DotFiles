@@ -1,4 +1,8 @@
-local lsp = require("lsp-zero")
+local status_ok, lsp = pcall(require, "lsp-zero")
+if not status_ok then
+    print("lsp-zero is not loaded")
+    return
+end
 
 lsp.preset({
     name = "recommended",
@@ -25,7 +29,12 @@ lsp.configure('lua-language-server', {
     }
 })
 
-local cmp = require('cmp')
+
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+    print("cmp is not loaded")
+    return
+end
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
