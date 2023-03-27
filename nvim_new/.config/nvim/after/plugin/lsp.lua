@@ -14,6 +14,8 @@ lsp.ensure_installed({
     'pyright',
     'tsserver',
     'rust_analyzer',
+    'eslint',
+    'clangd',
 })
 
 lsp.nvim_workspace()
@@ -62,6 +64,8 @@ lsp.set_preferences({
     }
 })
 
+
+-- create new key bindings
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false, silent = true }
 
@@ -78,6 +82,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format { async = true } end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+    lsp.buffer_autoformat()
 end)
 
 --- lsp config handler
@@ -105,3 +111,24 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
+
+
+-- Null-ls and black  auto Formatting
+local ok_status, null_ls = pcall(require, 'null-ls')
+if not ok_status then
+    print('null-ls is not installed')
+    return
+end
+
+local sources = {
+    -- python
+    null_ls.builtins.formatting.black.with({
+        extra_args = { "--line-length=120" }
+    }),
+    null_ls.builtins.formatting.isort,
+}
+
+null_ls.setup({ sources = sources })
+
+
+null_ls.setup({ sources = sources })

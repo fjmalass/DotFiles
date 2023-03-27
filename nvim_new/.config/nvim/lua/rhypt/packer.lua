@@ -70,6 +70,10 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' }, -- Optional
         }
     }
+
+    -- null-ls for python formattting
+    use 'jose-elias-alvarez/null-ls.nvim'
+    --
     -- screen capture for code
     use { 'krivahtoo/silicon.nvim', run = './install.sh build' }
 
@@ -81,9 +85,9 @@ return require('packer').startup(function(use)
     use 'theHamsta/nvim-dap-virtual-text'
     use 'rcarriga/nvim-dap-ui'
     use 'nvim-telescope/telescope-dap.nvim'
-    -- debug python
+    -- debug python ( we are not using it )
     use 'mfussenegger/nvim-dap-python'
-    -- debug rust
+    -- debug rust (Make sure that rust-analyzer is installed, `rustup component add rust-analyzer`)
     use 'simrat39/rust-tools.nvim'
 
 

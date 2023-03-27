@@ -1,16 +1,18 @@
 --  Get the environment path using pipenv etc.
 local get_python_path = function()
     local cwd = vim.fn.getcwd()
-    if vim.fn.executable(os.getenv('VIRTUAL_ENV') .. '/bin/python') == 1 then
-        return os.getenv('VIRTUAL_ENV') .. '/bin/python'
-    elseif vim.fn.executable(vim.fn.system('pipenv --venv') .. '/bin/python') == 1 then
-        return vim.fn.system('pipenv --venv') .. '/bin/python'
-    elseif vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-        return cwd .. '/venv/bin/python'
-    elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-        return cwd .. '/.venv/bin/python'
-    else
-        return '/usr/bin/python'
+    local python_dir = '/bin/python3'
+
+    local root_dirs = {
+        os.getenv('VIRTUAL_ENV'),
+        vim.fn.system('pipenv --venv'),
+        cwd, '/usr' }
+    for _, root_dir in ipairs(root_dirs) do
+        if root_dir and vim.fn.executable(root_dir .. python_dir) == 1 then
+            print("python path: " .. root_dir .. python_dir)
+            return root_dir .. python_dir
+        end
+        return nil
     end
 end
 
