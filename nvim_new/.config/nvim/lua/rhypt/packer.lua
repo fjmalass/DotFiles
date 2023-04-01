@@ -73,9 +73,9 @@ return require('packer').startup(function(use)
 
     -- null-ls for python formattting
     use 'jose-elias-alvarez/null-ls.nvim'
-    --
+
     -- screen capture for code
-    use { 'krivahtoo/silicon.nvim', run = './install.sh build' }
+    -- use { 'krivahtoo/silicon.nvim', run = './install.sh build' }
 
     -- comment
     use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
@@ -90,6 +90,8 @@ return require('packer').startup(function(use)
     -- debug rust (Make sure that rust-analyzer is installed, `rustup component add rust-analyzer`)
     use 'simrat39/rust-tools.nvim'
 
+    -- Copilot (Make sure that node.js installed)
+    use 'github/copilot.vim'
 
     -- use {'folke/which-key.nvim'}
 

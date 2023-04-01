@@ -5,7 +5,7 @@ if not status_ok then
 end
 configs.setup {
     -- A list of parser names, or "all" (the five listed parsers should always be installed)
-    ensure_installed = { "c", "cpp", "lua", "vim", "python", "help", "query", "rust", "javascript", "typescript", "go" },
+    ensure_installed = { "c", "cpp", "lua", "vim", "python", "query", "rust", "javascript", "typescript", "go" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
