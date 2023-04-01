@@ -1,6 +1,7 @@
 local status_ok, silicon = pcall(require, "silicon")
 if not status_ok then
     print("silicon is not loaded")
+    silicon = nil
     return
 end
 

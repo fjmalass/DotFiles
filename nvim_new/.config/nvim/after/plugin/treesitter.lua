@@ -23,3 +23,20 @@ configs.setup {
         additional_vim_regex_highlighting = false,
     },
 }
+
+
+local context_status_ok, context = pcall(require, "treesitter-context")
+if not context_status_ok then
+    print("treesitter-context is not loaded")
+    return
+end
+
+context.setup {
+    enable = true,
+    max_lines = 0,           -- 0 means unlimited
+    min_window_height = 0,   -- 0 means unlimited
+    line_numbers = true,
+    multiline_threshold = 5, -- 5 means that if the node has more than 5 lines, it will be multiline_threshold
+    trim_scope = 'outer',
+    mode = 'cursor',
+}
