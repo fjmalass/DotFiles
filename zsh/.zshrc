@@ -169,3 +169,6 @@ eval "$(zoxide init zsh)"
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+
+# Sphinx installed via brew  (documentation)
+export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
