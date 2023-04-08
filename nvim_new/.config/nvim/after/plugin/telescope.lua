@@ -12,6 +12,7 @@ end
 
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[P]roject [F]iles' })
 vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = '[P]roject git files' })
+vim.keymap.set('n', '<leader>pw', builtin.live_grep, { desc = '[P]roject search [W]ord' })
 vim.keymap.set('n', '<leader>ps', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end, { desc = '[P]roject [S]earch word' })
