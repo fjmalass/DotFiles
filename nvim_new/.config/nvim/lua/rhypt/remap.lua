@@ -3,7 +3,22 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- move command in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- move command in insert mode
+vim.keymap.set("i", "<C-j>", "<Esc>:m .+1<CR>==gi")
+vim.keymap.set("i", "<C-k>", "<Esc>:m .-2<CR>==gi")
 
+
+-- easier moving between splits
+vim.keymap.set("n", "<C-J>", "<C-W><C-J>")
+vim.keymap.set("n", "<C-K>", "<C-W><C-K>")
+vim.keymap.set("n", "<C-L>", "<C-W><C-L>")
+vim.keymap.set("n", "<C-H>", "<C-W><C-H>")
+
+-- sizing window
+vim.keymap.set("n", "<C-,>", "<C-W><")
+vim.keymap.set("n", "<C-.>", "<C-W>>")
+vim.keymap.set("n", "<M-,>", "<C-W>5<")
+vim.keymap.set("n", "<M-.>", "<C-W>5>")
 
 vim.keymap.set("n", "J", "mzJ`z")
 -- move and key cursor in middle
@@ -23,6 +38,9 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- sent ot void buffer
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
+
+-- change working directory for all
+vim.keymap.set("n", "<leader>dc", "<cmd>window lcd")
 
 -- formatters
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end)

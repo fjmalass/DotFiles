@@ -24,6 +24,13 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+    use { 'nvim-telescope/telescope-file-browser.nvim' }
+    use { 'nvim-telescope/telescope-hop.nvim' }
+    use { 'nvim-telescope/telescope-ui-select.nvim' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+    use { 'ThePrimeagen/git-worktree.nvim', config = function()
+        require('git-worktree').setup {}
+    end }
 
     -- theme (rose pine)
     use({
@@ -65,6 +72,7 @@ return require('packer').startup(function(use)
             { 'hrsh7th/cmp-path' },         -- Optional
             { 'saadparwaiz1/cmp_luasnip' }, -- Optional
             { 'hrsh7th/cmp-nvim-lua' },     -- Optional
+            { 'tamago324/cmp-zsh' },        -- Optional
 
             -- Snippets
             { 'L3MON4D3/LuaSnip' },             -- Required
