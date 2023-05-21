@@ -40,7 +40,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 
 -- change working directory for all
-vim.keymap.set("n", "<leader>dc", "<cmd>window lcd")
+vim.keymap.set("n", "<leader>dc", "<cmd>window lcd<CR>")
 
 -- formatters
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end)

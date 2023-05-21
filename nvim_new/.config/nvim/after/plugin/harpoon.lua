@@ -10,7 +10,7 @@ if not ui_status_ok then
 end
 
 
-vim.keymap.set("n", "<leader>a", mark.add_file)
+vim.keymap.set("n", "<C-a>", mark.add_file)
 vim.keymap.set("n", "<leader>e", ui.toggle_quick_menu)
 
 vim.keymap.set("n", "<leader>j", function() ui.nav_file(1) end)
