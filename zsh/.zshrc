@@ -172,3 +172,5 @@ fpath+=~/.zfunc
 
 # Sphinx installed via brew  (documentation)
 export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
+
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
