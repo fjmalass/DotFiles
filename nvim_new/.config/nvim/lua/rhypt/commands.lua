@@ -15,10 +15,16 @@ autocmd('TextYankPost', {
 })
 
 -- print("remove trailing spaces")
-local RhyptGroup = augroup('Rhypt', {})
-autocmd({"BufWritePre"}, {
-    group = RhyptGroup,
+local rhypt_group = augroup('Rhypt', {})
+autocmd({ "BufWritePre" }, {
+    group = rhypt_group,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
 
+-- added slint
+autocmd({ "BufNewFile, BufRead" }, {
+    group = rhypt_group,
+    pattern = "*.slint",
+    command = [[setlocal filetype=slint]],
+})

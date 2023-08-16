@@ -4,6 +4,8 @@ if not status_ok then
     return
 end
 
+print('python file')
+
 -- local sources = {
 --     lsp.builtins.formatting.black,
 -- }
