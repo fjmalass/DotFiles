@@ -14,3 +14,13 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 -- vim.print("lazy.nvim installed in " .. lazypath)
+
+vim.g.mapleader = " " -- map leader is space
+
+-- Setup plugins
+require("lazy").setup({
+  "folke/which-key.nvim",
+  { "folke/neoconf.nvim", cmd = "Neoconf" },
+  "folke/neodev.nvim",
+})
+
