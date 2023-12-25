@@ -15,13 +15,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- vim.print("lazy.nvim installed in " .. lazypath)
 
-require("config.globals")
+require("config.globals") -- setup the mapleader etc (required to be done before lazy is installed
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-
--- map leader is space
-vim.g.mapleader = " " 
 
 -- setup lazy
 local plugins = "plugins" -- load from plugins directory, starting with init.lua
@@ -30,6 +27,7 @@ local opts = {
 	defaults = {
 		lazy = true,
 	},
+ -- Question do we need to add a colorscheme here?
 	rtp = {
 		disabled_plugins = {
 			"gzip",
@@ -44,7 +42,7 @@ local opts = {
 		},
 	},
 	change_detection = {
-		notify = false,
+		notify = true,
 	},
 }
 

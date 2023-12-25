@@ -1,2 +1,3 @@
-vim.print("globals.lua not setup yet")
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
