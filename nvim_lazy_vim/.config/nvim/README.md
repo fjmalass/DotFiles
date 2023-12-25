@@ -5,4 +5,6 @@
 
 ## [folke/lazy.nvim](http://github.com/folke/lazy.nvim)
 
+* bootstrapping
+
 
