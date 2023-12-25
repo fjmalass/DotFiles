@@ -23,12 +23,12 @@ require("config.autocmds")
 -- map leader is space
 vim.g.mapleader = " " 
 
+-- setup lazy
+local plugins = "plugins" -- load from plugins directory, starting with init.lua
+
 local opts = {
 	defaults = {
 		lazy = true,
-	},
-	install = {
-		colorscheme = { "catppuccin" },
 	},
 	rtp = {
 		disabled_plugins = {
@@ -50,9 +50,5 @@ local opts = {
 
 
 -- Setup plugins
-require("lazy").setup({
-  "folke/which-key.nvim",
-  { "folke/neoconf.nvim", cmd = "Neoconf" },
-  "folke/neodev.nvim",
-}, opts)
+require("lazy").setup(plugins, opts)
 
