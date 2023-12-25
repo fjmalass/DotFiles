@@ -1,1 +1,1 @@
-vim.print("hello World")
+require("config")
