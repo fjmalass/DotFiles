@@ -15,12 +15,44 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- vim.print("lazy.nvim installed in " .. lazypath)
 
-vim.g.mapleader = " " -- map leader is space
+require("config.globals")
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")
+
+-- map leader is space
+vim.g.mapleader = " " 
+
+local opts = {
+	defaults = {
+		lazy = true,
+	},
+	install = {
+		colorscheme = { "catppuccin" },
+	},
+	rtp = {
+		disabled_plugins = {
+			"gzip",
+			"matchit",
+			"matchparen",
+			"netrw",
+			"netrwPlugin",
+			"tarPlugin",
+			"tohtml",
+			"tutor",
+			"zipPlugin",
+		},
+	},
+	change_detection = {
+		notify = false,
+	},
+}
+
 
 -- Setup plugins
 require("lazy").setup({
   "folke/which-key.nvim",
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
-})
+}, opts)
 
