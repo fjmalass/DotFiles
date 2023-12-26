@@ -2,22 +2,26 @@
 -- Also need to install :TSInstall markdow and markdown_inline
 -- lua: lua-language-server, stylua, luacheck
 -- python: pyright, black, flake8
+--
+-- setup keybindings
+local on_attach = require("utils.lsp").on_attach
+
 local config = function()
 	require("neoconf").setup({}) -- required to setup globals (need to check into .luacheckrc, .luarc.json, and .neoconf.json
 	local lspconfig = require("lspconfig")
+	local cmp_nvim_lsp = require("cmp_nvim_lsp")
+	local capabilities = cmp_nvim_lsp.default_capabilities()
+
 	-- set up signs
 	local signs = require("utils.icons").diagnostics_signs
 	for type, icon in pairs(signs) do
-		local hl = "DiagnosticSign" .. type
+    local hl = "DiagnosticSign" .. type
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 	end
 
-	-- setup keybindings
-	local on_attach = require("utils.lsp").on_attach
-
 	-- lua
 	lspconfig.lua_ls.setup({
-		-- capabilities = capabilities,
+		capabilities = capabilities,
 		on_attach = on_attach,
 		settings = {
 			-- make the language settings for lua
@@ -37,7 +41,7 @@ local config = function()
 
 	-- python
 	lspconfig.pyright.setup({
-		-- capabilities = capabilities,
+		capabilities = capabilities,
 		on_attach = on_attach,
 		settings = {
 			pyright = {
