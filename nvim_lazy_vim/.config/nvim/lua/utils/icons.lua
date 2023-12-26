@@ -8,7 +8,7 @@ M.debugging_signs = {
 	LogPoint = ".>",
 }
 
-M.diagnostic_signs = {
+M.diagnostics_signs = {
 	Error = " ",
 	Warn = " ",
 	Hint = "",
