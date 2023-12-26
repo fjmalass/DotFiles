@@ -50,9 +50,12 @@ if command -v zoxide >/dev/null 2>&1; then
     # Initialize zoxide for Zsh
     echo "zoxide is installed with bash. use z instead of cd."
     eval "$(zoxide init zsh)"
-    alias cd = zoxide
 else
     # Print a message if zoxide is not installed
     echo "zoxide is not installed. Please install it to use its features."
 fi
 
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

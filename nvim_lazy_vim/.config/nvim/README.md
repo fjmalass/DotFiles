@@ -8,3 +8,7 @@
 * bootstrapping
 
 
+## Install node with at least 12.20 (usin nvm)
+update node with `nvm i 20`
+
+
