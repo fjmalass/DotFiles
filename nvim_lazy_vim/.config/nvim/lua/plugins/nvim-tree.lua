@@ -1,7 +1,7 @@
 local g = vim.g
 
 g.nvim_tree_add_trailing = 1 --append a trailing slash after a directory
-g.nvim_tree_git_hl = true
+g.nvim_tree_git_hl = 1
 g.nvim_tree_icons = {
    default = "",
    symlink = "",
@@ -29,7 +29,11 @@ g.nvim_tree_icons = {
 local function on_attach(bufnr)
     local api = require("nvim-tree.api")
     local function opts(desc)
-        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        return { desc = "nvim-tree: " .. desc, 
+        buffer = bufnr, 
+        noremap = true, 
+        silent = true, 
+        nowait = true, }
     end
     api.config.mappings.default_on_attach(bufnr)
     vim.keymap.set("n", "<C-t>", api.tree.change_root_to_parent, opts("Up Parent"))
