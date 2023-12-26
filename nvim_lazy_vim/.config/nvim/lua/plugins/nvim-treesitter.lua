@@ -21,7 +21,7 @@ local config = function()
             "lua",
             "luadoc",
             "dockerfile",
-            "gitignore",
+            -- "gitignore",
             "python",
             "cpp",
             -- "glsl",
