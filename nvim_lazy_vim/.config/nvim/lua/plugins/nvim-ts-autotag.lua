@@ -3,7 +3,7 @@ return {
     lazy = false,
     config = {},
     dependencies = {
-        "nvim-tree-sitter/nvim-treesitter",
+        "nvim-treesitter/nvim-treesitter",
     }
 }
 
