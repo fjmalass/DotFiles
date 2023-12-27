@@ -67,13 +67,13 @@ fi
 
 
 #   node version manager
-export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
-if [[ -d ${NVIM_DIR} ]]
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+if [[ -d ${NVM_DIR} ]]
 then
-    [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
-    [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 else
-    echo "Node.js Version Manager `nvm` has not been installed, look up nvm."
+    echo "Node.js Version Manager `nvm` has not been installed, look up nvm. $NVM_DIR"
 fi
 
 
@@ -84,4 +84,4 @@ then
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ${ZDOTDIR}/zsh/.p10k.zsh ]] || source ${ZDOTDIR}/zsh/.p10k.zsh
+[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
