@@ -7,6 +7,7 @@ local opts = {
         "emmet_ls",
         "jsonls",
         "clangd",
+        "fixjson",
 	},
 	automatic_installation = true,
 }
