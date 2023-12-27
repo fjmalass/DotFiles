@@ -1,19 +1,20 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
 
 # load aliasrc if it exist
 [[ -f "${ZDOTDIR}/aliasrc" ]] && source "${ZDOTDIR}/aliasrc"  
 # load optionrc if it exist
 [[ -f "${ZDOTDIR}/optionrc" ]] && source "${ZDOTDIR}/optionrc"  
+# #  Plugins
+[[ ! -f "${ZDOTDIR}/plugins/powerlevel10k" ]] && source ${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # load pluginrc if it exist (will install/use powerleve10k and other plugins)
 [[ -f "${ZDOTDIR}/pluginrc" ]] && source "${ZDOTDIR}/pluginrc"  
 #
-# #  Plugins
-# [[ ! -f "${ZDOTDIR}/plugins/powerlevel10k" ]] && source ${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 # [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
 
@@ -86,4 +87,9 @@ else
     echo "Node.js Version Manager `nvm` has not been installed, look up nvm. $NVM_DIR"
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+# [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+# (( ! ${+functions[p10k]} )) || p10k finalize
 
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
