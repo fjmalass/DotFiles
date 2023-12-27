@@ -12,11 +12,11 @@
 [[ -f "${ZDOTDIR}/optionrc" ]] && source "${ZDOTDIR}/optionrc"  
 # #  Plugins
 [[ ! -f "${ZDOTDIR}/plugins/powerlevel10k" ]] && source ${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme
+# # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
 # load pluginrc if it exist (will install/use powerleve10k and other plugins)
 [[ -f "${ZDOTDIR}/pluginrc" ]] && source "${ZDOTDIR}/pluginrc"  
 #
-# # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-# [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
 
 
 #!/usr/bin/env zsh
@@ -28,8 +28,27 @@ prompt adam1
 
 setopt histignorealldups sharehistory
 
-# use vi keybindings
-bindkey -v
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[OA' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[OB' history-substring-search-down
+# Vi Mode
+bindkey -M vicmd '^[[A' history-substring-search-up 
+bindkey -M vicmd '^[OA' history-substring-search-up 
+bindkey -M vicmd '^[[B' history-substring-search-down
+bindkey -M vicmd '^[OB' history-substring-search-down
+bindkey -M viins '^[[A' history-substring-search-up 
+bindkey -M viins '^[OA' history-substring-search-up 
+bindkey -M viins '^[[B' history-substring-search-down 
+bindkey -M viins '^[OB' history-substring-search-down
+
+# colours
+autoload -U colors && colors	      # colours
+autoload -U compinit && compinit    # basic completion
+autoload -U compinit colors zcalc   # theming
 
 
 # Use modern completion system
