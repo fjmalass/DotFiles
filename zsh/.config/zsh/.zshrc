@@ -9,6 +9,14 @@ fi
 [[ -f "${ZDOTDIR}/aliasrc" ]] && source "${ZDOTDIR}/aliasrc"  
 # load optionrc if it exist
 [[ -f "${ZDOTDIR}/optionrc" ]] && source "${ZDOTDIR}/optionrc"  
+# load pluginrc if it exist (will install/use powerleve10k and other plugins)
+[[ -f "${ZDOTDIR}/pluginrc" ]] && source "${ZDOTDIR}/pluginrc"  
+#
+# #  Plugins
+# [[ ! -f "${ZDOTDIR}/plugins/powerlevel10k" ]] && source ${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme
+# # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+# [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
+
 
 #!/usr/bin/env zsh
 # Set up the prompt
@@ -79,11 +87,3 @@ else
 fi
 
 
-#  theme
-[[ ! -f "${ZDOTDIR}/plugins/powerlevel10k" ]] && source ${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
-#
-# Fast Syntax.
-[[ ! -f $ZDOTDIR/plugins/fast-syntax-highlighting ]] || source ${ZDOTDIR}/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
