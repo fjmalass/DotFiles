@@ -11,7 +11,6 @@ keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", opt) -- Prev buffer
 keymap.set("n", "<leader>bb", "<cmd>e #<CR>", opt) -- Switch to Other Buffer
 keymap.set("n", "<leader>`", "<cmd>e #<CR>", opt) -- Switch to Other Buffer
 
-
 -- Pane and Window Navigation
 keymap.set("n", "<C-h>", "<C-w>h", opt) -- Navigate Left
 keymap.set("n", "<C-j>", "<C-w>j", opt) -- Navigate Down
@@ -22,14 +21,14 @@ keymap.set("n", "<C-w>m", "<C-w>=", opt) -- Maximize current window (undo): C-w=
 -- Reminder, close others <C-w>o, close current <C-w>c
 
 -- Tmux
--- mapkey("<C-h>", "wincmd h", "t") -- Navigate Left
--- mapkey("<C-j>", "wincmd j", "t") -- Navigate Down
--- mapkey("<C-k>", "wincmd k", "t") -- Navigate Up
--- mapkey("<C-l>", "wincmd l", "t") -- Navigate Right
--- keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft", opt) -- Navigate Left
--- keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown", opt) -- Navigate Down
--- keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp", opt) -- Navigate Up
--- keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight", opt) -- Navigate Right
+keymap.set("t", "<C-h>", "wincmd h", opt) -- Navigate Left
+keymap.set("t", "<C-j>", "wincmd j", opt) -- Navigate Down
+keymap.set("t", "<C-k>", "wincmd k", opt) -- Navigate Up
+keymap.set("t", "<C-l>", "wincmd l", opt) -- Navigate Right
+keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft", opt) -- Navigate Left
+keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown", opt) -- Navigate Down
+keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp", opt) -- Navigate Up
+keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight", opt) -- Navigate Right
 
 --Window Management
 keymap.set("n", "<leader>sv", "<cmd>vsplit<cr>", opt) -- Split Vertically
