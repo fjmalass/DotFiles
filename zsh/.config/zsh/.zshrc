@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# load aliasrc if it exist
+[[ -f "${ZDOTDIR}/aliasrc" ]] && source "${ZDOTDIR}/aliasrc"  
+
 #!/usr/bin/env zsh
 # Set up the prompt
 
@@ -64,21 +67,21 @@ fi
 
 
 #   node version manager
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-if [[ -d $NVIM_DIR ]]
+export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
+if [[ -d ${NVIM_DIR} ]]
 then
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
+    [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
 else
     echo "Node.js Version Manager `nvm` has not been installed, look up nvm."
 fi
 
 
 #  theme
-if [[ -d "$ZDOTDIR/plugins/powerlevel10k" ]]
+if [[ -d "${ZDOTDIR}/plugins/powerlevel10k" ]]
 then
-    source  $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
+    source  ${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+[[ ! -f ${ZDOTDIR}/zsh/.p10k.zsh ]] || source ${ZDOTDIR}/zsh/.p10k.zsh
