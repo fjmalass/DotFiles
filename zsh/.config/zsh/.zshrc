@@ -7,6 +7,8 @@ fi
 
 # load aliasrc if it exist
 [[ -f "${ZDOTDIR}/aliasrc" ]] && source "${ZDOTDIR}/aliasrc"  
+# load optionrc if it exist
+[[ -f "${ZDOTDIR}/optionrc" ]] && source "${ZDOTDIR}/optionrc"  
 
 #!/usr/bin/env zsh
 # Set up the prompt
@@ -78,10 +80,10 @@ fi
 
 
 #  theme
-if [[ -d "${ZDOTDIR}/plugins/powerlevel10k" ]]
-then
-    source  ${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme
-fi
+[[ ! -f "${ZDOTDIR}/plugins/powerlevel10k" ]] && source ${ZDOTDIR}/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
+#
+# Fast Syntax.
+[[ ! -f $ZDOTDIR/plugins/fast-syntax-highlighting ]] || source ${ZDOTDIR}/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
