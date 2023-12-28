@@ -15,18 +15,22 @@ M.on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
 	keymap.set("n", "<leader>q", "<cmd>Lspsaga show_line_diagnostic<CR>", opt)
 	keymap.set("n", "<leader>Q", "<cmd>Lspsaga show_cursor_diagnostic<CR>", opt)
-	keymap.set("n", "<leader>e", vim.diagnostic.open_float, opt)
+	-- keymap.set("n", "<leader>e", vim.diagnostic.open_float, opt)
+	keymap.set("n", "<leader>e", "<cmd>Lspsage show_workspace_diagnostic ++float", opt)
+	keymap.set("n", "<leader>E", "<cmd>Lspsage show_workspace_diagnostic ++normal", opt)
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opt)
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt)
+	keymap.set("n", "[E", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt) -- need to create function to go to error
+	keymap.set("n", "]E", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt) -- need to create function to go to error
 	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opt)
 	keymap.set("n", "<leader>lo", "<cmd>LSoutlineToggle<CR>", opt)
 
-		-- debug (should  install with dap )
-		keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", opt) -- toggle breakpoint
-		keymap.set("n", "<leader>dr", "<cmd>DapContinue<CR>", opt) -- continue/debug
+	-- debug (should  install with dap )
+	keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", opt) -- toggle breakpoint
+	keymap.set("n", "<leader>dr", "<cmd>DapContinue<CR>", opt) -- continue/debug
 	if client.name == "pyright" then
 		keymap.set("n", "<leader>oi", "<cmd>PyrightOrganizeImports<CR>", opt)
-        -- debug
+		-- debug
 		keymap.set("n", "<leader>dt", "<cmd>lua require('dap-python').test_method()<CR>", opt) -- run tests
 	end
 end
