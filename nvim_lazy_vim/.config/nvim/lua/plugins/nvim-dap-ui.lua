@@ -1,6 +1,11 @@
+local on_attach = function()
+	vim.keymap.set("n", "<leader>dd", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+	vim.keymap.set("n", "<leader>di", "<cmd>lua require'dapui'.widgets.hover()<cr>", opts)
+end
 return {
 	"rcarriga/nvim-dap-ui",
 	dependencies = { "mfussenegger/nvim-dap" },
+    on_attach = on_attach,
 }
 
 -- vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>

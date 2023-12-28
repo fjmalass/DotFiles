@@ -11,6 +11,7 @@
 -- json: fixjson, prettierd
 -- rust: rust_analyzer, rustfmt
 -- toml: taplo
+--
 
 -- setup keybindings
 local on_attach = require("utils.lsp").on_attach
