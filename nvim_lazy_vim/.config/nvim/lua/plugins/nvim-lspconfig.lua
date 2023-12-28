@@ -9,7 +9,8 @@
 -- typescript: typescript-language-server, eslint-lsp, prettierd
 -- cpp: clangd, clangformat, cpplint
 -- json: fixjson, prettierd
--- rust: dprint
+-- rust: rust_analyzer, rustfmt
+-- toml: taplo
 
 -- setup keybindings
 local on_attach = require("utils.lsp").on_attach
@@ -73,7 +74,6 @@ local config = function()
 			"typescriptreact",
 			"css",
 			"html",
-			"rust",
 		},
 	})
 
@@ -105,7 +105,10 @@ local config = function()
 	})
 
 	--typescript
-	lspconfig.tsserver.setup({})
+	lspconfig.tsserver.setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 
 	-- rust
 	lspconfig.rust_analyzer.setup({
@@ -116,21 +119,34 @@ local config = function()
 		},
 	})
 
+	-- toml
+	lspconfig.taplo.setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+	})
+
+	-- cmake
+
 	local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
 	local flake8 = require("efmls-configs.linters.flake8")
 	local black = require("efmls-configs.formatters.black")
 
+	-- json etc.
 	local eslint = require("efmls-configs.linters.eslint")
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
 	local fixjson = require("efmls-configs.formatters.fixjson")
+	-- shell
 	local shellcheck = require("efmls-configs.linters.shellcheck")
 	local shfmt = require("efmls-configs.formatters.shfmt")
+	-- cpp
 	local cpplint = require("efmls-configs.linters.cpplint")
 	local clangformat = require("efmls-configs.formatters.clang_format")
-
+	-- rust
 	-- local rustlint = require("efmls-configs.linters.ast-grep")
 	local rustfmt = require("efmls-configs.formatters.rustfmt")
+	-- toml
+	local tomlfmt = require("efmls-configs.formatters.taplo")
 
 	-- configure efm server
 	lspconfig.efm.setup({
@@ -149,6 +165,7 @@ local config = function()
 			"c",
 			"cpp",
 			"rust",
+			"toml",
 		},
 		init_options = {
 			documentFormatting = true,
@@ -175,6 +192,7 @@ local config = function()
 				c = { clangformat, cpplint },
 				cpp = { clangformat, cpplint },
 				rust = { rustfmt },
+				toml = { tomlfmt },
 			},
 		},
 	})

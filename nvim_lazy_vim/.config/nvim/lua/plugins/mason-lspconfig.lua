@@ -1,13 +1,14 @@
 local opts = {
 	ensure_installed = {
-		"efm",
+		"efm", -- generic insteall of null-ls
 		"lua_ls",
 		"pyright",
-		"tsserver",
-        "emmet_ls",
-        "jsonls",
-        "clangd",
-        "rust_analyzer",
+		"tsserver", -- typescript
+		"emmet_ls",
+		"jsonls",
+		"clangd", -- cpp
+		"rust_analyzer",
+		"taplo", -- toml
 	},
 	automatic_installation = true,
 }
