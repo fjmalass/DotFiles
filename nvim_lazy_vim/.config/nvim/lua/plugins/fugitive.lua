@@ -1,5 +1,5 @@
 local config = function()
-	vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+	vim.keymap.set("n", "<leader>gs", vim.cmd.Git, {desc=":Git"})
 end
 
 local Metensis_Fugitive = vim.api.nvim_create_augroup("Metensis_Fugitive", {})

@@ -21,7 +21,6 @@ require("config.keymaps")
 require("config.autocmds")
 
 -- setup lazy
-local plugins = "plugins" -- load from plugins directory, starting with init.lua
 
 local opts = {
 	defaults = {
@@ -47,4 +46,5 @@ local opts = {
 }
 
 -- Setup plugins
+local plugins = "plugins" -- load from plugins directory, starting with init.lua
 require("lazy").setup(plugins, opts)

@@ -7,6 +7,7 @@ local opts = {
         "emmet_ls",
         "jsonls",
         "clangd",
+        "rust_analyzer",
 	},
 	automatic_installation = true,
 }

@@ -9,6 +9,7 @@
 -- typescript: typescript-language-server, eslint-lsp, prettierd
 -- cpp: clangd, clangformat, cpplint
 -- json: fixjson, prettierd
+-- rust: dprint
 
 -- setup keybindings
 local on_attach = require("utils.lsp").on_attach
@@ -72,6 +73,7 @@ local config = function()
 			"typescriptreact",
 			"css",
 			"html",
+			"rust",
 		},
 	})
 
@@ -105,6 +107,15 @@ local config = function()
 	--typescript
 	lspconfig.tsserver.setup({})
 
+	-- rust
+	lspconfig.rust_analyzer.setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+		settings = {
+			["rust_analyzer"] = {},
+		},
+	})
+
 	local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
 	local flake8 = require("efmls-configs.linters.flake8")
@@ -117,6 +128,9 @@ local config = function()
 	local shfmt = require("efmls-configs.formatters.shfmt")
 	local cpplint = require("efmls-configs.linters.cpplint")
 	local clangformat = require("efmls-configs.formatters.clang_format")
+
+	-- local rustlint = require("efmls-configs.linters.ast-grep")
+	local rustfmt = require("efmls-configs.formatters.rustfmt")
 
 	-- configure efm server
 	lspconfig.efm.setup({
@@ -134,6 +148,7 @@ local config = function()
 			"css",
 			"c",
 			"cpp",
+			"rust",
 		},
 		init_options = {
 			documentFormatting = true,
@@ -159,10 +174,10 @@ local config = function()
 				css = { prettier_d },
 				c = { clangformat, cpplint },
 				cpp = { clangformat, cpplint },
+				rust = { rustfmt },
 			},
 		},
 	})
-
 end
 
 return {
