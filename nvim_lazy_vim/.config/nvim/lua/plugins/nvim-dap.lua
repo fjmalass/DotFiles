@@ -1,0 +1,86 @@
+return {
+	"mfussenegger/nvim-dap",
+}
+--
+-- from
+-- local kaymaps = {
+-- 	["<leader>dc"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue", opts = { silent = true } },
+--
+-- 	["<leader>do"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over", opts = { silent = true } },
+--
+-- 	["<leader>di"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into", opts = { silent = true } },
+--
+-- 	["<leader>du"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out", opts = { silent = true } },
+--
+-- 	["<leader>db"] = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint", opts = { silent = true } },
+--
+-- 	["<leader>dB"] = {
+-- 		"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+-- 		"Breakpoint Condition",
+-- 		opts = { silent = true },
+-- 	},
+--
+-- 	["<leader>dd"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Dap UI", opts = { silent = true } },
+--
+-- 	["<leader>dl"] = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last", opts = { silent = true } },
+-- }
+-- dap.defaults.fallback.terminal_win_cmd = '20split new'
+-- vim.fn.sign_define('DapBreakpoint',
+--                    {text = '🟥', texthl = '', linehl = '', numhl = ''})
+-- vim.fn.sign_define('DapBreakpointRejected',
+--                    {text = '🟦', texthl = '', linehl = '', numhl = ''})
+-- vim.fn.sign_define('DapStopped',
+--                    {text = '⭐️', texthl = '', linehl = '', numhl = ''})
+--
+-- vim.keymap.set('n', '<leader>dh',
+--                function() require"dap".toggle_breakpoint() end)
+-- vim.keymap.set('n', '<leader>dH',
+--                ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+-- vim.keymap.set({'n', 't'}, '<A-k>', function() require"dap".step_out() end)
+-- vim.keymap.set({'n', 't'}, "<A-l>", function() require"dap".step_into() end)
+-- vim.keymap.set({'n', 't'}, '<A-j>', function() require"dap".step_over() end)
+-- vim.keymap.set({'n', 't'}, '<A-h>', function() require"dap".continue() end)
+-- vim.keymap.set('n', '<leader>dn', function() require"dap".run_to_cursor() end)
+-- vim.keymap.set('n', '<leader>dc', function() require"dap".terminate() end)
+-- vim.keymap.set('n', '<leader>dR',
+--                function() require"dap".clear_breakpoints() end)
+-- vim.keymap.set('n', '<leader>de',
+--                function() require"dap".set_exception_breakpoints({"all"}) end)
+-- vim.keymap.set('n', '<leader>da', function() require"debugHelper".attach() end)
+-- vim.keymap.set('n', '<leader>dA',
+--                function() require"debugHelper".attachToRemote() end)
+-- vim.keymap
+--     .set('n', '<leader>di', function() require"dap.ui.widgets".hover() end)
+-- vim.keymap.set('n', '<leader>d?', function()
+--     local widgets = require "dap.ui.widgets";
+--     widgets.centered_float(widgets.scopes)
+-- end)
+-- vim.keymap.set('n', '<leader>dk', ':lua require"dap".up()<CR>zz')
+-- vim.keymap.set('n', '<leader>dj', ':lua require"dap".down()<CR>zz')
+-- vim.keymap.set('n', '<leader>dr',
+--                ':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
+-- vim.keymap.set('n', '<leader>du', ':lua require"dapui".toggle()<CR>')
+--
+-- -- nvim-telescope/telescope-dap.nvim
+-- require('telescope').load_extension('dap')
+-- vim.keymap.set('n', '<leader>ds', ':Telescope dap frames<CR>')
+-- -- vim.keymap.set('n', '<leader>dc', ':Telescope dap commands<CR>')
+-- vim.keymap.set('n', '<leader>db', ':Telescope dap list_breakpoints<CR>')
+--
+-- require('nvim-dap-virtual-text').setup()
+--
+-- -- David-Kunz/jester
+-- require'jester'.setup({
+--     path_to_jest = "/opt/homebrew/bin/jest",
+--     dap = {type = 'pwa-node'}
+-- })
+-- -- require'jester'.setup({ dap = { type = 'pwa-node'}})
+-- -- require'jester'.setup({ path_to_jest = "/opt/homebrew/bin/jest", dap = { type = 'pwa-node' } })
+-- vim.keymap.set('n', '<leader>tt', function() require"jester".run() end)
+-- vim.keymap.set('n', '<leader>t_', function() require"jester".run_last() end)
+-- vim.keymap.set('n', '<leader>tf', function() require"jester".run_file() end)
+-- vim.keymap.set('n', '<leader>d_', function() require"jester".debug_last() end)
+-- vim.keymap.set('n', '<leader>df', function() require"jester".debug_file() end)
+-- vim.keymap.set('n', '<leader>dq', function() require"jester".terminate() end)
+-- vim.keymap.set('n', '<leader>dd', function() require"jester".debug() end)
+
