@@ -13,5 +13,12 @@ return {
 				package_uninstalled = "✗",
 			},
 		},
+		opts = {
+			ensure_installed = {
+				"ruff",
+				"mypy",
+				"pyright",
+			},
+		},
 	},
 }

@@ -1,5 +1,16 @@
 local M = {}
-local buf_opts = { buffer = bufnr, silent = true }
+--Assign keymaps
+
+M.on_attach_pyright = function(_client, bufnr)
+	local opt = { noremap = true, silent = true, buffer = bufnr } local keymap = vim.keymap
+	keymap.set("n", "<leader>oi", "<cmd>PyrightOrganizeImports<CR>", opt)
+end
+
+--Assign keymaps
+M.on_attach_clangd = function(client, bufnr)
+	client.server_capabilities.signatureHelpProvider = false
+end
+--
 --Assign keymaps
 M.on_attach = function(client, bufnr)
 	local opt = { noremap = true, silent = true, buffer = bufnr }
@@ -31,9 +42,11 @@ M.on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", opt) -- toggle breakpoint
 	keymap.set("n", "<leader>dr", "<cmd>DapContinue<CR>", opt) -- continue/debug
 	if client.name == "pyright" then
-		keymap.set("n", "<leader>oi", "<cmd>PyrightOrganizeImports<CR>", opt)
-		-- debug should we put that in dap
-		keymap.set("n", "<leader>dt", "<cmd>lua require('dap-python').test_method()<CR>", opt) -- run tests
+		on_attach_pyright(client, bufnr)
+	end
+	-- From nvchad video
+	if client.name == "clangd" then
+		on_attach_clangd(client, bufnr)
 	end
 end
 

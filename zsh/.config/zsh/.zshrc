@@ -21,9 +21,7 @@
 
 #!/usr/bin/env zsh
 # Set up the prompt
-
-autoload -Uz promptinit
-promptinit
+autoload -Uz promptinit && promptinit
 prompt adam1
 
 setopt histignorealldups sharehistory
@@ -46,14 +44,13 @@ bindkey -M viins '^[[B' history-substring-search-down
 bindkey -M viins '^[OB' history-substring-search-down
 
 # colours
-autoload -U colors && colors	      # colours
-autoload -U compinit && compinit    # basic completion
-autoload -U compinit colors zcalc   # theming
+autoload -U colors && colors	    # colours
+export ZSH_DISABLE_COMPFIX=true     # ignore insecure errors
+autoload -Uz compinit -u  && compinit -u
+# autoload -U compinit colors zcalc   # theming
 
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate

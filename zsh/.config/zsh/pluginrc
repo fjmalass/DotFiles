@@ -4,11 +4,11 @@
     github=$1
     plugin=$2
     local ZPLUGIN_DIR=${ZDOTDIR}/plugins
-    echo ${ZPLUGIN_DIR}/${plugin}
+    # echo ${ZPLUGIN_DIR}/${plugin}
     if [ ! -d "${ZPLUGIN_DIR}/${plugin}" ]; then
-      echo "WARNING: ${plugin} not found. Installing..."
+      # echo "WARNING: ${plugin} not found. Installing..."
       git clone "https://www.github.com/${github}/${plugin}" "${ZPLUGIN_DIR}/${plugin}"
-      echo "SUCCESS: ${plugin} installed!"
+      # echo "SUCCESS: ${plugin} installed!"
     fi
     
     if [ "${plugin}" = "powerlevel10k" ]; then

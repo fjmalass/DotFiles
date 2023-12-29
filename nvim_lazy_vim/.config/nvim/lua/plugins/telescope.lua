@@ -27,7 +27,7 @@ local config = function()
 				previewer = true,
 			},
 		},
-        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }, 
+		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 	})
 end
 

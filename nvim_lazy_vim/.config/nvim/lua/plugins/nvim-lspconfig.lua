@@ -5,7 +5,7 @@
 -- Also need to install :TSInstall markdow and markdown_inline
 -- Need to install nvm for update of node.js > 20.10 (nvm i 20)
 -- lua: lua-language-server, stylua, luacheck
--- python: pyright, black, flake8
+-- python: pyright, black, ruff -- as flake8 is slow
 -- typescript: typescript-language-server, eslint-lsp, prettierd
 -- cpp: clangd, clangformat, cpplint
 -- json: json_ls, fixjson, prettierd
@@ -134,8 +134,10 @@ local config = function()
 
 	local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
-	local flake8 = require("efmls-configs.linters.flake8")
-	local black = require("efmls-configs.formatters.black")
+	-- local flake8 = require("efmls-configs.linters.flake8")
+	local ruff_lint = require("efmls-configs.linters.ruff") -- better than flake8
+	-- local black = require("efmls-configs.formatters.black")
+	local ruff_fmt = require("efmls-configs.formatters.ruff") -- faster than black
 
 	-- json etc.
 	local eslint = require("efmls-configs.linters.eslint")
@@ -146,6 +148,7 @@ local config = function()
 	local shfmt = require("efmls-configs.formatters.shfmt")
 	-- cpp
 	local cpplint = require("efmls-configs.linters.cpplint")
+	-- for specif format, use `clang-format --style=Microsoft --dump-config > .clang-format`
 	local clangformat = require("efmls-configs.formatters.clang_format")
 	-- cmake
 	local cmakeformat = require("efmls-configs.formatters.gersemi")
@@ -174,7 +177,7 @@ local config = function()
 			"cpp",
 			"rust",
 			"toml",
-            "cmake",
+			"cmake",
 		},
 		init_options = {
 			documentFormatting = true,
@@ -187,7 +190,8 @@ local config = function()
 		settings = {
 			languages = {
 				lua = { luacheck, stylua },
-				python = { flake8, black },
+				python = { ruff_fmt, ruff_lint },
+				-- python = { black, flake8 },
 				javascript = { eslint, prettier_d },
 				javascriptreact = { eslint, prettier_d },
 				typescript = { eslint, prettier_d },
@@ -200,9 +204,9 @@ local config = function()
 				css = { prettier_d },
 				c = { clangformat, cpplint },
 				cpp = { clangformat, cpplint },
+				cmake = { cmakelint, cmakeformat },
 				rust = { rustfmt },
 				toml = { tomlfmt },
-				cmake = { cmakelint, cmakeformat },
 			},
 		},
 	})

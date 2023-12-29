@@ -1,8 +1,6 @@
-local dap = require("dap")
-
-local config = function()
+local dap_mappings = function()
 	local opts = { silent = true }
-	vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
+	vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.continue()<cr>", opts) -- start and continue
 	vim.keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
 	vim.keymap.set("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
 	vim.keymap.set("n", "<leader>du", "<cmd>lua require'dap'.step_out()<cr>", opts)
@@ -35,20 +33,15 @@ local config = function()
 	vim.keymap.set("n", "<leader>dk", ":lua require'dap'.up()<CR>zz", opts)
 	vim.keymap.set("n", "<leader>dj", ":lua require'dap'.down()<CR>zz", opts)
 	vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l", opts)
+	-- don't forget the python config	keymap.set("n", "<leader>dt", "<cmd>lua require('dap-python').test_method()<CR>", opt) -- run tests
 end
 
 return {
 	"mfussenegger/nvim-dap",
-	config = config,
+	config = function()
+        dap_mappings()
+    end,
 }
--- dap.defaults.fallback.terminal_win_cmd = '20split new'
--- vim.fn.sign_define('DapBreakpoint',
---                    {text = '🟥', texthl = '', linehl = '', numhl = ''})
--- vim.fn.sign_define('DapBreakpointRejected',
---                    {text = '🟦', texthl = '', linehl = '', numhl = ''})
--- vim.fn.sign_define('DapStopped',
---                    {text = '⭐️', texthl = '', linehl = '', numhl = ''})
---
 --
 -- nvim-telescope/telescope-dap.nvim
 -- require('telescope').load_extension('dap')

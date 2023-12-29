@@ -14,6 +14,7 @@ return {
 		"williamboman/mason.nvim",
 		"mfussenegger/nvim-dap",
 	},
+    event = {"VeryLazy"},
 	config = function()
 		require("mason-nvim-dap").setup({
 			ensured_installed = ensured_installed,

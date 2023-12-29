@@ -4,7 +4,7 @@ local opts = {
 		"lua_ls",
 		"pyright",
 		"tsserver", -- typescript
-		"emmet_ls",
+		"emmet_ls", -- html, css
 		"jsonls",
 		"clangd", -- cpp
 		"rust_analyzer",
