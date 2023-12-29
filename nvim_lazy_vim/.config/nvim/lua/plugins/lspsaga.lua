@@ -1,5 +1,5 @@
 -- from https://github.com/Alexis12119/nvim-config
-local config = {
+local _config = {
 	preview = {
 		lines_above = 0,
 		lines_below = 10,
@@ -117,6 +117,7 @@ local config = {
 		},
 	},
 }
+
 return {
 	"glepnir/lspsaga.nvim",
 	lazy = false,

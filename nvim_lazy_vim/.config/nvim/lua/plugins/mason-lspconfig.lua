@@ -9,6 +9,7 @@ local opts = {
 		"clangd", -- cpp
 		"rust_analyzer",
 		"taplo", -- toml
+		"cmake",
 	},
 	automatic_installation = true,
 }

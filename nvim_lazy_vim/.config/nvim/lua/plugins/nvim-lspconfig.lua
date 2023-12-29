@@ -8,10 +8,10 @@
 -- python: pyright, black, flake8
 -- typescript: typescript-language-server, eslint-lsp, prettierd
 -- cpp: clangd, clangformat, cpplint
--- json: fixjson, prettierd
+-- json: json_ls, fixjson, prettierd
 -- rust: rust_analyzer, rustfmt
 -- toml: taplo
---
+-- cmake: cmake-language-server (cmake), gersemi, cmake_lint
 
 -- setup keybindings
 local on_attach = require("utils.lsp").on_attach
@@ -88,6 +88,12 @@ local config = function()
 		},
 	})
 
+	-- cmake.
+	lspconfig.cmake.setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+
 	-- python
 	lspconfig.pyright.setup({
 		capabilities = capabilities,
@@ -126,8 +132,6 @@ local config = function()
 		on_attach = on_attach,
 	})
 
-	-- cmake
-
 	local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
 	local flake8 = require("efmls-configs.linters.flake8")
@@ -143,6 +147,9 @@ local config = function()
 	-- cpp
 	local cpplint = require("efmls-configs.linters.cpplint")
 	local clangformat = require("efmls-configs.formatters.clang_format")
+	-- cmake
+	local cmakeformat = require("efmls-configs.formatters.gersemi")
+	local cmakelint = require("efmls-configs.linters.cmake_lint") -- need to install cmake_format
 	-- rust
 	-- local rustlint = require("efmls-configs.linters.ast-grep")
 	local rustfmt = require("efmls-configs.formatters.rustfmt")
@@ -167,6 +174,7 @@ local config = function()
 			"cpp",
 			"rust",
 			"toml",
+            "cmake",
 		},
 		init_options = {
 			documentFormatting = true,
@@ -194,6 +202,7 @@ local config = function()
 				cpp = { clangformat, cpplint },
 				rust = { rustfmt },
 				toml = { tomlfmt },
+				cmake = { cmakelint, cmakeformat },
 			},
 		},
 	})
