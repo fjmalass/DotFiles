@@ -1,11 +1,13 @@
 local dap = require("dap")
 
-local on_attach = function()
+local config = function()
 	local opts = { silent = true }
 	vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
 	vim.keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
 	vim.keymap.set("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
 	vim.keymap.set("n", "<leader>du", "<cmd>lua require'dap'.step_out()<cr>", opts)
+	vim.keymap.set("n", "<leader>dh", "<cmd>lua require'dap.ui.widgets'.hover()<cr>", opts)
+	vim.keymap.set("v", "<leader>dh", "<cmd>lua require'dap.ui.variables'.visual_hover()<cr>", opts)
 	-- vim.keymap.set({ "n", "t" }, "<A-k>", "<cmd>lua require'dap'.step_out()", opts)
 	-- vim.keymap.set({ "n", "t" }, "<A-l>", "<cmd>lua require'dap'.step_into()", opts)
 	-- vim.keymap.set({ "n", "t" }, "<A-j>", "<cmd>lua require'dap'.step_over()", opts)
@@ -22,20 +24,22 @@ local on_attach = function()
 	vim.keymap.set("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 	vim.keymap.set("n", "<leader>dR", "<cmd>lua require'dap'.clear_breakpoints()<cr>", opts)
 	vim.keymap.set("n", "<leader>de", "<cmd>lua require'dap'.set_exception_breakpoints({'all'})<cr>", opts)
+	vim.keymap.set(
+		"n",
+		"<leader>d?",
+		"<cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<cr>",
+		opts
+	)
 	vim.keymap.set("n", "<leader>da", "<cmd>lua require'debugHelper'.attach()<cr>", opts)
 	vim.keymap.set("n", "<leader>dA", "<cmd>lua require'debugHelper'.attachToRemote()<cr>", opts)
-	vim.keymap.set("n", "<leader>d?", function()
-		local widgets = require("dap.ui.widgets")
-		widgets.centered_float(widgets.scopes)
-	end, opts)
 	vim.keymap.set("n", "<leader>dk", ":lua require'dap'.up()<CR>zz", opts)
 	vim.keymap.set("n", "<leader>dj", ":lua require'dap'.down()<CR>zz", opts)
-	vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.toggle({}, 'vsplit')<CR><C-w>l", opts)
+	vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l", opts)
 end
 
 return {
 	"mfussenegger/nvim-dap",
-	on_attach = on_attach,
+	config = config,
 }
 -- dap.defaults.fallback.terminal_win_cmd = '20split new'
 -- vim.fn.sign_define('DapBreakpoint',
