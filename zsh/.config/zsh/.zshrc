@@ -29,6 +29,7 @@ setopt histignorealldups sharehistory
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
+# Arrow keys
 bindkey '^[[A' history-substring-search-up
 bindkey '^[OA' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -47,7 +48,7 @@ bindkey -M viins '^[OB' history-substring-search-down
 autoload -U colors && colors	    # colours
 export ZSH_DISABLE_COMPFIX=true     # ignore insecure errors
 autoload -Uz compinit -u  && compinit -u
-# autoload -U compinit colors zcalc   # theming
+autoload -U colors zcalc   # themi
 
 
 # Use modern completion system
