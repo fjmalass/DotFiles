@@ -7,7 +7,7 @@
 -- lua: lua-language-server, stylua, luacheck
 -- python: pyright, black, ruff -- as flake8 is slow
 -- typescript: typescript-language-server, eslint-lsp, prettierd
--- cpp: clangd, clangformat, cpplint
+-- cpp: clangd, clang_format, clang_tidy
 -- json: json_ls, fixjson, prettierd
 -- rust: rust_analyzer, rustfmt
 -- toml: taplo
@@ -147,7 +147,8 @@ local config = function()
 	local shellcheck = require("efmls-configs.linters.shellcheck")
 	local shfmt = require("efmls-configs.formatters.shfmt")
 	-- cpp
-	local cpplint = require("efmls-configs.linters.cpplint")
+	-- local cpplint = require("efmls-configs.linters.cpplint")
+	local cpplint = require("efmls-configs.linters.clang_tidy")
 	-- for specif format, use `clang-format --style=Microsoft --dump-config > .clang-format`
 	local clangformat = require("efmls-configs.formatters.clang_format")
 	-- cmake
