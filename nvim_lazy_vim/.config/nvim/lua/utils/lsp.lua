@@ -2,7 +2,8 @@ local M = {}
 --Assign keymaps
 
 M.on_attach_pyright = function(_client, bufnr)
-	local opt = { noremap = true, silent = true, buffer = bufnr } local keymap = vim.keymap
+	local opt = { noremap = true, silent = true, buffer = bufnr }
+	local keymap = vim.keymap
 	keymap.set("n", "<leader>oi", "<cmd>PyrightOrganizeImports<CR>", opt)
 end
 
@@ -10,7 +11,7 @@ end
 M.on_attach_clangd = function(client, bufnr)
 	client.server_capabilities.signatureHelpProvider = false
 end
---
+
 --Assign keymaps
 M.on_attach = function(client, bufnr)
 	local opt = { noremap = true, silent = true, buffer = bufnr }
@@ -29,8 +30,8 @@ M.on_attach = function(client, bufnr)
 	keymap.set("n", "gl", "<cmd>Lspsaga show_line_diagnostic<CR>", opt)
 	keymap.set("n", "gc", "<cmd>Lspsaga show_cursor_diagnostic<CR>", opt)
 	-- keymap.set("n", "<leader>e", vim.diagnostic.open_float, opt)
-	keymap.set("n", "<leader>e", "<cmd>Lspsage show_workspace_diagnostic ++float", opt)
-	keymap.set("n", "<leader>E", "<cmd>Lspsage show_workspace_diagnostic ++normal", opt)
+	keymap.set("n", "<leader>e", "<cmd>Lspsage show_workspace_diagnostic ++float<CR>", opt)
+	keymap.set("n", "<leader>E", "<cmd>Lspsage show_workspace_diagnostic ++normal<CR>", opt)
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opt)
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt)
 	keymap.set("n", "[E", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt) -- need to create function to go to error

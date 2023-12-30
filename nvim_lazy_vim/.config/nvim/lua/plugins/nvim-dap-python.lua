@@ -1,5 +1,4 @@
 -- make sure to install debugpy
---
 -- add test to key mappings
 local dap_python_mappings = function()
 	local opts = { silent = true }
