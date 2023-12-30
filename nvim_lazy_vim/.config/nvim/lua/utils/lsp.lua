@@ -10,8 +10,7 @@ M.on_attach_clangd = function(client, _bufnr)
 	client.server_capabilities.signatureHelpProvider = false
 end
 
---Assign keymaps
-M.on_attach = function(client, bufnr)
+M.keys = function(bufnr)
 	local opt = function(desc)
 		local opt = { noremap = true, silent = true, buffer = bufnr }
 		if desc then
@@ -56,6 +55,13 @@ M.on_attach = function(client, bufnr)
 	-- debug (should  install with dap )
 	keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", opt("Dap: ToggleBreakPoint")) -- toggle breakpoint
 	keymap.set("n", "<leader>dr", "<cmd>DapContinue<CR>", opt("Dap: Continue")) -- continue/debug
+end
+
+--Assign keymaps
+M.on_attach = function(client, bufnr)
+	-- setup keys
+	M.keys(bufnr)
+
 	if client.name == "pyright" then
 		M.on_attach_pyright(client, bufnr)
 	end

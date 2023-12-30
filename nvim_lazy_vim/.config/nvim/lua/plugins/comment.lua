@@ -1,5 +1,7 @@
 return {
 	"numToStr/Comment.nvim",
-	opts = {},
+	config = {
+		extra = { eol = "gca" }, -- replace 'gcA' to make easier access
+	},
 	lazy = false,
 }
