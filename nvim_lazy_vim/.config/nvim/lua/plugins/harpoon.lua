@@ -1,4 +1,4 @@
-local config = function()
+local keys = function()
 	local harpoon = require("harpoon")
 
 	vim.keymap.set("n", "<leader>a", function()
@@ -38,5 +38,5 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope.nvim",
 	},
-	config = config,
+	keys=keys,
 }
