@@ -34,15 +34,23 @@ end
 
 local keys = function()
 	local builtin = require("telescope.builtin")
-	keymap.set("n", "<leader>fk", builtin.keymaps, {desc="Telescope: Keymaps"})
-	keymap.set("n", "<leader>fh", builtin.help_tags, {desc="Telescope: HelpTags"})
-	keymap.set("n", "<leader>ff", builtin.find_files, {desc="Telescope: FindFiles"})
-	keymap.set("n", "<leader>fg", builtin.live_grep, {desc="Telescope: LiveGrep"})
-	keymap.set("n", "<leader>fb", builtin.buffers, {desc="Telescope: Buffers"})
-	keymap.set("n", "<leader>fG", builtin.git_files, {desc="Telescope: FindGitFiles"})
-	keymap.set("n", "<leader>fa", "<cmd>Telescope <CR>", {desc="Telescope"})
+	keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Telescope: Keymaps" })
+	keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope: HelpTags" })
+	keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope: FindFiles" })
+	keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope: LiveGrep" })
+	keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope: Buffers" })
+	keymap.set("n", "<leader>fG", builtin.git_files, { desc = "Telescope: FindGitFiles" })
+	keymap.set("n", "<leader>fa", "<cmd>Telescope <CR>", { desc = "Telescope" })
+	keymap.set("n", "<leader>fws", function()
+		local word = vim.fn.expand("<cword>")
+		builtin.grep_string({ search = word })
+	end, { desc = "Telescope wordUnderCursor" })
+	keymap.set("n", "<leader>fWs", function()
+		local word = vim.fn.expand("<cWORD>")
+		builtin.grep_string({ search = word })
+	end, { desc = "Telescope WORDUnderCursor" })
 end
---[[ 
+--[[
 	keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<CR>"),
 	keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>"),
 	keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>"),
