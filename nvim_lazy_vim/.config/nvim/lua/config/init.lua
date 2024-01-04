@@ -41,7 +41,7 @@ local opts = {
 		},
 	},
 	change_detection = {
-		notify = true,
+		notify = false,
 	},
 }
 
