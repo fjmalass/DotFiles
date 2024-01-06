@@ -8,6 +8,10 @@ local opts = function(desc)
 	return l_opt
 end
 
+-- fix use Ctlr l and ctrl h to move when editing
+keymap.set("i", "<C-l>", "<Right>", opt)
+keymap.set("i", "<C-h>", "<Left>", opt)
+
 -- Directory NvimTree
 keymap.set("n", "<leader>F", "<cmd>NvimTreeFocus<CR>", opt) -- Next buffer
 keymap.set("n", "<leader>m", "<cmd>NvimTreeToggle<CR>", opt) -- Next buffer
@@ -92,11 +96,10 @@ keymap.set({ "n", "v" }, "<leader>d", [["_d]]) -- delete without affecting regis
 
 keymap.set("n", "<leader>f", function()
 	vim.lsp.buf.format({ async = true })
-end, opts( "LSP: Format" )) -- format buffer (useless as we have a format when saving
+end, opts("LSP: Format")) -- format buffer (useless as we have a format when saving
 
 keymap.set("n", "<leader>s", [[:%s/\(<C-r><C-w>\)/<C-r><C-w>/gI<Left><Left><Left>]], opts("ReplaceUnderCursor")) -- create a replace of word under cursor to allow using \0
-keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>",opts("Make Executable") )
-
+keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts("Make Executable"))
 
 keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
