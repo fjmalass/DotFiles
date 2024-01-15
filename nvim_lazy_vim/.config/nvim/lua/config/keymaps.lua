@@ -28,16 +28,16 @@ keymap.set("n", "<C-j>", "<C-w>j", opt) -- Navigate Down
 keymap.set("n", "<C-k>", "<C-w>k", opt) -- Navigate Up
 keymap.set("n", "<C-l>", "<C-w>l", opt) -- Navigate Right
 -- quicklist and recenter
-keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", opt)
-keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", opt)
+keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", opts("Quicklist Next and Recenter"))
+keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", opts("QuickList Prev and Recenter"))
 
 -- location list and recenter
 keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", opts("Next Recenter"))
 keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", opts("Prev recenter"))
 
 -- Reminder, close others <C-w>o, close current <C-w>c
-keymap.set("n", "<C-w>M", "<C-w>| <C-w>_", opt) -- Maximize current window (undo): C-w=
-keymap.set("n", "<C-w>m", "<C-w>=", opt) -- Maximize current window (undo): C-w=
+keymap.set("n", "<C-w>M", "<C-w>| <C-w>_", opts("Maximize Current Window")) -- Maximize current window (undo): C-w=
+keymap.set("n", "<C-w>m", "<C-w>=", opts("Maximize Current Window Undo")) -- Maximize current window (undo): C-w=
 --
 -- Tmux
 keymap.set("t", "<C-h>", "wincmd h", opt) -- Navigate Left
@@ -51,12 +51,12 @@ keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight", opt) -- Navigate Right
 keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 --Window Management
-keymap.set("n", "<leader>sv", "<cmd>vsplit<cr>", opt) -- Split Vertically
-keymap.set("n", "<leader>sh", "<cmd>split<cr>", opt) -- Split Horizontally
-keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", opt)
-keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", opt)
-keymap.set("n", "<C-Left>", "<cmd>vertical resize +2<cr>", opt)
-keymap.set("n", "<C-Right>", "<cmd>vertical resize -2<cr>", opt)
+keymap.set("n", "<leader>sv", "<cmd>vsplit<cr>", opts("Split Vertical")) -- Split Vertically
+keymap.set("n", "<leader>sh", "<cmd>split<cr>", opts("Split Horizontal")) -- Split Horizontally
+keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", opts("Resize Horizontal +2"))
+keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", opts("Resize Horizontal -2"))
+keymap.set("n", "<C-Left>", "<cmd>vertical resize +2<cr>", opts("Resize Vertical +2"))
+keymap.set("n", "<C-Right>", "<cmd>vertical resize -2<cr>", opts("Resize Vertical -2"))
 
 --Show Full File-Path
 keymap.set("n", "<leader>pa", "<cmd>echo expand('%:p')<cr>", opt) -- Show Full File Path
@@ -67,8 +67,8 @@ keymap.set("n", "<leader>nw", "<cmd>Neorg workspace work<cr>", opt)
 keymap.set("n", "<leader>ny", "<cmd>Neorg workspace youtube<cr>", opt)
 
 -- Indenting
-keymap.set("v", "<", "<gv", opt)
-keymap.set("v", ">", ">gv", opt)
+keymap.set("v", "<", "<gv", opts("Desindent and stay in indent mode")) -- stay in indent mode
+keymap.set("v", ">", ">gv", opts("Indent and stay in indent mode")) -- stay in indent mode
 
 -- based on ThePrimeagen
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -85,14 +85,12 @@ keymap.set("n", "<C-u>", "<C-u>zz", opts("Up Recenter"))
 keymap.set("n", "n", "nzzzv", opts("Next unwrap if needed")) -- next word and unwrap if needed
 keymap.set("n", "N", "Nzzzv", opts("Prve unwrap if needed")) -- previous word and unwrap if needed
 
--- greatest remap ever will paste in the
-keymap.set("x", "<leader>p", [[remove"_dP]])
+-- greatest remap ever will paste/yanke in/from the clipboard
+keymap.set("x", "<leader>p", [[remove"_dP]], opts("Paste from clipboard")) -- paste in clipboard
+keymap.set({ "n", "v" }, "<leader>y", [["+y]], opts("Yank to Clipboard")) -- yank to clipboard
+keymap.set("n", "<leader>Y", [["+Y]], opts("Yank Line to Clipboard")) -- yank to clipboard
 
--- next greatest remap ever : asbjornHaland
-keymap.set({ "n", "v" }, "<leader>y", [["+y]], opts("Paste Clipboard")) -- paste to clipboard
-keymap.set("n", "<leader>Y", [["+Y]], opts("Paste Line Clipboard")) -- paste to clipboard
-
-keymap.set({ "n", "v" }, "<leader>d", [["_d]]) -- delete without affecting registers
+keymap.set({ "n", "v" }, "<leader>d", [["_d]], opts("Delete without affecting registers")) -- delete without affecting registers
 
 keymap.set("n", "<leader>f", function()
 	vim.lsp.buf.format({ async = true })
@@ -103,4 +101,4 @@ keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts("Make Executable"))
 
 keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
-end)
+end, opts("Source file"))
