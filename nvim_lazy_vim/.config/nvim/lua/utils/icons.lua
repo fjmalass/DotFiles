@@ -70,6 +70,7 @@ M.git = {
 	Copilot = " ",
 	Branch = "",
 }
+
 M.ui = {
 	ArrowCircleDown = "",
 	ArrowCircleLeft = "",
@@ -149,6 +150,7 @@ M.ui = {
 	TriangleShortArrowRight = "",
 	TriangleShortArrowUp = "",
 }
+
 M.diagnostics = {
 	BoldError = "",
 	Error = "",
@@ -163,6 +165,7 @@ M.diagnostics = {
 	Debug = "",
 	Trace = "✎",
 }
+
 M.misc = {
 	Robot = "󰚩 ",
 	Squirrel = " ",
@@ -172,4 +175,34 @@ M.misc = {
 	Package = " ",
 	CircuitBoard = " ",
 }
+
+M.navic = {
+	File = "󰈙 ",
+	Module = " ",
+	Namespace = "󰌗 ",
+	Package = " ",
+	Class = "󰌗 ",
+	Method = "󰆧 ",
+	Property = " ",
+	Field = " ",
+	Constructor = " ",
+	Enum = "󰕘",
+	Interface = "󰕘",
+	Function = "󰊕 ",
+	Variable = "󰆧 ",
+	Constant = "󰏿 ",
+	String = "󰀬 ",
+	Number = "󰎠 ",
+	Boolean = "◩ ",
+	Array = "󰅪 ",
+	Object = "󰅩 ",
+	Key = "󰌋 ",
+	Null = "󰟢 ",
+	EnumMember = " ",
+	Struct = "󰌗 ",
+	Event = " ",
+	Operator = "󰆕 ",
+	TypeParameter = "󰊄 ",
+}
+
 return M

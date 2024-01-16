@@ -16,6 +16,11 @@ keymap.set("i", "<C-h>", "<Left>", opt)
 keymap.set("n", "<leader>F", "<cmd>NvimTreeFocus<CR>", opt) -- Next buffer
 keymap.set("n", "<leader>m", "<cmd>NvimTreeToggle<CR>", opt) -- Next buffer
 
+-- Change to local directory
+keymap.set("n", "<leader>cd", function()
+    vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))
+end, opts("Change Current Directory"))
+
 -- Buffer Navigation
 keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", opt) -- Next buffer
 keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", opt) -- Prev buffer
