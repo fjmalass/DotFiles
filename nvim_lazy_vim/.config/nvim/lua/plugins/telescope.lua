@@ -16,6 +16,8 @@ local pickers = {
 	},
 }
 
+local icons = require("utils.icons")
+
 local config = function()
 	local telescope = require("telescope")
 	telescope.setup({
@@ -29,6 +31,8 @@ local config = function()
 		},
 		pickers = pickers,
 		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+		prompt_prefix = icons.ui.Telescope .. " ",
+		selection_caret = icons.ui.Forward .. " ",
 	})
 end
 
@@ -41,6 +45,8 @@ local keys = function()
 	keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope: Buffers" })
 	keymap.set("n", "<leader>fG", builtin.git_files, { desc = "Telescope: FindGitFiles" })
 	keymap.set("n", "<leader>fa", "<cmd>Telescope <CR>", { desc = "Telescope" })
+	keymap.set("n", "<leader>fl", builtin.resume, { desc = "Telescope: Last Search" })
+	keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Telescope: Recent Files" })
 	keymap.set("n", "<leader>fws", function()
 		local word = vim.fn.expand("<cword>")
 		builtin.grep_string({ search = word })
