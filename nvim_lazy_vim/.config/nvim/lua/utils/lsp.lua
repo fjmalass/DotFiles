@@ -6,6 +6,7 @@ M.on_attach_pyright = function(_client, bufnr)
 	local keymap = vim.keymap
 	keymap.set("n", "<leader>oi", "<cmd>PyrightOrganizeImports<CR>", opt)
 end
+
 M.on_attach_clangd = function(client, _bufnr)
 	client.server_capabilities.signatureHelpProvider = false
 end
