@@ -2,6 +2,7 @@ local ensure_installed = {
 	"markdown",
 	"json",
 	"markdown",
+	"markdown_inline",
 	"json",
 	"javascript",
 	"typescript",
@@ -12,7 +13,7 @@ local ensure_installed = {
 	"lua",
 	"luadoc",
 	"dockerfile",
-	-- "gitignore",
+	"gitignore",
 	"python",
 	"cpp",
 	-- "glsl",
@@ -36,20 +37,19 @@ local ensure_installed = {
 }
 
 --  WIP
-local textobjects = {
-	lsp_interop = {
-		enable = true,
-		floating_preview_opts = {},
-		peek_definition_code = {
-			["<leader>df"] = "@function.outer",
-			["<leader>dF"] = "@class.outer",
-		},
-	},
-}
+-- local textobjects = {
+-- 	lsp_interop = {
+-- 		enable = true,
+-- 		floating_preview_opts = {},
+-- 		peek_definition_code = {
+-- 			["<leader>df"] = "@function.outer",
+-- 			["<leader>dF"] = "@class.outer",
+-- 		},
+-- 	},
+-- }
 
 local config = function()
 	require("nvim-treesitter.configs").setup({
-		build = ":TSUpdate",
 		indent = {
 			enable = true,
 		},
@@ -71,12 +71,15 @@ local config = function()
 				scope_decremental = "<bs>",
 			},
 		},
-		textobjects = textobjects,
 	})
+	-- require("ts_context_commentstring").setup({}) -- check josean-dev
 end
 
 return {
 	"nvim-treesitter/nvim-treesitter",
-	lazy = false,
+	build = ":TSUpdate",
+	event = { "BufReadPre", "BufNewFile" }, -- lazy
+	-- lazy = false,
 	config = config,
+	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 }

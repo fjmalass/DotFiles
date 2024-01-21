@@ -43,6 +43,10 @@ local opts = {
 	change_detection = {
 		notify = false,
 	},
+	checker = {
+		enabled = true,
+		notify = false,
+	},
 }
 
 -- Setup plugins

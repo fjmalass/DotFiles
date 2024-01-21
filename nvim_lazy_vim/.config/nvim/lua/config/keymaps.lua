@@ -107,3 +107,6 @@ keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts("Make Executable"))
 keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
 end, opts("Source file"))
+
+keymap.set("n", "<leader>+","<C-a>", opts("Increment number"));
+keymap.set("n", "<leader>-","<C-x>", opts("Decrement number"));
