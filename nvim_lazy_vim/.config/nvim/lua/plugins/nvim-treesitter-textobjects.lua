@@ -85,8 +85,8 @@ local move = {
 	enable = true,
 	set_jumps = true, -- setting in the jumplist
 	goto_next_start = {
-		["]f"] = { query = "@function.outer", desc = "Next function start" },
-		["]m"] = { query = "@call.outer", desc = "Next method/function start" },
+		["]f"] = { query = "@function.outer", desc = "Next function definition start" },
+		["]m"] = { query = "@call.outer", desc = "Next method/function call start" },
 		["]c"] = { query = "@class.outer", desc = "Next class start" },
 		["]i"] = { query = "@conditional.outer", desc = "Next conditional start" },
 		["]l"] = { query = "@loop.*", desc = "Next loop start" }, -- similar to loop.inner loop.outer
@@ -94,16 +94,16 @@ local move = {
 		["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold start" },
 	},
 	goto_next_end = {
-		["]F"] = { query = "@function.outer", desc = "Next function end" },
-		["]M"] = { query = "@call.outer", desc = "Next method/function end" },
+		["]F"] = { query = "@function.outer", desc = "Next function definition end" },
+		["]M"] = { query = "@call.outer", desc = "Next method/function call end" },
 		["]I"] = { query = "@conditional.outer", desc = "Next conditional end" },
 		["]C"] = { query = "@class.outer", desc = "Next class end" },
 		["]L"] = { query = "@loop.*", desc = "Next loop end" }, -- similar to loop.inner loop.outer
 		["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope end" },
 	},
 	goto_previous_start = {
-		["[f"] = { query = "@function.outer", desc = "Previous function start" },
-		["[m"] = { query = "@call.outer", desc = "Previous method/function start" },
+		["[f"] = { query = "@function.outer", desc = "Previous function definition start" },
+		["[m"] = { query = "@call.outer", desc = "Previous method/function call start" },
 		["[c"] = { query = "@class.outer", desc = "Previous class start" },
 		["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
 		["[i"] = { query = "@conditional.outer", desc = "Previous loop start" },
@@ -111,8 +111,8 @@ local move = {
 		["[z"] = { query = "@fold", query_group = "folds", desc = "Previous fold start" },
 	},
 	goto_previous_end = {
-		["[F"] = { query = "@function.outer", desc = "Previous function end" },
-		["[M"] = { query = "@call.outer", desc = "Previous method/function end" },
+		["[F"] = { query = "@function.outer", desc = "Previous function definition end" },
+		["[M"] = { query = "@call.outer", desc = "Previous method/function call end" },
 		["[C"] = { query = "@class.outer", desc = "Previous class end" },
 		["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
 		["[I"] = { query = "@conditional.outer", desc = "Previous conditional end" },
@@ -127,7 +127,7 @@ local move = {
 }
 
 local config = function()
-	require("nvim-treesitters.configs").setup({
+	require("nvim-treesitter.configs").setup({
 		textobjexts = {
 			enable = true,
 			keymaps = keymaps,
