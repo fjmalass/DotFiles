@@ -173,3 +173,8 @@ export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
 
 # FZF
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+
+# brew
+export PATH="/opt/homebrew/bin:$PATH"
+
+

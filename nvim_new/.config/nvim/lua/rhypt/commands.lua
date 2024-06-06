@@ -22,9 +22,9 @@ autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
--- added slint
-autocmd({ "BufNewFile, BufRead" }, {
-    group = rhypt_group,
-    pattern = "*.slint",
-    command = [[setlocal filetype=slint]],
-})
+-- -- added slint
+-- autocmd({ "BufNewFile, BufRead" }, {
+--     group = rhypt_group,
+--     pattern = "*.slint",
+--     command = [[setlocal filetype=slint]],
+-- })
