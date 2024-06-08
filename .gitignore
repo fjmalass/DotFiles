@@ -2,3 +2,5 @@
 lazy-lock.json
 zsh/.config/zsh/plugins/**
 tmux/.config/tmux/**.log
+.DS_Store
+
