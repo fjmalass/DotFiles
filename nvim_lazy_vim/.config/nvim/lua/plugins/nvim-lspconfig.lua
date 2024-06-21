@@ -85,6 +85,7 @@ local config = function()
 		cmd = {
 			"clangd",
 			"--offset-encoding=utf-8",
+            "--clang-tidy"
 		},
 	})
 
