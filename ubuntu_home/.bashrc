@@ -116,3 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 . "$HOME/.cargo/env"
+
+# add go
+export PATH=$PATH:/usr/bin/go/bin
+

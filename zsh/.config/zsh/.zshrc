@@ -81,6 +81,16 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+#
+# set PATH so include kafka 
+if [ -d "/opt/kafka" ] ; then
+    PATH="/opt/kafak/bin:$PATH"
+fi
+#
+# set PATH so include go 
+if [ -d "/usr/bin/go/bin" ] ; then
+    PATH="/usr/bin/go/bin:$PATH"
+fi
 
 # zoxide 
 # Check if zoxide is installed
