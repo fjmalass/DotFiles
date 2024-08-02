@@ -1010,6 +1010,10 @@ require("lazy").setup({
 		end,
 		ft = { "markdown" },
 	},
+	{
+		"tpope/vim-fugitive",
+		opt = true,
+	},
 	-- FJM END
 
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
