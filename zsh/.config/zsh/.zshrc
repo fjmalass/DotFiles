@@ -84,7 +84,7 @@ fi
 #
 # set PATH so include kafka 
 if [ -d "/opt/kafka" ] ; then
-    PATH="/opt/kafak/bin:$PATH"
+    PATH="/opt/kafka/bin:$PATH"
 fi
 #
 # set PATH so include go 

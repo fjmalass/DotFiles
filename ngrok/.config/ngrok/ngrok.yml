@@ -11,26 +11,30 @@ heartbeat_tolerance: 5s
 inspect_db_size: 104857600 # 100mb
 log_level: info
 log_format: json
-# log: /var/log/ngrok.log
-metadata: '{"serial": "00012xa-33rUtz9", "comment": "For customer alan@example.com"}'
-proxy_url: socks5://localhost:9150
+log: /mnt/d/log/ngrok.log
+# metadata: '{"serial": "00012xa-33rUtz9", "comment": "For customer alan@example.com"}'
+# proxy_url: socks5://localhost:9150
 remote_management: false
-root_cas: trusted
+# root_cas: trusted
 update_channel: stable
 update_check: false
 version: 2
 web_addr: localhost:4040
 tunnels:
-    website:
-        addr: 8888
-        basic_auth:
-            - "bob:bobpassword"
-        schemes:
-            - https
-        host_header: "myapp.ngrok.dev"
-        inspect: false
+    twiliodemo:
+        addr: 5000
         proto: http
         domain: next-grossly-iguana.ngrok-free.app 
+    # website:
+    #     addr: 8888
+    #     basic_auth:
+    #         - "bob:bobpassword"
+    #     schemes:
+    #         - https
+    #     host_header: "myapp.ngrok.dev"
+    #     inspect: false
+    #     proto: http
+    #     domain: next-grossly-iguana.ngrok-free.app 
     # e2etls:
     #     addr: 9000
     #     proto: tls
@@ -47,12 +51,12 @@ tunnels:
     #                 - type: deny
     #     addr: 8000
     #     proto: tcp
-    ssh-access:
-        addr: 22
-        proto: tcp
-        remote_addr: 1.tcp.ngrok.io:12345
-    my-load-balanced-website:
-        labels:
-            - env=prod
-            - team=infra
-        addr: 8000
+    # ssh-access:
+    #     addr: 22
+    #     proto: tcp
+    #     remote_addr: 1.tcp.ngrok.io:12345
+    # my-load-balanced-website:
+    #     labels:
+    #         - env=prod
+    #         - team=infra
+    #     addr: 8000

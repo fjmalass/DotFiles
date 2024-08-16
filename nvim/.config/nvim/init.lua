@@ -639,11 +639,24 @@ require("lazy").setup({
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		lazy = false,
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
 		keys = {
 			{
 				"<leader>f",
 				function()
-					require("conform").format({ async = true, lsp_fallback = true })
+					require("conform").format({
+						async = true,
+						function(err)
+							-- leave visual mode after range format
+							if not err then
+								local mode = vim.api.nvim_get_mode().mode
+								if vim.startswith(string.lower(mode), "v") then
+									vim.api.nvim_feekeys(vim.api.nvim_replace_termcode("<Esc>", true, false, true))
+								end
+							end
+						end,
+					})
 				end,
 				mode = "",
 				desc = "[F]ormat buffer",
@@ -664,11 +677,13 @@ require("lazy").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
+				python = { "isort", "black" },
+				rust = { "rustfmt", lsp_format = "fallback" },
+				sh = { "shfmt", prepend_args = { "-i", "2" } },
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
+				javascript = { "prettierd", "prettier", stop_after_first_ = true },
 			},
 		},
 	},
