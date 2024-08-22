@@ -159,6 +159,10 @@ vim.opt.scrolloff = 10
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+-- fjm start
+vim.opt.colorcolumn = "80,100"
+-- fjm end
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps (use Trouble instead)
@@ -827,6 +831,7 @@ require("lazy").setup({
 
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
+		version = false,
 		config = function()
 			-- Better Around/Inside textobjects
 			--
@@ -857,6 +862,17 @@ require("lazy").setup({
 			statusline.section_location = function()
 				return "%2l:%-2v"
 			end
+			-- use  [ and ]  to move forward and backward
+			--
+			-- - [q - backward quickfix
+			-- - ]q - forward quickfix
+			-- - [b - backward buffer
+			-- - ]B - forward buffer
+			-- - [d - backward diagnostic
+			-- - ]d - forward diagnostic
+			-- - [t - backward treesitter
+			-- - ]t - forward treesitter
+			require("mini.bracketed").setup()
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
