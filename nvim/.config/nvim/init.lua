@@ -113,7 +113,9 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -215,7 +217,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		error("Error cloning lazy.nvim:\n" .. out)
+	end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
@@ -282,28 +287,78 @@ require("lazy").setup({
 	{ -- Useful plugin to show you pending keybinds.
 		"folke/which-key.nvim",
 		event = "VimEnter", -- Sets the loading event to 'VimEnter'
-		config = function() -- This is the function that runs, AFTER loading
-			local wk = require("which-key")
-			wk.setup()
-			wk.add({
-				{ "<leader>c", group = "[C]ode" },
-				{ "<leader>c_", hidden = true },
+		opts = {
+			icons = {
+				-- set icon mappings to true if you have a Nerd Font
+				mappings = vim.g.have_nerd_font,
+				-- If you are using a Nerd Font: set icons.keys to an empty table which will use the
+				-- default whick-key.nvim defined Nerd Font icons, otherwise define a string table
+				keys = vim.g.have_nerd_font and {} or {
+					Up = "<Up> ",
+					Down = "<Down> ",
+					Left = "<Left> ",
+					Right = "<Right> ",
+					C = "<C-…> ",
+					M = "<M-…> ",
+					D = "<D-…> ",
+					S = "<S-…> ",
+					CR = "<CR> ",
+					Esc = "<Esc> ",
+					ScrollWheelDown = "<ScrollWheelDown> ",
+					ScrollWheelUp = "<ScrollWheelUp> ",
+					NL = "<NL> ",
+					BS = "<BS> ",
+					Space = "<Space> ",
+					Tab = "<Tab> ",
+					F1 = "<F1>",
+					F2 = "<F2>",
+					F3 = "<F3>",
+					F4 = "<F4>",
+					F5 = "<F5>",
+					F6 = "<F6>",
+					F7 = "<F7>",
+					F8 = "<F8>",
+					F9 = "<F9>",
+					F10 = "<F10>",
+					F11 = "<F11>",
+					F12 = "<F12>",
+				},
+			},
+
+			-- Document existing key chains
+			spec = {
+				{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
 				{ "<leader>d", group = "[D]ocument" },
-				{ "<leader>d_", hidden = true },
-				{ "<leader>h", group = "Git [H]unk" },
-				{ "<leader>h_", hidden = true },
-				{ "<leader>h", group = "Git [H]unk", mode = "v" },
-				{ "<leader>h_", hidden = true, mode = "v" },
 				{ "<leader>r", group = "[R]ename" },
-				{ "<leader>r_", hidden = true },
 				{ "<leader>s", group = "[S]earch" },
-				{ "<leader>s_", hidden = true },
-				{ "<leader>t", group = "[T]oggle" },
-				{ "<leader>t_", hidden = true },
 				{ "<leader>w", group = "[W]orkspace" },
-				{ "<leader>w_", hidden = true },
-			})
-		end,
+				{ "<leader>t", group = "[T]oggle" },
+				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+			},
+			-- config = function() -- This is the function that runs, AFTER loading
+			--     icons = {}
+			-- 	local wk = require('which-key')
+			-- 	wk.setup()
+			-- 	wk.add({
+			-- 		{ '<leader>c', group = '[C]ode' },
+			-- 		{ '<leader>c_', hidden = true },
+			-- 		{ '<leader>d', group = '[D]ocument' },
+			-- 		{ '<leader>d_', hidden = true },
+			-- 		{ '<leader>h', group = 'Git [H]unk' },
+			-- 		{ '<leader>h_', hidden = true },
+			-- 		{ '<leader>h', group = 'Git [H]unk', mode = 'v' },
+			-- 		{ '<leader>h_', hidden = true, mode = 'v' },
+			-- 		{ '<leader>r', group = '[R]ename' },
+			-- 		{ '<leader>r_', hidden = true },
+			-- 		{ '<leader>s', group = '[S]earch' },
+			-- 		{ '<leader>s_', hidden = true },
+			-- 		{ '<leader>t', group = '[T]oggle' },
+			-- 		{ '<leader>t_', hidden = true },
+			-- 		{ '<leader>w', group = '[W]orkspace' },
+			-- 		{ '<leader>w_', hidden = true },
+			-- 	})
+			-- end,
+		},
 	},
 
 	-- NOTE: Plugins can specify dependencies.
@@ -417,6 +472,19 @@ require("lazy").setup({
 			end, { desc = "[S]earch [N]eovim files" })
 		end,
 	},
+	{
+		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+		-- used for completion, annotations and signatures of Neovim apis
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{ "Bilal2453/luvit-meta", lazy = true },
 
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
@@ -433,6 +501,8 @@ require("lazy").setup({
 			-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 			-- used for completion, annotations and signatures of Neovim apis
 			{ "folke/neodev.nvim", opts = {} },
+			-- Allows extra capabilities provided by nvim-cmp
+			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
 			-- Brief aside: **What is LSP?**
@@ -649,18 +719,7 @@ require("lazy").setup({
 			{
 				"<leader>f",
 				function()
-					require("conform").format({
-						async = true,
-						function(err)
-							-- leave visual mode after range format
-							if not err then
-								local mode = vim.api.nvim_get_mode().mode
-								if vim.startswith(string.lower(mode), "v") then
-									vim.api.nvim_feekeys(vim.api.nvim_replace_termcode("<Esc>", true, false, true))
-								end
-							end
-						end,
-					})
+					require("conform").format{ async = true, lsp_format = "fallback" }
 				end,
 				mode = "",
 				desc = "[F]ormat buffer",
@@ -672,12 +731,18 @@ require("lazy").setup({
 				-- Disable "format_on_save lsp_fallback" for languages that don't
 				-- have a well standardized coding style. You can add additional
 				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
-				return {
-					timeout_ms = 500,
-					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-				}
-			end,
+        local disable_filetypes = { c = true, cpp = true }
+        local lsp_format_opt
+        if disable_filetypes[vim.bo[bufnr].filetype] then
+          lsp_format_opt = 'never'
+        else
+          lsp_format_opt = 'fallback'
+        end
+        return {
+          timeout_ms = 500,
+          lsp_format = lsp_format_opt,
+        }
+      end,
 			formatters_by_ft = {
 				lua = { "stylua" },
 				-- Conform can also run multiple formatters sequentially
@@ -878,6 +943,12 @@ require("lazy").setup({
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
+    -- There are additional nvim-treesitter modules that you can use to interact
+    -- with nvim-treesitter. You should go explore a few and see what interests you:
+    --
+    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
