@@ -145,7 +145,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -164,6 +164,9 @@ vim.opt.hlsearch = true
 
 -- fjm start
 vim.opt.colorcolumn = "80,100"
+vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 -- fjm end
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -1055,9 +1058,9 @@ require("lazy").setup({
 			end)
 
 			-- Toggle harpoon
-			vim.keymap.set("n", "<C-e>", function()
-				toggle_telescope(harpoon:list())
-			end, { desc = "Open harpoon window" })
+			-- vim.keymap.set("n", "<C-e>", function()
+			-- 	toggle_telescope(harpoon:list())
+			-- end, { desc = "Open harpoon window" })
 		end,
 	},
 	{
@@ -1114,6 +1117,10 @@ require("lazy").setup({
 	{
 		"github/copilot.vim",
 	},
+	{
+		"mbbill/undotree",
+	},
+
 	-- FJM END
 
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
