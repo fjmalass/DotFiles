@@ -338,29 +338,6 @@ require("lazy").setup({
 				{ "<leader>t", group = "[T]oggle" },
 				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 			},
-			-- config = function() -- This is the function that runs, AFTER loading
-			--     icons = {}
-			-- 	local wk = require('which-key')
-			-- 	wk.setup()
-			-- 	wk.add({
-			-- 		{ '<leader>c', group = '[C]ode' },
-			-- 		{ '<leader>c_', hidden = true },
-			-- 		{ '<leader>d', group = '[D]ocument' },
-			-- 		{ '<leader>d_', hidden = true },
-			-- 		{ '<leader>h', group = 'Git [H]unk' },
-			-- 		{ '<leader>h_', hidden = true },
-			-- 		{ '<leader>h', group = 'Git [H]unk', mode = 'v' },
-			-- 		{ '<leader>h_', hidden = true, mode = 'v' },
-			-- 		{ '<leader>r', group = '[R]ename' },
-			-- 		{ '<leader>r_', hidden = true },
-			-- 		{ '<leader>s', group = '[S]earch' },
-			-- 		{ '<leader>s_', hidden = true },
-			-- 		{ '<leader>t', group = '[T]oggle' },
-			-- 		{ '<leader>t_', hidden = true },
-			-- 		{ '<leader>w', group = '[W]orkspace' },
-			-- 		{ '<leader>w_', hidden = true },
-			-- 	})
-			-- end,
 		},
 	},
 
@@ -586,7 +563,7 @@ require("lazy").setup({
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap.
@@ -637,6 +614,15 @@ require("lazy").setup({
 				end,
 			})
 
+			-- Change diagnostic symbols in the sign column (gutter)
+			if vim.g.have_nerd_font then
+				local signs = { ERROR = "", WARN = "", INFO = "", HINT = "" }
+				local diagnostic_signs = {}
+				for type, icon in pairs(signs) do
+					diagnostic_signs[vim.diagnostic.severity[type]] = icon
+				end
+				vim.diagnostic.config({ signs = { text = diagnostic_signs } })
+			end
 			-- LSP servers and clients are able to communicate to each other what features they support.
 			--  By default, Neovim doesn't support everything that is in the LSP specification.
 			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -996,131 +982,8 @@ require("lazy").setup({
 
 	--
 	-- FJM START
-	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function(_, opts)
-			local harpoon = require("harpoon")
-			harpoon:setup()
-			-- Basic telescope
-			local conf = require("telescope.config").values
-			local function toggle_telescope(harpoon_files)
-				local file_paths = {}
-				for _, item in ipairs(harpoon_files.items) do
-					table.insert(file_paths, item.value)
-				end
-				require("telescope.pickers")
-					.new({}, {
-						prompt_title = "Harpoon",
-						finder = require("telescope.finders").new_table({
-							results = file_paths,
-						}),
-						previewer = conf.file_previewer({}),
-						sorter = conf.generic_sorter({}),
-					})
-					:find()
-			end
-
-			-- Basic shortcuts
-			vim.keymap.set("n", "<leader>c", function()
-				harpoon:list():clear()
-			end)
-			vim.keymap.set("n", "<leader>a", function()
-				harpoon:list():add()
-			end)
-			vim.keymap.set("n", "<C-e>", function()
-				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end)
-
-			vim.keymap.set("n", "<C-h>", function()
-				harpoon:list():select(1)
-			end)
-			vim.keymap.set("n", "<C-j>", function()
-				harpoon:list():select(2)
-			end)
-			vim.keymap.set("n", "<C-k>", function()
-				harpoon:list():select(3)
-			end)
-			vim.keymap.set("n", "<C-l>", function()
-				harpoon:list():select(4)
-			end)
-			vim.keymap.set("n", "<C-;>", function()
-				harpoon:list():select(5)
-			end)
-
-			-- Toggle previous & next buffers stored within Harpoon list
-			vim.keymap.set("n", "<C-S-P>", function()
-				harpoon:list():prev()
-			end)
-			vim.keymap.set("n", "<C-S-N>", function()
-				harpoon:list():next()
-			end)
-
-			-- Toggle harpoon
-			-- vim.keymap.set("n", "<C-e>", function()
-			-- 	toggle_telescope(harpoon:list())
-			-- end, { desc = "Open harpoon window" })
-		end,
-	},
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-web-devicons" },
-		opts = {},
-		cmd = "Trouble",
-		keys = {
-			{
-				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
-			},
-			{
-				"<leader>xX",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics (Trouble)",
-			},
-			{
-				"<leader>cs",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
-				desc = "Symbols (Trouble)",
-			},
-			{
-				"<leader>cl",
-				"<cmd>Trouble lsp toggle focus=false<cr>",
-				desc = "LSP Definitions (Trouble)",
-			},
-			{
-				"<leader>xL",
-				"<cmd>Trouble loclist toggle<cr>",
-				desc = "Location List (Trouble)",
-			},
-			{
-				"<leader>xQ",
-				"<cmd>Trouble qflist toggle<cr>",
-				desc = "Quicfix List (Trouble)",
-			},
-		},
-	},
-	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		build = "cd app && yarn install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = { "markdown" },
-	},
-	{
-		"tpope/vim-fugitive",
-		opt = true,
-	},
-	{
-		"github/copilot.vim",
-	},
-	{
-		"mbbill/undotree",
-	},
-
+	-- check custom/plugins/init.lua for more info
+	{ import = "custom.plugins" },
 	-- FJM END
 
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
