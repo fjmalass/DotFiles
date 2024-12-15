@@ -931,6 +931,13 @@ require("lazy").setup({
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
+			--
+			-- FJM START
+			local trailspace = require("mini.trailspace")
+			trailspace.setup({
+				only_in_normal_buffers = true,
+			})
+			-- FJM END
 		end,
 	},
 	-- There are additional nvim-treesitter modules that you can use to interact
