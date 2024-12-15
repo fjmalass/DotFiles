@@ -118,6 +118,13 @@ return {
 		ft = { "markdown" },
 	},
 	{
+		"tadmccorkle/markdown.nvim",
+		ft = "markdown",
+		opts = {},
+		-- vim.keymap.set({"n", "i"}, "<M-l><M-o}", "<Cmd>MDListItemBelow<CR>")
+		-- vim.keymap.set({"n", "i"}, "<M-l><M-O}", "<Cmd>MDListItemAbove<CR>")
+	},
+	{
 		"tpope/vim-fugitive",
 		opt = true,
 	},
