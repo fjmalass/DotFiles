@@ -959,6 +959,7 @@ require("lazy").setup({
 				"lua",
 				"luadoc",
 				"markdown",
+				"markdown_inline",
 				"vim",
 				"vimdoc",
 				"rust",
@@ -966,6 +967,7 @@ require("lazy").setup({
 				"cpp",
 				"typescript",
 				"javascript",
+				"python",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
