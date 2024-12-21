@@ -403,11 +403,14 @@ require("lazy").setup({
 				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 				--   },
 				-- },
-				-- pickers = {}
+				pickers = {
+					files_files = { theme = "ivy" },
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
 					},
+					["fzf"] = {},
 				},
 			})
 
@@ -450,6 +453,16 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sn", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
 			end, { desc = "[S]earch [N]eovim files" })
+
+			-- FJM START
+			-- Shortcut for searching your lazy packages configuration files
+			vim.keymap.set("n", "<leader>sp", function()
+				builtin.find_files({ cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") })
+			end, { desc = "[S]earch Lazy [P]eovim files" })
+
+			require("custom.telescope.multigrep").setup()
+
+			-- FJM END
 		end,
 	},
 	{
