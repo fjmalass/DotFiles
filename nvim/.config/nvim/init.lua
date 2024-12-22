@@ -1,4 +1,4 @@
---[[
+--[[,
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -185,6 +185,8 @@ vim.keymap.set("n", "<M-j>", "<cmd>lnext<CR>", { desc = "[N]ext locfix" })
 vim.keymap.set("n", "<M-k>", "<cmd>lprevious<CR>", { desc = "[P]revious locfix" })
 vim.keymap.set("n", "<leader>N", "<cmd>lnext<CR>", { desc = "[N]ext quickfix" })
 vim.keymap.set("n", "<leader>P", "<cmd>lprevious<CR>", { desc = "[P]revious quickfix" })
+
+vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Oil for File directory" })
 -- FJM END
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -532,6 +534,9 @@ require("lazy").setup({
 			-- { "folke/neodev.nvim", opts = {} },
 			-- Allows extra capabilities provided by nvim-cmp
 			"hrsh7th/cmp-nvim-lsp",
+			-- FJM START
+			"saghen/blink.cmp",
+			-- FJM END
 		},
 		config = function()
 			-- Brief aside: **What is LSP?**
@@ -717,6 +722,8 @@ require("lazy").setup({
 				},
 			}
 
+			-- FJM END blink
+
 			-- Ensure the servers and tools above are installed
 			--  To check the current status of installed tools and/or manually install
 			--  other tools, you can run
@@ -745,6 +752,14 @@ require("lazy").setup({
 					end,
 				},
 			})
+
+			-- FJM START blink
+			local lspconfig = require("lspconfig")
+			for server, config in pairs(servers) do
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				lspconfig[server].setup(config)
+			end
+			-- FJM END blink
 		end,
 	},
 
