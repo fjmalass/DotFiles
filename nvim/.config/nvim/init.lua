@@ -224,6 +224,32 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- fjm BEGIN
+-- avoid line numbers in terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+	end,
+})
+
+-- create a small terminal window at bottom and allow getting commands without being in the terminal
+local channel_id = 0
+vim.keymap.set("n", "<space>st", function()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	-- put at bottom
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, 15)
+	channel_id = vim.bo.channel
+end)
+vim.keymap.set("n", "<space>example", function()
+	vim.fn.chansend(channel_id, "git status\r\n")
+end)
+
+-- fjm END
+--
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
