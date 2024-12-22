@@ -134,4 +134,7 @@ return {
 	{
 		"mbbill/undotree",
 	},
+	{
+		"jdhao/whitespace.nvim",
+	},
 }

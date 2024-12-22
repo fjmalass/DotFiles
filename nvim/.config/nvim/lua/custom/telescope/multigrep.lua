@@ -31,7 +31,7 @@ local live_multigrep = function(opts)
 
 			return vim.fn.flatten({
 				args,
-				{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column" },
+				{ "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
 			})
 		end,
 		entry_maker = make_entry.gen_from_vimgrep(opts),
