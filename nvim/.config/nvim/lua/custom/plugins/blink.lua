@@ -14,6 +14,9 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+			-- adding any nvim-comp sources will menable them with blink
+			compat = {},
+
 			keymap = { preset = "default" },
 
 			appearance = {
@@ -25,6 +28,17 @@ return {
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
 			signature = { enabled = true },
+
+			cmdline = function()
+				local type = vim.fn.getcmdtype()
+				if type == "/" or type == "?" then
+					return { "buffer" }
+				end
+				if type == ":" then
+					return { "cmdline" }
+				end
+				return {}
+			end,
 		},
 		opts_extend = { "sources.default" },
 	},

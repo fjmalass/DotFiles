@@ -226,7 +226,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- fjm BEGIN
+-- FJM BEGIN
 -- avoid line numbers in terminal
 vim.api.nvim_create_autocmd("TermOpen", {
 	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
@@ -250,7 +250,7 @@ vim.keymap.set("n", "<space>example", function()
 	vim.fn.chansend(channel_id, "git status\r\n")
 end)
 
--- fjm END
+-- FJM END
 --
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
