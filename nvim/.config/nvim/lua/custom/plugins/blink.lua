@@ -15,7 +15,7 @@ return {
 		---@type blink.cmp.Config
 		opts = {
 			-- adding any nvim-comp sources will menable them with blink
-			compat = {},
+			-- compat = {},
 
 			keymap = { preset = "default" },
 
