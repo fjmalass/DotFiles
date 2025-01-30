@@ -1,4 +1,5 @@
 --[[,
+    animate: bool = False,
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -176,13 +177,15 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 -- FJM BEGIN
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagnostic [Q]uickfix list" })
-vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>", { desc = "[N]ext quickfix" })
-vim.keymap.set("n", "<C-k>", "<cmd>cprevious<CR>", { desc = "[P]revious quickfix" })
+-- vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>", { desc = "[N]ext quickfix" })
+-- vim.keymap.set("n", "<C-k>", "<cmd>cprevious<CR>", { desc = "[P]revious quickfix" })
+vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>", { desc = "[N]ext quickfix" })
+vim.keymap.set("n", "<M-k>", "<cmd>cprevious<CR>", { desc = "[P]revious quickfix" })
 vim.keymap.set("n", "<leader>n", "<cmd>cnext<CR>", { desc = "[N]ext quickfix" })
 vim.keymap.set("n", "<leader>p", "<cmd>cprevious<CR>", { desc = "[P]revious quickfix" })
 vim.keymap.set("n", "<leader>Q", vim.diagnostic.setloclist, { desc = "Open diagnostic [q]uickfix list" })
-vim.keymap.set("n", "<M-j>", "<cmd>lnext<CR>", { desc = "[N]ext locfix" })
-vim.keymap.set("n", "<M-k>", "<cmd>lprevious<CR>", { desc = "[P]revious locfix" })
+vim.keymap.set("n", "<M-J>", "<cmd>lnext<CR>", { desc = "[N]ext locfix" })
+vim.keymap.set("n", "<M-K>", "<cmd>lprevious<CR>", { desc = "[P]revious locfix" })
 vim.keymap.set("n", "<leader>N", "<cmd>lnext<CR>", { desc = "[N]ext quickfix" })
 vim.keymap.set("n", "<leader>P", "<cmd>lprevious<CR>", { desc = "[P]revious quickfix" })
 
@@ -207,10 +210,10 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+-- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+-- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+-- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -245,10 +248,10 @@ vim.keymap.set("n", "<space>st", function()
 	vim.cmd.wincmd("J")
 	vim.api.nvim_win_set_height(0, 15)
 	channel_id = vim.bo.channel
-end)
+end, { desc = "[s]mall [t]erminal window at bottom" })
 vim.keymap.set("n", "<space>example", function()
 	vim.fn.chansend(channel_id, "git status\r\n")
-end)
+end, { desc = "[example] git status to send to another channel" })
 
 -- FJM END
 --
@@ -533,7 +536,8 @@ require("lazy").setup({
 			-- removed as now with lazy
 			-- { "folke/neodev.nvim", opts = {} },
 			-- Allows extra capabilities provided by nvim-cmp
-			"hrsh7th/cmp-nvim-lsp",
+			-- FJM remove cmp as we installed blink
+			-- "hrsh7th/cmp-nvim-lsp",
 			-- FJM START
 			"saghen/blink.cmp",
 			-- FJM END

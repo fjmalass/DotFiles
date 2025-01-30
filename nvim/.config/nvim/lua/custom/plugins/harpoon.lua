@@ -39,7 +39,6 @@ return {
 			vim.keymap.set("n", "<C-e>", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
 			end, { desc = "Harpoon Quick M[e]nu" })
-
 			vim.keymap.set("n", "<C-h>", function()
 				harpoon:list():select(1)
 			end, { desc = "Harpoon Select 1" })
@@ -68,6 +67,21 @@ return {
 			-- vim.keymap.set("n", "<C-e>", function()
 			-- 	toggle_telescope(harpoon:list())
 			-- end, { desc = "Open harpoon window" })
+			harpoon:extend({
+				UI_CREATE = function(cx)
+					vim.keymap.set("n", "<C-v>", function()
+						harpoon.ui:select_menu_item({ vsplit = true })
+					end, { buffer = cx.bufnr, desc = "HarpoonUI: [v]ertical split" })
+
+					vim.keymap.set("n", "<C-x>", function()
+						harpoon.ui:select_menu_item({ split = true })
+					end, { buffer = cx.bufnr, desc = "HarpoonUI: [x] horizontal split" })
+
+					vim.keymap.set("n", "<C-t>", function()
+						harpoon.ui:select_menu_item({ tabedit = true })
+					end, { buffer = cx.bufnr, desc = "HarpoonUI: [t]ertical split" })
+				end,
+			})
 		end,
 	},
 }
