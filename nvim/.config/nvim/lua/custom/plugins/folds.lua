@@ -18,8 +18,8 @@ return {
 			vim.o.foldlevelstart = 99
 			vim.o.foldenable = true
 
-			vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "fold[z] [R]ecurively Open All" })
-			vim.keymap.set("n", "zM", require("ufo").openAllFolds, { desc = "fold[z] Close All[M]" })
+			vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "fold[z] [R]estore Open All" })
+			vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "fold[z] [M] Close All" })
 		end,
 	},
 }

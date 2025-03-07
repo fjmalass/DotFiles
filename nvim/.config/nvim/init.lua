@@ -167,6 +167,13 @@ vim.opt.hlsearch = true
 vim.opt.colorcolumn = "80,100"
 vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 vim.opt.tabstop = 4
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "go",
+	callback = function()
+		vim.opt_local.tabstop = 4
+		vim.opt_local.softtabstop = 4
+	end,
+})
 vim.opt.shiftwidth = 4
 -- fjm end
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
