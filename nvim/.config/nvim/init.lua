@@ -167,14 +167,16 @@ vim.opt.hlsearch = true
 vim.opt.colorcolumn = "80,100"
 vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "go",
 	callback = function()
 		vim.opt_local.tabstop = 4
 		vim.opt_local.softtabstop = 4
+		vim.opt_local.shiftwidth = 4
 	end,
 })
-vim.opt.shiftwidth = 4
 -- fjm end
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -707,9 +709,16 @@ require("lazy").setup({
 				-- clangd = {},
 				gopls = {
 					settings = {
-						gopls = { gofumpt = true, staticcheck = true }, -- will need to install go install mvdan.cc/gofumpt@latest
+						gopls = {
+							-- gofumpt = true,
+							staticcheck = true,
+							-- lintersettings = {
+							-- 	["golangci-lint"] = {
+							-- 		command = "golangci-lint",
+								-- },
+							}, -- will need to install go install mvdan.cc/gofumpt@latest
+						},
 					},
-				},
 				-- pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -817,10 +826,12 @@ require("lazy").setup({
 				python = { "isort", "black" },
 				rust = { "rustfmt", lsp_format = "fallback" },
 				sh = { "shfmt", prepend_args = { "-i", "2" } },
+				go = { "gofmt" },
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
 				javascript = { "prettierd", "prettier", stop_after_first_ = true },
+				html = { "prettierd", "prettier", stop_after_first_ = true },
 			},
 		},
 	},

@@ -56,49 +56,49 @@ return {
 				function()
 					require("harpoon"):list():select(1)
 				end,
-				desc = "Harpoon Select 1",
+				desc = "Harpoon Select [1]",
 			},
 			{
 				"<C-2>",
 				function()
 					require("harpoon"):list():select(2)
 				end,
-				desc = "Harpoon Select 2",
+				desc = "Harpoon Select [2]",
 			},
 			{
 				"<C-3>",
 				function()
 					require("harpoon"):list():select(3)
 				end,
-				desc = "Harpoon Select 3",
+				desc = "Harpoon Select [3]",
 			},
 			{
 				"<C-4>",
 				function()
 					require("harpoon"):list():select(4)
 				end,
-				desc = "Harpoon Select 4",
+				desc = "Harpoon Select [4]",
 			},
 			{
 				"<C-5>",
 				function()
 					require("harpoon"):list():select(5)
 				end,
-				desc = "Harpoon Select 5",
+				desc = "Harpoon Select [5]",
 			},
 			{
 				"<C-6>",
 				function()
 					require("harpoon"):list():select(6)
 				end,
-				desc = "Harpoon Select 6",
+				desc = "Harpoon Select [6]",
 			},
 			{
 				"<C-7>",
 				function()
 					require("harpoon"):list():select(7)
 				end,
-				desc = "Harpoon Select 7",
+				desc = "Harpoon Select [7]",
 			},
 
 			-- Toggle previous & next buffers stored within require("harpoon") list
