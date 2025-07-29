@@ -715,10 +715,10 @@ require("lazy").setup({
 							-- lintersettings = {
 							-- 	["golangci-lint"] = {
 							-- 		command = "golangci-lint",
-								-- },
-							}, -- will need to install go install mvdan.cc/gofumpt@latest
-						},
+							-- },
+						}, -- will need to install go install mvdan.cc/gofumpt@latest
 					},
+				},
 				-- pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
