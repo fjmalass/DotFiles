@@ -36,8 +36,8 @@ return {
 						play = "▶",
 						step_into = "⏎",
 						step_over = "⏭",
-						step_out = "⏮",
-						step_back = "b",
+						step_out = "⏫",
+						step_back = "⏪",
 						run_last = "▶▶",
 						terminate = "⏹",
 						disconnect = "⏏",
@@ -70,7 +70,11 @@ return {
 				enabled_commands = true,
 				highlight_changed_variables = true,
 				highlight_new_as_changed = false,
+				show_stop_reason = true,
 				commented = false,
+				all_references = true,
+				clear_on_continue = false,
+				virt_text_pos = "inline", -- 'eol' otherwise
 			})
 
 			-- Configure Go debugging
