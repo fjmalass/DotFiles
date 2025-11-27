@@ -97,7 +97,7 @@ return {
 				},
 
 				-- Whether to use dap.configurations.go or the built-in defaults
-				dap_configurations = true,
+				-- dap_configurations = true,
 
 				-- Verbosity for test runs
 				test_runner = "go", -- go or dlv

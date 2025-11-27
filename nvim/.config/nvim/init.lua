@@ -822,17 +822,19 @@ require("lazy").setup({
 						-- by the server configuration above. Useful when disabling
 						-- certain features of an LSP (for example, turning off formatting for tsserver)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						-- require("lspconfig")[server_name].setup(server)
+						vim.lsp.config(server_name, server)
+						vim.lsp.enable(server_name)
 					end,
 				},
 			})
 
 			-- FJM START blink
-			-- local lspconfig = require("lspconfig")
-			-- for server, config in pairs(servers) do
-			-- 	config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-			-- 	lspconfig[server].setup(config)
-			-- end
+			for server, config in pairs(servers) do
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				vim.lsp.config(server, config)
+				vim.lsp.enable(server)
+			end
 			-- FJM END blink
 		end,
 	},
