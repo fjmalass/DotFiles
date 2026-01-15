@@ -459,14 +459,65 @@ require("lazy").setup({
 				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 				--   },
 				-- },
+				-- ADDED: UI improvements
+				prompt_prefix = "🔍 ",
+				selection_caret = "➜ ",
+				path_display = { "smart" },
+
+				file_ignore_paaters = {
+					"^.git/*",
+					"node_modules/",
+					"bin/",
+					"%.out",
+					"%.exe",
+				},
+
+				layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = {
+						preview_width = 0.55,
+					},
+					width = 0.87,
+					height = 0.80,
+				},
+
+				mappings = {
+					i = {
+						["<C-j>"] = require("telescope.actions").move_selection_next,
+						["<C-k>"] = require("telescope.actions").move_selection_previous,
+					},
+				},
 				pickers = {
-					files_files = { theme = "ivy" },
+					find_files = {
+						theme = "ivy",
+						hidden = true,
+						find_command = {
+							"fd",
+							"--type",
+							"f",
+							"--hidden",
+							"--follow",
+							"--exclude",
+							".git",
+							"--strip-cwd-prefix",
+						},
+					},
+					live_grep = {
+						additional_args = function()
+							return { "--hidden", "--glob=!.git/" }
+						end,
+					},
 				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
 					},
-					["fzf"] = {},
+					["fzf"] = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
 				},
 			})
 
