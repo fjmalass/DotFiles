@@ -181,6 +181,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.shiftwidth = 4
 	end,
 })
+-- views can only be fully collaps with the global statusline
+-- for avante/opencode
+vim.o.laststatus = 3
 -- fjm end
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
