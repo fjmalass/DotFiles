@@ -2,15 +2,21 @@ return {
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
+		lazy = false,
+		version = "*",
+		build = "make",
 		opts = {
 			instructions_file = "avante.md",
 			provider = "ollama",
 			providers = {
-				"http://127.0.0.1:11434", -- note there is no /v1 at the end
-				model = "qwen3:8b,",
+				ollama = {
+					model = "qwen3:8b,",
+					-- is_env_set = require("avante.providers.ollama").check_endpoint_alive,
+				},
 			},
 		},
 		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,

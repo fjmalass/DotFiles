@@ -180,3 +180,5 @@ export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
 
+
+. "$HOME/.local/bin/env"
