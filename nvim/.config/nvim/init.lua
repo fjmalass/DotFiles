@@ -1145,7 +1145,10 @@ require("lazy").setup({
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		main = "nvim-treesitter.configs",
+		lazy = false,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-context",
+		},
 		opts = {
 			ensure_installed = {
 				"bash",
@@ -1176,6 +1179,18 @@ require("lazy").setup({
 				additional_vim_regex_highlighting = { "ruby" },
 			},
 			indent = { enable = true, disable = { "ruby" } },
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+						["ac"] = "@class.outer",
+						["ic"] = "@class.inner",
+					},
+				},
+			},
 		},
 
 		-- There are additional nvim-treesitter modules that you can use to interact
@@ -1228,6 +1243,7 @@ require("lazy").setup({
 			lazy = "💤 ",
 		},
 	},
+	rocks = { enabled = false },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`

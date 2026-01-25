@@ -23,16 +23,27 @@ sudo apt install -y \
 	libxdamage1 \
 	libxrandr2 \
 	libgbm1 \
-	libasound2t64
+	libasound2t64 \
+	nodejs \
+	npm \
+	rustup \
+	golang-go \ 
+	unzip \
+	wget \
+	python3 \
+	python3-pip
 
 
-if ! command -v rustup &> /dev/null; then
-	curl --proto '=https' --tlsv1.2 -sSF https//sh.rustup.rs | sh -s -- -y
-fi
+npm install yarn
+
+rustup default stable
+cargo install tree-sitter-cli
 
 
 if ! command -v uv &> /dev/null; then
 	curl -lsSf https://astral.sh/uv/install.sh | sh
 fi
+
+
 
 
