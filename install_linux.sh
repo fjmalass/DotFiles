@@ -6,6 +6,7 @@ sudo apt update
 
 sudo apt install -y \
 	git \
+	git-lfs \
 	openssh-client \
 	build-essential \
 	llvm \
@@ -27,11 +28,12 @@ sudo apt install -y \
 	nodejs \
 	npm \
 	rustup \
-	golang-go \ 
+	golang-go \
 	unzip \
 	wget \
 	python3 \
-	python3-pip
+	python3-pip \
+
 
 
 npm install yarn
@@ -43,6 +45,8 @@ cargo install tree-sitter-cli
 if ! command -v uv &> /dev/null; then
 	curl -lsSf https://astral.sh/uv/install.sh | sh
 fi
+
+go install github.com/go-task/task/v3/cmd/task@latest
 
 
 
