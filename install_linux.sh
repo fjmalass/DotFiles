@@ -33,6 +33,8 @@ sudo apt install -y \
 	wget \
 	python3 \
 	python3-pip \
+	ripgrep \
+	fd-find
 
 
 
