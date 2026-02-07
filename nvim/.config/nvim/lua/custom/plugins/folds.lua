@@ -6,16 +6,19 @@ return {
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = { "kevinhwang91/promise-async" },
-		opts = {
-			provider_selector = function(bufnr, filetype, buftype)
-				return { "lsp", "indent" }
-			end,
-		},
-		init = function()
-			vim.o.foldcolumn = "1"
-			vim.o.foldlevel = 99
-			vim.o.foldlevelstart = 99
-			vim.o.foldenable = true
+		-- Use 'config' instead of 'opts' for better control over the provider_selector
+		config = function()
+			-- Fold settings (can also stay in init if you prefer)
+			vim.opt.foldcolumn = "1"
+			vim.opt.foldlevel = 99
+			vim.opt.foldlevelstart = 99
+			vim.opt.foldenable = true
+
+			require("ufo").setup({
+				provider_selector = function(bufnr, filetype, buftype)
+					return { "treesitter", "indent" }
+				end,
+			})
 		end,
 		keys = {
 			{
@@ -23,14 +26,24 @@ return {
 				function()
 					require("ufo").openAllFolds()
 				end,
-				desc = "fold[z] [R]estore Open All",
+				desc = "Open all folds",
 			},
 			{
 				"zM",
 				function()
 					require("ufo").closeAllFolds()
 				end,
-				desc = "fold[z] [M] Close All",
+				desc = "Close all folds",
+			},
+			{
+				"K",
+				function()
+					local winid = require("ufo").peekFoldedLinesUnderCursor()
+					if not winid then
+						vim.lsp.buf.hover()
+					end
+				end,
+				desc = "Peek Fold / LSP Hover",
 			},
 		},
 	},

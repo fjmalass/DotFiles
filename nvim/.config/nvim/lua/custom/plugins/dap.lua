@@ -137,18 +137,6 @@ return {
 
 			-- Define key mappings for debugging
 			-- Use these to trigger debugging actions
-			vim.keymap.set("n", "<leader>dc", function()
-				dap.continue()
-			end, { desc = "[D]ebug: [C]ontinue/Start" })
-			vim.keymap.set("n", "<leader>do", function()
-				dap.step_over()
-			end, { desc = "[D]ebug: Step [O]ver" })
-			vim.keymap.set("n", "<leader>di", function()
-				dap.step_into()
-			end, { desc = "[D]ebug: Step [I]nto" })
-			vim.keymap.set("n", "<leader>dO", function()
-				dap.step_out()
-			end, { desc = "[D]ebug: Step [O]ut" })
 			-- Breakpoint management
 			vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "[D]ebug: Toggle [B]reakpoint" })
 			vim.keymap.set("n", "<Leader>dB", function()
@@ -175,7 +163,12 @@ return {
 			vim.keymap.set("n", "<Leader>dk", dap.down, { desc = "[Debug]: Stack frame [k] (up)" })
 			-- show excetipon info
 			vim.keymap.set("n", "<Leader>dE", function()
-				vim.ui.open(vim.fn.expand("$HOME/.cache/nvim/dap.log"))
+				local log_path = vim.fm.expand("$HOME/.cache/nvim/dap.log")
+				if vim.fn.filereadable(log_path) == 1 then
+					vim.cmd("edit" .. log_path)
+				else
+					vim.notifiy("DAP Log not found at " .. log_path, vim.log.levels.WARN)
+				end
 			end, { desc = "[Debug]: Show [E]xception/Error log" })
 
 			-- UI controls (these use dapui but keymaps centralized here)
