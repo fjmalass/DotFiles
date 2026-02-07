@@ -19,6 +19,15 @@ return {
 					return { "treesitter", "indent" }
 				end,
 			})
+
+			-- Require recalculation of folds
+			vim.api.nvim_create_autocmd("BufReadPost", {
+				callback = function()
+					vim.schedule(function()
+						require("ufo").openAllFolds()
+					end)
+				end,
+			})
 		end,
 		keys = {
 			{
@@ -34,6 +43,20 @@ return {
 					require("ufo").closeAllFolds()
 				end,
 				desc = "Close all folds",
+			},
+			{
+				"z1",
+				function()
+					require("ufo").closeFoldsWith(1)
+				end,
+				desc = "Close L1 folds",
+			},
+			{
+				"z2",
+				function()
+					require("ufo").closeFoldsWith(2)
+				end,
+				desc = "Close L2 folds",
 			},
 			{
 				"K",
