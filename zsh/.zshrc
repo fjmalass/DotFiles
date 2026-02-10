@@ -93,16 +93,18 @@ if [ -f ~/.zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-# --- 8. Starship Prompt ---
+# --- 9. Starship Prompt ---
 export LS_COLORS="di=01;36:ex=00:fi=00:ow=01;36:ln=01;35:or=40;31;01:mi=00:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:su=37;41:sg=30;43:ca=30;41:tw=30;42"
 export EZA_COLORS="da=37:sn=33:gm=38;5;208:ga=32:gd=31:xx=38;5;244"
 
 if command -v eza > /dev/null; then
-  alias ls='eza --group-directories-first'
-  alias ll='eza -lh --group-directories-first --git'
-  alias lt='eza --tree --level=2'
+  alias ls='eza --group-directories-first --icons --git --color=always'
+  alias ll='eza -lh --group-directories-first --icons --git --color=always'
+  alias lt='eza --tree --level=2 --color=always'
 fi
 
 if command -v starship &> /dev/null; then
     eval "$(starship init zsh)"
 fi
+
+
