@@ -1,184 +1,108 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# --- 1. Core Zsh Settings ---
+bindkey -e  # Use emacs keybindings
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/francois/.oh-my-zsh"
+# Completion system (Intelligent tab-completion)
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # Case-insensitive completion
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+# --- 2. History Configuration ---
+HISTFILE=~/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+setopt APPEND_HISTORY       # Append to history file, don't overwrite
+setopt SHARE_HISTORY        # Share history between terminal sessions
+setopt HIST_IGNORE_DUPS     # Don't record duplicates
+setopt HIST_IGNORE_SPACE    # Don't record lines starting with a space
+setopt HIST_REDUCE_BLANKS   # Remove superfluous blanks
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# --- 3. Shell Options ---
+setopt AUTO_CD              # Just type a directory name to cd into it
+setopt NO_BEEP              # Disable beep sounds
+setopt INTERACTIVE_COMMENTS # Allow comments in interactive shell
+setopt GLOB_STAR_SHORT      # Enables recursive globbing (**)
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# Support for non-text input files
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew fzf)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
+# --- 4. The Prompt (Fallback) ---
+# Note: This is overridden by Starship if installed
+if [[ "$TERM" == (xterm-color|*-256color) ]]; then
+    PROMPT='%F{green}%n@%m%f:%F{cyan}%~%f$ '
 else
-  export EDITOR='nvim'
+    PROMPT='%n@%m:%~$ '
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Set window title
+case "$TERM" in
+    xterm*|rxvt*)
+        precmd() { print -Pn "\e]0;%n@%m: %~\a" }
+        ;;
+esac
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# remove __pycache__
-pyclean () {
-    find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
-}
-
-# add lvim to PATH
-export PATH="/Users/francois/.local/bin:$PATH"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/francois/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/francois/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/francois/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/francois/miniforge3/bin:$PATH"
-    fi
+# --- 5. Aliases & Color Support ---
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
 fi
-unset __conda_setup
-# <<< conda initialize <<<
 
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias fd='fdfind'
+alias v='nvim'
+alias m='makers'
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# Load external aliases if they exist
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 
-# >>> pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-# <<< pyenv
-#
-# also run with rust
-#
-# >> stylua
+# --- 6. Environment Variables & Paths ---
+
+# CUDA
+export PATH=/usr/local/cuda-13/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-13/lib64:$LD_LIBRARY_PATH
+
+# Rust / Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
-# <<  stylua
-#
-# use vim :iexc echo $VIMRUNTIME
-# export VIMRUNTIME='/usr/local/share/nvim/runtime'
-# export VIMRUNTIME="$HOME/.local/share/nvim"
 
-# >>> argcomplete for ansible
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete ansible)"
-eval "$(register-python-argcomplete ansible-config)"
-eval "$(register-python-argcomplete ansible-console)"
-eval "$(register-python-argcomplete ansible-doc)"
-eval "$(register-python-argcomplete ansible-galaxy)"
-eval "$(register-python-argcomplete ansible-inventory)"
-eval "$(register-python-argcomplete ansible-playbook)"
-eval "$(register-python-argcomplete ansible-pull)"
-eval "$(register-python-argcomplete ansible-vault)"
-# <<< argcomplete
+# Go Configuration (Fixed Pathing)
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export GOMODCACHE=$GOPATH/pkg/mod
+export GOTOOLCHAIN=local
+# Ensure both GOROOT and GOPATH bins are in the path
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"
+# Node / NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# zoxide
-eval "$(zoxide init zsh)"
+# NPM Global
+export PATH="$HOME/.npm-global/bin:$PATH"
 
+# --- 7. Minimalist Plugins (Manual Loading) ---
+# Syntax Highlighting
+if [ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-fpath+=~/.zfunc
+# Autosuggestions
+if [ -f ~/.zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
-# Sphinx installed via brew  (documentation)
-export PATH="/opt/homebrew/opt/sphinx-doc/bin:$PATH"
+# --- 8. Starship Prompt ---
+export LS_COLORS="di=01;36:ex=00:fi=00:ow=01;36:ln=01;35:or=40;31;01:mi=00:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:su=37;41:sg=30;43:ca=30;41:tw=30;42"
+export EZA_COLORS="da=37:sn=33:gm=38;5;208:ga=32:gd=31:xx=38;5;244"
 
-# FZF
-# source <(fzf --zsh)
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+if command -v eza > /dev/null; then
+  alias ls='eza --group-directories-first'
+  alias ll='eza -lh --group-directories-first --git'
+  alias lt='eza --tree --level=2'
+fi
 
-
-# brew
-export PATH="/opt/homebrew/bin:$PATH"
-
-
-
-. "$HOME/.local/bin/env"
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi

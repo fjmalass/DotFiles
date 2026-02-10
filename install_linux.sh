@@ -34,7 +34,9 @@ sudo apt install -y \
 	python3 \
 	python3-pip \
 	ripgrep \
-	fd-find
+	fd-find \
+	zsh \
+	eza
 
 
 
@@ -50,6 +52,10 @@ fi
 
 go install github.com/go-task/task/v3/cmd/task@latest
 
+
+curl -sS https://starship.rs/install.sh | sh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh-autosuggestions
 
 
 
